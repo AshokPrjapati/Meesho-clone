@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": "41",
+      "image": "https://images.meesho.com/images/products/162582930/d0yc2_512.webp",
+      "title": "Womens Stylish Straight Khadi Cotton Kurta",
+      "price": 565,
+      "reviews": {
+        "rate": 4.1,
+        "count": 269
+      },
+      "discount": 65,
+      "category": "women-ethnic",
+      "description": "Fancy Very Stylish For Look Very Fashionable Garments Also It Has A Plain Khadi Cotton Fabric Used Kurti For Women's Also It Has multi Color 3/4 Sleeve And V Neck And It Has Very Stylish Pleated Pattern At Fancy Plain Kurti From BUXOMFOODS"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
