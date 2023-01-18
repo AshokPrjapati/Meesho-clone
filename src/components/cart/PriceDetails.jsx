@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const PriceDetails = () => {
+const PriceDetails = ({ totalPrice }) => {
   return (
     <Stack p={"20px"} lineHeight={8}>
       <Text fontSize={"17px"} fontWeight={"500"}>
@@ -18,11 +18,11 @@ const PriceDetails = () => {
       </Text>
       <Flex justify={"space-between"}>
         <Text>Total Product Price</Text>
-        <Text>₹456</Text>
+        <Text>₹{totalPrice}</Text>
       </Flex>
       <Flex justify={"space-between"}>
         <Text>Total Discount</Text>
-        <Text>₹456</Text>
+        <Text>₹0</Text>
       </Flex>
       <Divider colorScheme={"whatsapp"} p={"5px"} />
       <Flex justify={"space-between"}>
@@ -30,7 +30,7 @@ const PriceDetails = () => {
           Order Total
         </Text>
         <Text fontSize={"17px"} fontWeight={"500"}>
-          ₹456
+          {totalPrice}
         </Text>
       </Flex>
       <Button
@@ -42,7 +42,7 @@ const PriceDetails = () => {
         pointerEvents="none"
         borderRadius={0}
       >
-        <StarIcon mr="5px" /> Yay! Your Total Discount is ₹9
+        <StarIcon mr="5px" /> Yay! Your Total Discount is ₹0
       </Button>
       <Text fontSize={"12px"} textAlign="center">
         Clicking on `Continue`` will not deduct any money

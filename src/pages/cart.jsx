@@ -11,11 +11,20 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
 
 const Cart = ({ cartProducts }) => {
+  let tp = 0;
+  for (let p of cartProducts) {
+    tp += p.price;
+  }
+
+  const [totalPrice, setTotalPrice] = useState(tp);
+  const handleTp = (p) => {
+    setTotalPrice(totalPrice + p);
+  };
   return (
     <>
       <Head>
@@ -53,11 +62,15 @@ const Cart = ({ cartProducts }) => {
                   </span>
                 </Heading>
                 {cartProducts.map((products) => (
-                  <CartItem key={products.id} {...products} />
+                  <CartItem
+                    key={products.id}
+                    {...products}
+                    handleTp={handleTp}
+                  />
                 ))}
               </Box>
               <Box w="38%">
-                <PriceDetails />
+                <PriceDetails totalPrice={totalPrice} />
               </Box>
             </Flex>
           </Container>
@@ -98,7 +111,7 @@ const Cart = ({ cartProducts }) => {
 export async function getServerSideProps() {
   let res = await axios.get("http://localhost:8080/cart");
   let data = await res.data;
-  console.log(res);
+
   return {
     props: {
       cartProducts: data,

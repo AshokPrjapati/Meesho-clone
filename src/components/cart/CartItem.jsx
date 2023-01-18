@@ -1,17 +1,19 @@
 import {
-  Box,
   Button,
   Flex,
-  HStack,
   Image,
   Stack,
   Text,
-  VStack,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import { CloseIcon } from "@chakra-ui/icons";
+import SideBar from "./SideBar";
 
-const CartItem = ({ title, price, image }) => {
+const CartItem = (props) => {
+  const [qty, setQty] = React.useState(1);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
   return (
     <Stack
       padding={"10px"}
@@ -19,15 +21,31 @@ const CartItem = ({ title, price, image }) => {
       border={"1px solid #e1e1e1"}
       borderRadius="5px"
     >
+      <SideBar
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+        data={props}
+        qty={qty}
+        setQty={setQty}
+        handleTp={props.handleTp}
+      />
       <Flex justify={"space-between"}>
         <Flex w="90%">
-          <Image src={image} alt="" w="76px" h="76px" objectFit={"cover"} />
+          <Image
+            src={props.image}
+            alt=""
+            w="76px"
+            h="76px"
+            objectFit={"cover"}
+          />
           <Stack p={"0 10px"} lineHeight="1.5">
             <Text fontSize={"16px"} fontWeight={"500"}>
-              {title}
+              {props.title}
             </Text>
-            <Text>Qty : 1</Text>
-            <Text>₹{price}</Text>
+            <Text>Qty : {qty}</Text>
+            <Text>₹{props.price}</Text>
             <Button
               w={"max-content"}
               color={"#f43f97"}
@@ -55,6 +73,8 @@ const CartItem = ({ title, price, image }) => {
             bg: "none",
           }}
           p={0}
+          onClick={onOpen}
+          ref={btnRef}
         >
           EDIT
         </Button>
