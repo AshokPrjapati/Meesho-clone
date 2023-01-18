@@ -411,5 +411,34 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "cart": [
+    {
+      "id": 116,
+      "image": "https://images.meesho.com/images/products/156743510/aj5nr_400.jpg",
+      "title": "Eva Stylish Women Nightdresses",
+      "price": 415,
+      "reviews": {
+        "rate": 3.8,
+        "count": 22
+      },
+      "category": "women-western",
+      "discount": 35,
+      "description": "currently no description we will add it soon"
+    },
+    {
+      "id": 121,
+      "image": "https://images.meesho.com/images/products/143822635/7lys2_400.jpg",
+
+      "title": "Divine Stylish Women Nightdresses",
+      "price": 434,
+      "reviews": {
+        "rate": 3.8,
+        "count": 925
+      },
+      "category": "women-western",
+      "discount": 35,
+      "description": "currently no description we will add it soon"
+    }
+  ]
 }
