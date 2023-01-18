@@ -9,13 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.16",
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@next/font": "13.1.2",
+<<<<<<< HEAD
     "chart.js": "^4.1.2",
+=======
+    "axios": "^1.2.3",
+>>>>>>> 3dfc83190e33becd9e7b165986e39adbc38f0670
     "framer-motion": "^8.4.3",
     "next": "13.1.2",
     "next-images": "^1.8.4",
