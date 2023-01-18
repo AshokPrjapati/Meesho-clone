@@ -10,7 +10,7 @@ const Productpage = ({data}) => {
            <Flex gap={"0.4%"} flexWrap={"wrap"} height={"120rem"}>
             <Box w={"23.6%"}  height={"60%"}></Box>
             <Box w={"76%"} bg={"white"} height={"80%"}>
-                <SimpleGrid columns={[1,2,3,4]} gap={"1.5rem"}>
+                <SimpleGrid columns={{base:1,sm:1,md:3,lg:4,'2xl':4}} gap={"1.5rem"}>
                {
                 data.map((el)=>(
                     <Box >
@@ -29,7 +29,6 @@ export async function getServerSideProps() {
     // Fetch data from external API
     const res = await fetch(`https://fakestoreapi.com/products`)
     const data = await res.json()
-  
     // Pass data to the page via props
     return { props: { data } }
   }
