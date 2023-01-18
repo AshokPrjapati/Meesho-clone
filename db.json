@@ -211,11 +211,10 @@
     {
       "id": 37,
       "image": "https://images.meesho.com/images/products/49505281/rrdsy_400.jpg",
-
       "title": "Siya Alluring Women Nightdresses",
       "price": 265,
       "reviews": {
-        "rate": 4.0,
+        "rate": 4,
         "count": 346
       },
       "category": "women-western",
@@ -225,11 +224,10 @@
     {
       "id": 38,
       "image": "https://images.meesho.com/images/products/135490923/yc8it_400.jpg",
-
       "title": "Trendy Alluring Women Nightdresses",
       "price": 277,
       "reviews": {
-        "rate": 4.0,
+        "rate": 4,
         "count": 19
       },
       "category": "women-western",
@@ -255,7 +253,7 @@
       "title": "Trendy Alluring Women Nightdresses",
       "price": 239,
       "reviews": {
-        "rate": 4.0,
+        "rate": 4,
         "count": 25
       },
       "category": "women-western",
@@ -278,7 +276,6 @@
     {
       "id": 112,
       "image": "https://images.meesho.com/images/products/169640480/dbdx0_400.jpg",
-
       "title": "Trendy Attractive Women Nightdresses",
       "price": 200,
       "reviews": {
@@ -302,7 +299,6 @@
       "discount": 35,
       "description": "currently no description we will add it soon"
     },
-
     {
       "id": 114,
       "image": "https://images.meesho.com/images/products/58119085/qsrnq_400.jpg",
@@ -374,7 +370,7 @@
       "title": "Trendy Alluring Women Nightdresses",
       "price": 267,
       "reviews": {
-        "rate": 4.0,
+        "rate": 4,
         "count": 591
       },
       "category": "women-western",
@@ -397,7 +393,6 @@
     {
       "id": 121,
       "image": "https://images.meesho.com/images/products/143822635/7lys2_400.jpg",
-
       "title": "Divine Stylish Women Nightdresses",
       "price": 434,
       "reviews": {
@@ -414,26 +409,26 @@
   },
   "cart": [
     {
-      "id": 116,
-      "image": "https://images.meesho.com/images/products/156743510/aj5nr_400.jpg",
-      "title": "Eva Stylish Women Nightdresses",
-      "price": 415,
+      "id": 119,
+      "image": "https://images.meesho.com/images/products/127241317/gyjoc_400.jpg",
+      "title": "Trendy Alluring Women Nightdresses",
+      "price": 267,
       "reviews": {
-        "rate": 3.8,
-        "count": 22
+        "rate": 4,
+        "count": 591
       },
       "category": "women-western",
       "discount": 35,
       "description": "currently no description we will add it soon"
     },
     {
-      "id": 121,
-      "image": "https://images.meesho.com/images/products/143822635/7lys2_400.jpg",
-      "title": "Divine Stylish Women Nightdresses",
-      "price": 434,
+      "id": 120,
+      "image": "https://images.meesho.com/images/products/59358136/3cevb_400.jpg",
+      "title": "Eva Adorable Women Nightdresses",
+      "price": 294,
       "reviews": {
         "rate": 3.8,
-        "count": 925
+        "count": 558
       },
       "category": "women-western",
       "discount": 35,
