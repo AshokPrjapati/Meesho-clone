@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/Home.module.css"
+import styles from "../../styles/Home.module.css";
 import { Line } from "react-chartjs-2";
 import { Doughnut } from "react-chartjs-2";
 import Chart from 'chart.js/auto';
