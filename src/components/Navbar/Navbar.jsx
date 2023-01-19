@@ -128,9 +128,10 @@ const Navbar = () => {
       </nav>
       <nav className={styles.nav_2}>
         <Flex
-          minWidth="max-content"
+          maxWidth="100%"
           alignItems="center"
-          gap="20"
+          gap="10"
+          justify={"center"}
           fontWeight={"semibold"}
         >
           <div className={styles.hoverplease}>
