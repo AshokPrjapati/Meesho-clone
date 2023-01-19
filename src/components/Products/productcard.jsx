@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Image, Text, Flex, border, Button } from "@chakra-ui/react";
-const Productcard = ({ image, price, title, rating }) => {
+const Productcard = ({ image, price, title, reviews }) => {
   title = title.split(" ");
   if (title.length > 3) {
     title = title.slice(0, 3).join(" ");
   }
   let x;
-  if (rating > 3.5) {
+  if (reviews.rate > 3.5) {
     x = "green";
   } else {
     x = "orange";
@@ -16,7 +16,6 @@ const Productcard = ({ image, price, title, rating }) => {
       <Box
         bg={"whitesmoke"}
         borderRadius={"10px"}
-        h={{ base: "50vh", sm: "50vh", lg: "68vh", xl: "68vh" }}
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
         padding={"1rem"}
       >
@@ -61,7 +60,7 @@ const Productcard = ({ image, price, title, rating }) => {
               fontWeight: "bold",
             }}
           >
-            {rating.rate} ★{" "}
+            {reviews.rate} ★{" "}
           </div>
           <div style={{ padding: "0.5rem", color: "grey" }}>4 Reviews</div>
         </Flex>
