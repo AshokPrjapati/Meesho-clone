@@ -1,7 +1,7 @@
 import { CiSearch } from "react-icons/ci";
 import { MdManageAccounts } from "react-icons/md";
 import { AiOutlineShoppingCart, AiOutlineMobile } from "react-icons/ai";
-
+import {Dropdown, Dropdown1,Dropdown2,Dropdown4,Dropdown5,Dropdown6,Dropdown7,Dropdown8,Dropdown3} from "./Dropdown"
 import {
   Flex,
   Spacer,
@@ -21,17 +21,11 @@ import {
   Center,
   MenuDivider,
   MenuItem,
-  TableContainer,
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-  Tfoot,
+ 
 } from "@chakra-ui/react";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
+import { useState } from "react";
 
 export const Profile = () => {
   return (
@@ -50,13 +44,22 @@ export const Profile = () => {
 };
 
 const Navbar = () => {
+  const [dropdown,setdropdown]=useState(false)
+  const [dropdown1,setdropdown1]=useState(false)
+  const [dropdown2,setdropdown2]=useState(false)
+  const [dropdown3,setdropdown3]=useState(false)
+  const [dropdown4,setdropdown4]=useState(false)
+  const [dropdown5,setdropdown5]=useState(false)
+  const [dropdown6,setdropdown6]=useState(false)
+  const [dropdown7,setdropdown7]=useState(false)
+  const [dropdown8,setdropdown8]=useState(false)
   return (
     <div>
       <nav className={styles.nav_1}>
         <Flex minWidth="max-content" bg={"#ffffff"} alignItems="center" gap="2">
           <Box p="2" display={"flex"}>
             <Heading size="xl" color={"#f43397"}>
-              Meesho
+              meesho
             </Heading>
             <InputGroup marginLeft={"20px"}>
               <InputLeftElement
@@ -79,7 +82,7 @@ const Navbar = () => {
                 <Center>
                   <AiOutlineMobile />
                 </Center>{" "}
-                <Text>Download App |</Text>{" "}
+                <Text>Download App </Text>{" "}
               </Flex>
             </Tooltip>{" "}
             <div className={styles.border}></div>
@@ -129,117 +132,45 @@ const Navbar = () => {
       <nav className={styles.nav_2}>
         <Flex
           maxWidth="100%"
+          
           alignItems="center"
           gap="10"
           justify={"center"}
           fontWeight={"semibold"}
         >
-          <div className={styles.hoverplease}>
-            <Text>Women Ethnic</Text>
-          </div>
+         
+            <Text  onMouseEnter={()=>setdropdown(true)} onMouseLeave={()=>setdropdown(false)} >Women Ethnic</Text>
+      
 
-          <Text>Women Western</Text>
-          <Text>Men</Text>
-          <Text>Kids</Text>
-          <Text>Home & Kitchen</Text>
-          <Text>Jewellery & Accessories</Text>
-          <Text>Bags & Footwear</Text>
-          <Text>Electronics</Text>
+          <Text  onMouseEnter={()=>setdropdown1(true)} onMouseLeave={()=>setdropdown1(false)}>Women Western</Text>
+          <Text onMouseEnter={()=>setdropdown2(true)} onMouseLeave={()=>setdropdown2(false)}>Men</Text>
+          <Text onMouseEnter={()=>setdropdown3(true)} onMouseLeave={()=>setdropdown3(false)}>Kids</Text>
+          <Text onMouseEnter={()=>setdropdown4(true)} onMouseLeave={()=>setdropdown4(false)}>Home & Kitchen</Text>
+          <Text onMouseEnter={()=>setdropdown5(true)} onMouseLeave={()=>setdropdown5(false)}>Beauty & Health</Text>
+          <Text onMouseEnter={()=>setdropdown6(true)} onMouseLeave={()=>setdropdown6(false)}> Jewellery & Accessories</Text>
+          <Text onMouseEnter={()=>setdropdown7(true)} onMouseLeave={()=>setdropdown7(false)}>Bags & Footwear</Text>
+
+
+          <Text onMouseEnter={()=>setdropdown8(true)} onMouseLeave={()=>setdropdown8(false)}>Electronics</Text>
+        
         </Flex>
 
-        {/* <div class="navbar">
-  <a href="#home">Home</a>
-  <div class="subnav">
-    <button class="subnavbtn">About <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-     <p> huwheuh</p>
-     <p> <a href="#company">Company</a></p>
-      <a href="#team">Team</a>
-      <a href="#careers">Careers</a>
-        <a href="#company">Company</a>
-      <a href="#team">Team</a>
-      <a href="#careers">Careers</a>
-    </div>
-  </div> 
-  <div class="subnav">
-    <button class="subnavbtn">Services <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-      <a href="#bring">Bring</a>
-      <a href="#deliver">Deliver</a>
-      <a href="#package">Package</a>
-      <a href="#express">Express</a>
-    </div>
-  </div> 
-  <div class="subnav">
-    <button class="subnavbtn">Partners <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-      <a href="#link1">Link 1</a>
-      <a href="#link2">Link 2</a>
-      <a href="#link3">Link 3</a>
-      <a href="#link4">Link 4</a>
-    </div>
-  </div>
-  <a href="#contact">Contact</a>
-</div> */}
+       
       </nav>
-
-      <div className={styles.hoveritem}>
-        <h1>Hello</h1>
-      </div>
-      {/* <TableContainer >
-  <Table size='sm'>
-    <Thead>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-        <Td>inches</Td>
-        <Td>millimetres (mm)</Td>
-        <Td isNumeric>25.4</Td>
-      </Tr>
-      <Tr>
-        <Td>feet</Td>
-        <Td>centimetres (cm)</Td>
-        <Td isNumeric>30.48</Td>
-      </Tr>
-      <Tr>
-        <Td>yards</Td>
-        <Td>metres (m)</Td>
-        <Td isNumeric>0.91444</Td>
-      </Tr>
-    </Tbody>
-    <Tfoot>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Tfoot>
-  </Table>
-</TableContainer> */}
+     {dropdown?<Dropdown setdropdown={setdropdown}/>:null}
+      {dropdown1?<Dropdown1 setdropdown1={setdropdown1}/>:null}
+      {dropdown2?<Dropdown2 setdropdown2={setdropdown2}/>:null}
+      {dropdown3?<Dropdown3 setdropdown3={setdropdown3}/>:null}
+      {dropdown4?<Dropdown4 setdropdown4={setdropdown4}/>:null}
+      {dropdown5?<Dropdown5 setdropdown5={setdropdown5}/>:null}
+      {dropdown6?<Dropdown6 setdropdown6={setdropdown6}/>:null}
+      {dropdown7?<Dropdown7 setdropdown7={setdropdown7}/>:null}
+      {dropdown8?<Dropdown8 setdropdown8={setdropdown8}/>:null}
+     
     </div>
   );
 };
 
 export default Navbar;
 
-// <div className={styles.logo}>
-// <div >
-//   <img width="80px" src="./Apni.png" alt="" />
-// </div>
-// <div className={styles.inputbox}>
-// <CiSearch/>
-//   <input type="text" placeholder="Try Saree, Kurti or Search by Product Code" />
 
-// </div>
-// </div>
-// <div className={styles.up_righside_btns}>
-// <p> Download App  |</p>
-// <Link href={""}><p>Become a Supplier  |</p></Link>
-// <Link href={""}><p>Profile</p></Link>
-// <Link href={""}><p>Cart</p></Link>
-// </div>
