@@ -10,24 +10,25 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
+import { cartPriceContext } from "@/Contexts/CartPrice";
 
 const Cart = ({ cartProducts }) => {
   const [cProducts, setCProducts] = useState(cartProducts);
+  const { totalPrice, handlePrice } = useContext(cartPriceContext);
 
   useEffect(() => {
     let tp = 0;
     for (let p of cProducts) {
       tp += p.price;
     }
-    setTotalPrice(tp);
+    handlePrice(tp);
   }, [cProducts]);
 
-  const [totalPrice, setTotalPrice] = useState(0);
   const handleTp = (p) => {
-    setTotalPrice(totalPrice + p);
+    handlePrice(totalPrice + p);
   };
   const removeProduct = (id) => {
     axios
@@ -35,11 +36,12 @@ const Cart = ({ cartProducts }) => {
       .then((res) => {
         axios.get("http://localhost:8080/cart").then((res) => {
           let data = res.data;
-          setCProducts(data);
+          handlePrice(data);
         });
       })
       .catch((er) => console.log(er));
   };
+  const display = "flex";
 
   return (
     <>
@@ -87,7 +89,7 @@ const Cart = ({ cartProducts }) => {
                 ))}
               </Box>
               <Box w="38%">
-                <PriceDetails totalPrice={totalPrice} />
+                <PriceDetails display={display} />
               </Box>
             </Flex>
           </Container>

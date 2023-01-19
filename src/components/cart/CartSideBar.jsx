@@ -14,6 +14,7 @@ import {
   Image,
   Stack,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 const SideBar = ({
   isOpen,
@@ -112,7 +113,9 @@ const SideBar = ({
               bg={"#f43f97"}
               _hover={{ bg: "#f43f97" }}
             >
-              Continue
+              <Link style={{ width: "100%" }} href="/cart/address">
+                Continue
+              </Link>
             </Button>
           </DrawerFooter>
         </DrawerContent>
