@@ -1,0 +1,22 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    width: fit-content;
+  }
+  .App input {
+    display: none;
+  }
+  .App button {
+    font-weight: bold;
+    background-color: antiquewhite;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
+  .App button:hover {
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .App img {
+    width: 200px;
+    height: 200px;
+  }

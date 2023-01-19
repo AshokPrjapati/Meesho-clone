@@ -51,6 +51,7 @@
 @media only screen and (max-width: 768px) {
 
   /* For mobile phones: */
+<<<<<<< HEAD
   .navcontainer {
     width: 70px;
   }
@@ -78,6 +79,30 @@
   .wrapper>ul>li>a {
     opacity: 0;
   }
+=======
+.navcontainer{
+  width: 70px;
+}
+.logo>h2{
+  opacity: 0;
+}
+.logo{
+ background: url('../../public/logo.png');
+  width: 40px;
+  height: 40px;
+  padding:10px;
+  margin: 10px;
+}
+.wrapper>ul{
+  gap:5px;
+}
+.wrapper>ul>li:hover{
+color:red;
+}
+.wrapper>ul>li>a{
+  opacity: 0;
+}
+>>>>>>> eb5ac3c68d5992f0568ff72c453b1814b0e81bf9
 
 }
 
