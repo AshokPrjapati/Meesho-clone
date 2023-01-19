@@ -9,10 +9,16 @@ import {
 import React from "react";
 import { CloseIcon } from "@chakra-ui/icons";
 import SideBar from "./SideBar";
+import ConfirmModal from "./ConfirmModal";
 
 const CartItem = (props) => {
   const [qty, setQty] = React.useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isModalOpen,
+    onOpen: onModalOpen,
+    onClose: onModalClose,
+  } = useDisclosure();
   const btnRef = React.useRef();
   return (
     <Stack
@@ -58,10 +64,18 @@ const CartItem = (props) => {
               leftIcon={<CloseIcon fontSize={"10px"} />}
               textAlign="left"
               p={0}
+              onClick={onModalOpen}
             >
               REMOVE
             </Button>
           </Stack>
+          <ConfirmModal
+            isOpen={isModalOpen}
+            onClose={onModalClose}
+            title={props.title}
+            id={props.id}
+            removeProduct={props.removeProduct}
+          />
         </Flex>
         <Button
           w={"max-content"}
