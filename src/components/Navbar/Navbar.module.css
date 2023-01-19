@@ -1,37 +1,44 @@
-.download{
+.download {
   padding: 10px;
-  background:white;
+  background: white;
   color: black;
   /* position: relative;
   left: 1030px;
   top:1px;
   display: none; */
 }
-.download>img{
+
+.download>img {
   margin: 5px 0px;
 }
-.rightside{
+
+.rightside {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.border{
+
+.border {
   border-right: 1px solid;
-  height:60px;
+  height: 60px;
   color: gainsboro;
 }
+
 .nav_1 {
   padding: 6px 100px;
 }
-.nav_2{
+
+.nav_2 {
   padding: 15px 70px;
- 
+
   border: 1px solid grey;
 }
-.hoveritem{
- display: none;
+
+.hoveritem {
+  display: none;
   background-color: aqua;
 }
-.hoverplease:hover.hoveritem{
-display: block;
+
+.hoverplease:hover.hoveritem {
+  display: block;
 }
