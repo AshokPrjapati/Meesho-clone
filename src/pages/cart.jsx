@@ -8,23 +8,39 @@ import {
   Box,
   Container,
   Heading,
-  Divider,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
 
 const Cart = ({ cartProducts }) => {
-  let tp = 0;
-  for (let p of cartProducts) {
-    tp += p.price;
-  }
+  const [cProducts, setCProducts] = useState(cartProducts);
 
-  const [totalPrice, setTotalPrice] = useState(tp);
+  useEffect(() => {
+    let tp = 0;
+    for (let p of cProducts) {
+      tp += p.price;
+    }
+    setTotalPrice(tp);
+  }, [cProducts]);
+
+  const [totalPrice, setTotalPrice] = useState(0);
   const handleTp = (p) => {
     setTotalPrice(totalPrice + p);
   };
+  const removeProduct = (id) => {
+    axios
+      .delete(`http://localhost:8080/cart/${id}`)
+      .then((res) => {
+        axios.get("http://localhost:8080/cart").then((res) => {
+          let data = res.data;
+          setCProducts(data);
+        });
+      })
+      .catch((er) => console.log(er));
+  };
+
   return (
     <>
       <Head>
@@ -35,7 +51,7 @@ const Cart = ({ cartProducts }) => {
       </Head>
       <div>
         <CartNav image={"./images/s1.png"} />
-        {cartProducts.length ? (
+        {cProducts.length ? (
           <Container maxW={"4xl"} p={"20px 15px"}>
             <Flex>
               <Box
@@ -58,14 +74,15 @@ const Cart = ({ cartProducts }) => {
                       paddingLeft: "5px",
                     }}
                   >
-                    {cartProducts.length} Items
+                    {cProducts.length} Items
                   </span>
                 </Heading>
-                {cartProducts.map((products) => (
+                {cProducts.map((products) => (
                   <CartItem
                     key={products.id}
                     {...products}
                     handleTp={handleTp}
+                    removeProduct={removeProduct}
                   />
                 ))}
               </Box>
