@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 html,
 body {
   padding: 0;
   margin: 0;
+   box-sizing: border-box;
 }
 
 a{
@@ -10,20 +10,3 @@ a{
   text-decoration: none;
 }
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body{
-  background: rgb(245,245,245);
-  width: 100%;
-  height: 100%;
-=======
-* {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
->>>>>>> 3dfc83190e33becd9e7b165986e39adbc38f0670
-}
