@@ -64,11 +64,11 @@
   margin: auto auto 10px auto;
 }
 
-.updateButton>Button:hover{
+.updateButton Button:hover{
   background-color: rgb(238, 9, 9);
 }
 
-.updateButton>Button{
+.updateButton Button{
   background-color: red;
   color: white;
 }
