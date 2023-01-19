@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { CloseIcon } from "@chakra-ui/icons";
-import SideBar from "./SideBar";
+import SideBar from "./CartSideBar";
 import ConfirmModal from "./ConfirmModal";
 
 const CartItem = (props) => {
