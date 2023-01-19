@@ -13,6 +13,8 @@ import {
 import React from 'react'
 import styles from "./addproduct.module.css"
 import UploadImage from './UploadImage'
+import axios from 'axios'
+import Link from 'next/link'
 
 const productObject = {
   category:"",
@@ -28,15 +30,15 @@ const productObject = {
 }
 
 const AddProductPage = () => {
-  const [data,setData] = React.useState({
-    category:"",
+  const [productdata,setData] = React.useState({
     image:"",
     title:"",
+    price:"",
     reviews:{
       rate:"",
       count:""
     },
-    price:"",
+    category:"",
     discount:"",
     description:""
  })
@@ -55,23 +57,33 @@ const AddProductPage = () => {
         rate:a, 
         count:0
       }
-      setData({...data,[b]:r})
+      setData({...productdata,[b]:r})
       return; 
     }
-    setData({...data,[b]:a})
+    setData({...productdata,[b]:a})
   }
 
   const handleAdd = () => {
-    if(data.title && data.image && data.category && data.reviews.rate /*&& data.reviews.count*/ && data.price && data.discount){
-      console.log(data)
-      alert("Product Added Successfully")
-      location.reload();
-    }else{
-      console.log(data)
+    if(productdata.title && productdata.image && productdata.category && productdata.reviews.rate && productdata.price){
+      
+        try{
+            axios({
+            method: `post`,
+            baseURL: `https://lazy-erin-caridea-veil.cyclic.app/products`,
+            data: {...productdata}
+          });
+        }catch(err){
+          alert("Facing some issues please try again")
+          return;
+        }
+
+        alert("Product Added Successfully")
+        location.reload();
+    }else{ 
       alert("Fill the data properly")
     } 
   }
-console.log(data)
+
   return (
     <div className={styles.container}>
       <div className={styles.blurr}>
@@ -85,7 +97,7 @@ console.log(data)
           </Heading>
         </Center>
         <div className={styles.updateButton}>
-              <Button >Update Product</Button>
+              <Link href="/updateProduct"><Button >Update Product</Button></Link>
         </div>
         <Flex 
         width={"fit-content"} 
@@ -98,11 +110,11 @@ console.log(data)
             <div>
             <div className={styles.form}>
               <FormControl isRequired>
-                <Input value={data.title} placeholder='Title' name="title" onChange={onInputChange}/>
-                <Input value={data.price} type="number" placeholder='Price' name="price" onChange={onInputChange}/>
-                <Input value={data.discount} type="number" placeholder='Discount' name="discount" onChange={onInputChange} />
-                <Input value={data.reviews.rate} type="number" placeholder='Reviews' name="reviews" onChange={onInputChange} />
-                <Textarea value={data.description} placeholder='Product Description' name="description" onChange={onInputChange}/>
+                <Input value={productdata.title} placeholder='Title' name="title" onChange={onInputChange}/>
+                <Input value={productdata.price} type="number" placeholder='Price' name="price" onChange={onInputChange}/>
+                <Input value={productdata.discount} type="number" placeholder='Discount' name="discount" onChange={onInputChange} />
+                <Input value={productdata.reviews.rate} type="number" placeholder='Reviews' name="reviews" onChange={onInputChange} />
+                <Textarea value={productdata.description} placeholder='Product Description' name="description" onChange={onInputChange}/>
                 <Center>
                   <FormLabel style={{
                     width:"fit-content",
@@ -111,7 +123,7 @@ console.log(data)
                     fontWeight:"bold"
                   }}>Category:</FormLabel>
                 </Center>
-                <Select value={data.category} placeholder='Select Category' className={styles.option} name="category" onChange={onInputChange}>
+                <Select value={productdata.category} placeholder='Select Category' className={styles.option} name="category" onChange={onInputChange}>
                   <option value="women-ethnic">Women Ethnic</option>
                   <option value="women-western">Women Western</option>
                   <option value="men">Men</option>
@@ -137,7 +149,7 @@ console.log(data)
             width={"fit-content"}
             margin={"auto"}
             >
-                  <UploadImage product={data}/>
+                  <UploadImage product={productdata}/>
             </Box>
         </Flex>
       </div>
