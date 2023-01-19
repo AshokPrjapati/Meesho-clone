@@ -5,8 +5,13 @@ import AddProductPage from 'Admin_Components/AddProductPage'
 
 export default function Home() {
   return (
-    <div>
-     <AddProductPage/>
-    </div>
+    <>
+      <div>
+        <Navbar />
+        <LeftNavbar />
+        <Header />
+        <Content />
+      </div>
+    </>
   )
 }
