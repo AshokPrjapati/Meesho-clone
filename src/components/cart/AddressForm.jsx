@@ -20,7 +20,7 @@ const AddressForm = ({ handlePostAddress }) => {
   const { name, mobile, house, road, pin, city, state, nearby } = addressObj;
   const handleChange = (e) => {
     let val = e.target.value;
-    setAddressObj({ ...addressData, [e.target.name]: val });
+    setAddressObj({ ...addressObj, [e.target.name]: val });
   };
 
   return (
