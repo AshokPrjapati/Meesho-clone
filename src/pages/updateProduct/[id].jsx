@@ -15,6 +15,7 @@ import {
 import Link from 'next/link'
 import UploadImage from "./index"
 import axios from 'axios'
+// import { handleUpdate, fetchProduct } from '@/components/api/editProduct.api'
 
 const update = ({product}) => {
   
@@ -37,6 +38,10 @@ const update = ({product}) => {
     }
     setData({...productdata,[b]:a})
   }
+  
+  // const handleProductUpdate = (id) => {
+  //   handleUpdate(productdata, id);
+  // };
 
   const handleUpdate = async (id) => {
     if(productdata.title && productdata.image && productdata.category && productdata.reviews.rate && productdata.price){
