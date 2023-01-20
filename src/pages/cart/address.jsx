@@ -1,42 +1,36 @@
 import CartNav from "@/components/cart/CartNav";
-import { cartPriceContext } from "@/Contexts/CartPrice";
 import Head from "next/head";
-import React, { useContext, useState } from "react";
-import { StarIcon } from "@chakra-ui/icons";
-import Link from "next/link";
-import {
-  Text,
-  Button,
-  Flex,
-  Image,
-  Box,
-  Container,
-  Heading,
-  useDisclosure,
-} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Text, Flex, Box, Container, useDisclosure } from "@chakra-ui/react";
 import PriceDetails from "@/components/cart/PriceDetails";
 import AddressCard from "@/components/cart/AddressCard";
 import AddressForm from "@/components/cart/AddressForm";
 import axios from "axios";
 import AddressSideBar from "@/components/cart/AddressSideBar";
+import {
+  fetchAddress,
+  patchAddress,
+  postAddress,
+} from "@/components/api/address.api";
 
 const Address = ({ address }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const [addressData, setAddressData] = useState(address);
-  const display = "none";
 
-  const handlePostAddress = async (data) => {
-    try {
-      let res = await axios.post(`http://localhost:8080/address`, data);
-      let rr = await res.data;
-      let newRes = await axios.get(`http://localhost:8080/address`, data);
-      let newData = await res.data;
-      setAddressData(newData);
-    } catch (error) {
-      alert(error);
-    }
+  const handlePostAddress = (data) => {
+    postAddress(data).then((res) => {
+      fetchAddress((res) => setAddressData([...res]));
+    });
   };
+
+  const handlePatchAddress = (data, id) => {
+    patchAddress(data, id).then((res) => {
+      fetchAddress((res) => setAddressData([...res]));
+    });
+  };
+
+  console.log(addressData);
 
   return (
     <>
@@ -53,6 +47,7 @@ const Address = ({ address }) => {
           placement="right"
           onClose={onClose}
           finalFocusRef={btnRef}
+          handleFn={handlePostAddress}
         />
 
         <Container maxW={"4xl"} p={"20px 15px"}>
@@ -80,13 +75,19 @@ const Address = ({ address }) => {
                 </Text>
               </Flex>
               {addressData.length ? (
-                addressData.map((a) => <AddressCard key={a.id} />)
+                addressData.map((a) => (
+                  <AddressCard
+                    key={a.id}
+                    {...a}
+                    handlePatchAddress={handlePatchAddress}
+                  />
+                ))
               ) : (
                 <AddressForm handlePostAddress={handlePostAddress} />
               )}
             </Box>
             <Box w="38%">
-              <PriceDetails display={display} />
+              <PriceDetails display={"none"} />
             </Box>
           </Flex>
         </Container>
