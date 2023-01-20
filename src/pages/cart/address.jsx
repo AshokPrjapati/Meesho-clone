@@ -1,37 +1,35 @@
 import CartNav from "@/components/cart/CartNav";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Text, Flex, Box, Container, useDisclosure } from "@chakra-ui/react";
 import PriceDetails from "@/components/cart/PriceDetails";
 import AddressCard from "@/components/cart/AddressCard";
 import AddressForm from "@/components/cart/AddressForm";
-import axios from "axios";
 import AddressSideBar from "@/components/cart/AddressSideBar";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchAddress,
-  patchAddress,
-  postAddress,
-} from "@/components/api/address.api";
+  editAddress,
+  getAddress,
+  sendAddress,
+} from "@/redux/address/address.action";
 
-const Address = ({ address }) => {
+const Address = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  const [addressData, setAddressData] = useState(address);
+  // const [addressData, setAddressData] = useState(address);
+  const { addressData } = useSelector((store) => store.address);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAddress());
+  }, []);
 
   const handlePostAddress = async (data) => {
-    try {
-      let res = await postAddress(data);
-      let d = await fetchAddress();
-      setAddressData(d);
-    } catch (e) {
-      alert("something went wrong");
-    }
+    dispatch(sendAddress(data));
   };
 
   const handlePatchAddress = (data, id) => {
-    patchAddress(data, id).then((res) => {
-      fetchAddress((res) => setAddressData([...res]));
-    });
+    dispatch(editAddress(data, id));
   };
 
   // console.log(addressData);
@@ -51,7 +49,6 @@ const Address = ({ address }) => {
           placement="right"
           onClose={onClose}
           finalFocusRef={btnRef}
-          handleFn={handlePostAddress}
         />
 
         <Container maxW={"4xl"} p={"20px 15px"}>
@@ -79,15 +76,9 @@ const Address = ({ address }) => {
                 </Text>
               </Flex>
               {addressData.length ? (
-                addressData.map((a) => (
-                  <AddressCard
-                    key={a.id}
-                    {...a}
-                    handlePatchAddress={handlePatchAddress}
-                  />
-                ))
+                addressData.map((a) => <AddressCard key={a.id} {...a} />)
               ) : (
-                <AddressForm handlePostAddress={handlePostAddress} />
+                <AddressForm />
               )}
             </Box>
             <Box w="38%">
@@ -99,16 +90,5 @@ const Address = ({ address }) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  let res = await axios.get("http://localhost:8080/address");
-  let address = await res.data;
-
-  return {
-    props: {
-      address,
-    },
-  };
-}
 
 export default Address;

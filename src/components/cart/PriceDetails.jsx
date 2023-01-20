@@ -9,11 +9,10 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
-import React, { useContext } from "react";
-import { cartPriceContext } from "@/Contexts/CartPrice";
+import { useSelector } from "react-redux";
 
 const PriceDetails = ({ display }) => {
-  const { totalPrice } = useContext(cartPriceContext);
+  const { cartTotal } = useSelector((store) => store.cart);
   return (
     <Stack p={"10px 20px"} lineHeight={8}>
       <Text fontSize={"17px"} fontWeight={"500"}>
@@ -21,7 +20,7 @@ const PriceDetails = ({ display }) => {
       </Text>
       <Flex justify={"space-between"}>
         <Text>Total Product Price</Text>
-        <Text>₹{totalPrice}</Text>
+        <Text>₹{cartTotal}</Text>
       </Flex>
       <Flex justify={"space-between"}>
         <Text>Total Discount</Text>
@@ -33,7 +32,7 @@ const PriceDetails = ({ display }) => {
           Order Total
         </Text>
         <Text fontSize={"17px"} fontWeight={"500"}>
-          {totalPrice}
+          {cartTotal}
         </Text>
       </Flex>
       <Button

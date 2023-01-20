@@ -3,6 +3,8 @@ import { Flex, Box, Stack, Button } from "@chakra-ui/react";
 import { useState } from "react";
 
 import AddressFormBody from "./AddressFormBody";
+import { useDispatch } from "react-redux";
+import { sendAddress } from "@/redux/address/address.action";
 
 const address = {
   name: "",
@@ -15,13 +17,15 @@ const address = {
   nearby: "",
 };
 
-const AddressForm = ({ handlePostAddress }) => {
+const AddressForm = () => {
   const [addressObj, setAddressObj] = useState(address);
   const { name, mobile, house, road, pin, city, state, nearby } = addressObj;
   const handleChange = (e) => {
     let val = e.target.value;
     setAddressObj({ ...addressObj, [e.target.name]: val });
   };
+
+  const dispatch = useDispatch();
 
   return (
     <Flex>
@@ -46,7 +50,7 @@ const AddressForm = ({ handlePostAddress }) => {
               bg={"#f43f97"}
               _hover={{ bg: "#f43f97" }}
               fontWeight="500"
-              onClick={() => handlePostAddress(addressObj)}
+              onClick={() => dispatch(sendAddress(addressObj))}
             >
               Save Address and Continue
             </Button>
