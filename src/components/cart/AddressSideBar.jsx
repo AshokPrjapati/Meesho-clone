@@ -11,13 +11,11 @@ import {
   Button,
   Heading,
   Divider,
-  Image,
-  Stack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import AddressFormBody from "./AddressFormBody";
 
-const AddressSideBar = ({ isOpen, placement, onClose, btnRef, data }) => {
+const AddressSideBar = ({ isOpen, placement, onClose, btnRef, handleFn }) => {
   return (
     <Drawer
       isOpen={isOpen}
@@ -46,6 +44,9 @@ const AddressSideBar = ({ isOpen, placement, onClose, btnRef, data }) => {
             color={"#fff"}
             bg={"#f43f97"}
             _hover={{ bg: "#f43f97" }}
+            onClick={() => {
+              handleFn();
+            }}
           >
             <Link style={{ width: "100%" }} href="/cart/payment">
               Save Address and Continue
