@@ -1,4 +1,4 @@
-import CartPrice from '@/Contexts/CartPrice'
+
 import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
 import { Provider } from "react-redux";
@@ -12,13 +12,13 @@ config.autoAddCss = false
 export default function App({ Component, pageProps }) {
 
   return (
-    <CartPrice>
-      <ChakraProvider>
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
-      </ChakraProvider>
-    </CartPrice>
+
+    <ChakraProvider>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </ChakraProvider>
+
 
   )
 }
