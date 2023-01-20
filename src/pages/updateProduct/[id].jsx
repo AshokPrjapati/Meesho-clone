@@ -15,10 +15,11 @@ import {
 import Link from 'next/link'
 import UploadImage from "./index"
 import axios from 'axios'
-// import { handleUpdate, fetchProduct } from '@/components/api/editProduct.api'
+import { useRouter } from 'next/router'
 
 const update = ({product}) => {
-  
+  const router = useRouter();
+
     const [productdata,setData] = React.useState(product)
   
   const onInputChange = (e) =>{
@@ -38,10 +39,6 @@ const update = ({product}) => {
     }
     setData({...productdata,[b]:a})
   }
-  
-  // const handleProductUpdate = (id) => {
-  //   handleUpdate(productdata, id);
-  // };
 
   const handleUpdate = async (id) => {
     if(productdata.title && productdata.image && productdata.category && productdata.reviews.rate && productdata.price){
@@ -82,6 +79,8 @@ const update = ({product}) => {
 
       alert("Product deleted successfulyl")
 
+      router.push("/updateProduct")
+
     }catch(err){
       alert("Facing some issues please try again")
     }
@@ -114,69 +113,69 @@ const update = ({product}) => {
           <div className={styles.form}>
             <FormControl isRequired>
               
-            <FormLabel style={{
+            <label style={{
                   width:"fit-content",
                   fontFamily:"'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
                   fontSize: "16px",
                   fontWeight:"bold",
                   margin:0,
                   padding:0
-                }}>Title:</FormLabel>
+                }}>Title:</label>
 
               <Input value={productdata.title} placeholder='Title' name="title" onChange={onInputChange}/>
               
-              <FormLabel style={{
+              <label style={{
                   width:"fit-content",
                   fontFamily:"'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
                   fontSize: "16px",
                   fontWeight:"bold",
                   margin:0,
                   padding:0
-                }}>Price:</FormLabel>
+                }}>Price:</label>
 
               <Input value={productdata.price} type="number" placeholder='Price' name="price" onChange={onInputChange}/>
               
-              <FormLabel style={{
+              <label style={{
                   width:"fit-content",
                   fontFamily:"'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
                   fontSize: "16px",
                   fontWeight:"bold",
                   margin:0,
                   padding:0
-                }}>Discount:</FormLabel>
+                }}>Discount:</label>
 
               <Input value={productdata.discount} type="number" placeholder='Discount' name="discount" onChange={onInputChange} />
               
-              <FormLabel style={{
+              <label style={{
                   width:"fit-content",
                   fontFamily:"'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
                   fontSize: "16px",
                   fontWeight:"bold",
                   margin:0,
                   padding:0
-                }}>Reviews:</FormLabel>
+                }}>Reviews:</label>
 
               <Input value={productdata.reviews.rate} type="number" placeholder='Reviews' name="reviews" onChange={onInputChange} disabled/>
         
-                <FormLabel style={{
+                <label style={{
                   width:"fit-content",
                   fontFamily:"'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
                   fontSize: "16px",
                   fontWeight:"bold",
                   margin:0,
                   padding:0
-                }}>Description:</FormLabel>
+                }}>Description:</label>
               
               <Textarea value={productdata.description} placeholder='Product Description' name="description" onChange={onInputChange}/>
               
-                <FormLabel style={{
+                <label style={{
                   width:"fit-content",
                   fontFamily:"'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
                   fontSize: "16px",
                   fontWeight:"bold",
                   margin:0,
                   padding:0
-                }}>Category:</FormLabel>
+                }}>Category:</label>
               
               <Select value={productdata.category} placeholder='Select Category' className={styles.option} name="category" onChange={onInputChange}>
                 <option value="women-ethnic">Women Ethnic</option>
@@ -233,7 +232,6 @@ export async function getStaticProps (context) {
   let id = context.params.id;
   let r = await fetch(`https://lazy-erin-caridea-veil.cyclic.app/products/${id}`)
   let d = await r.json();
-  console.log(d)
   return {
     props:{
       product:d,
