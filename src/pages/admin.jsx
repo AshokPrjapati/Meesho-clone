@@ -10,7 +10,6 @@ const admin = () => {
       <LeftNavbar />
       <Header />
       <Content />
-      <AddProductPage />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import axios from "axios"
-
 export const deleteCartProduct = async (id) => {
     let res = await axios.delete(`http://localhost:8080/cart/${id}`);
     let data = await res.data;
