@@ -29,15 +29,31 @@
 }
 
 .nav_2 {
-  padding: 15px 70px;
+
+  padding: 0px 70px;
   border: 1px solid grey;
 }
 
-.hoveritem {
-  display: none;
-  background-color: aqua;
+.nav_2>div>p{
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.hoverplease:hover.hoveritem {
-  display: block;
+.nav_2>div>p:hover{
+  cursor: pointer;
+  color: #f43397;
+}
+.nav_2>div>p:active{
+  color: #f43397;
+}
+.dropdown>ul li{
+ list-style: none;
+ margin: 5px 0px;
+ color: gray;
+}
+.dropdown>ul li:nth-child(1){
+  color: #f43397;
+  margin-bottom: 14px;
+  font-weight: bold;
 }
