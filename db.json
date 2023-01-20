@@ -933,30 +933,43 @@
   },
   "cart": [
     {
-      "id": 119,
-      "image": "https://images.meesho.com/images/products/127241317/gyjoc_400.jpg",
-      "title": "Trendy Alluring Women Nightdresses",
-      "price": 267,
+      "id": 327,
+      "image": "https://images.meesho.com/images/products/49491140/ptdey_512.webp",
+      "title": "Pretty Funky Boys Onesies & Rompers",
+      "price": 364,
       "reviews": {
-        "rate": 4,
-        "count": 591
+        "rate": 3.9,
+        "count": 24
       },
-      "category": "women-western",
-      "discount": 35,
-      "description": "currently no description we will add it soon"
+      "discount": 14,
+      "category": "Kids",
+      "description": "Rayon Sleeve Length: Three-Quarter Sleeves Pattern: Printed FABRIC: 14kg Rayon WORK :- Foil print With Embroidery mirror work SIZE :- M-38,L-40,XL-42,XXL-44,3xl-46,4xl-48,5xl-50"
     },
     {
-      "id": 120,
-      "image": "https://images.meesho.com/images/products/59358136/3cevb_400.jpg",
-      "title": "Eva Adorable Women Nightdresses",
-      "price": 294,
+      "id": 328,
+      "image": "https://images.meesho.com/images/products/49652451/g6dig_512.webp",
+      "title": "Boys Multicolor Satin Oneseis & Rompers Pack Of 1",
+      "price": 282,
       "reviews": {
-        "rate": 3.8,
-        "count": 558
+        "rate": 4.2,
+        "count": 39
       },
-      "category": "women-western",
-      "discount": 35,
-      "description": "currently no description we will add it soon"
+      "discount": 82,
+      "category": "Kids",
+      "description": "Chanderi cotton silk with embroidery work , Note : IT HAS 1 KHADI COTTON KURTI"
+    },
+    {
+      "id": 329,
+      "image": "https://images.meesho.com/images/products/101405979/nakf2_512.webp",
+      "title": "LEO_SATIN",
+      "price": 244,
+      "reviews": {
+        "rate": 4,
+        "count": 9
+      },
+      "discount": 88,
+      "category": "Kids",
+      "description": ""
     }
   ],
   "address": [
@@ -967,8 +980,8 @@
       "road": "sainik colony",
       "pin": "306912",
       "city": "Tagathgarh",
-      "state": "Madhya Pradesh",
-      "nearby": "",
+      "state": "Chattisgarh",
+      "nearby": "asd",
       "id": 1
     }
   ]

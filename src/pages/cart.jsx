@@ -14,6 +14,10 @@ import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
 import { cartPriceContext } from "@/Contexts/CartPrice";
+import {
+  deleteCartProduct,
+  fetchCartProducts,
+} from "@/components/api/cart.api";
 
 const Cart = ({ cartProducts }) => {
   const [cProducts, setCProducts] = useState(cartProducts);
@@ -30,16 +34,15 @@ const Cart = ({ cartProducts }) => {
   const handleTp = (p) => {
     handlePrice(totalPrice + p);
   };
-  const removeProduct = (id) => {
-    axios
-      .delete(`http://localhost:8080/cart/${id}`)
-      .then((res) => {
-        axios.get("http://localhost:8080/cart").then((res) => {
-          let data = res.data;
-          handlePrice(data);
-        });
-      })
-      .catch((er) => console.log(er));
+  const removeProduct = async (id) => {
+    try {
+      let res = await deleteCartProduct(id);
+      let data = await fetchCartProducts();
+      console.log(data);
+      setCProducts(data);
+    } catch (e) {
+      alert("something went wrong");
+    }
   };
   const display = "flex";
 

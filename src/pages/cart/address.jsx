@@ -1,6 +1,6 @@
 import CartNav from "@/components/cart/CartNav";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Text, Flex, Box, Container, useDisclosure } from "@chakra-ui/react";
 import PriceDetails from "@/components/cart/PriceDetails";
 import AddressCard from "@/components/cart/AddressCard";
@@ -18,10 +18,14 @@ const Address = ({ address }) => {
   const btnRef = React.useRef();
   const [addressData, setAddressData] = useState(address);
 
-  const handlePostAddress = (data) => {
-    postAddress(data).then((res) => {
-      fetchAddress((res) => setAddressData([...res]));
-    });
+  const handlePostAddress = async (data) => {
+    try {
+      let res = await postAddress(data);
+      let d = await fetchAddress();
+      setAddressData(d);
+    } catch (e) {
+      alert("something went wrong");
+    }
   };
 
   const handlePatchAddress = (data, id) => {
@@ -30,7 +34,7 @@ const Address = ({ address }) => {
     });
   };
 
-  console.log(addressData);
+  // console.log(addressData);
 
   return (
     <>
@@ -99,7 +103,6 @@ const Address = ({ address }) => {
 export async function getServerSideProps() {
   let res = await axios.get("http://localhost:8080/address");
   let address = await res.data;
-  console.log(address);
 
   return {
     props: {
