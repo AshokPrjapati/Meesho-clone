@@ -28,6 +28,7 @@ import styles from "./Navbar.module.css";
 import { useState } from "react";
 import firebase from '../../pages/firebase'
 
+
 export const Profile = () => {
 
 
