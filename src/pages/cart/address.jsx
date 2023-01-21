@@ -32,8 +32,6 @@ const Address = () => {
     dispatch(editAddress(data, id));
   };
 
-  // console.log(addressData);
-
   return (
     <>
       <Head>
