@@ -52,7 +52,7 @@ export const Profile = () => {
   );
 };
 
-const Navbar = () => {
+const Navbar = ({ display = "flex" }) => {
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
   const [dropdown2, setdropdown2] = useState(false);
@@ -145,6 +145,7 @@ const Navbar = () => {
           gap="10"
           justify={"center"}
           fontWeight={"semibold"}
+          display={display}
         >
           <Text
             onMouseEnter={() => setdropdown(true)}

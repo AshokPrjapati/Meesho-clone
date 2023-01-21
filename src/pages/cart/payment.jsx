@@ -5,6 +5,7 @@ import React from "react";
 
 import { Text, Flex, Box, Container } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
+import PaymentCard from "@/components/cart/PaymentCard";
 
 const Payment = () => {
   return (
@@ -34,9 +35,14 @@ const Payment = () => {
                   height={"35px"}
                 />
               </Flex>
+              <PaymentCard />
             </Box>
             <Box w="38%">
-              <PriceDetails display={"none"} />
+              <PriceDetails
+                display={"flex"}
+                dest="/cart/summary"
+                text="Continue"
+              />
             </Box>
           </Flex>
         </Container>

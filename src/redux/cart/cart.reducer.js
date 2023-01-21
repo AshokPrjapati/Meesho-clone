@@ -1,6 +1,7 @@
-import { ADD_TO_CART, CART_TOTAL, DELETE_TO_CART, GET_CART } from "./cart.actionTypes";
+import { ADD_TO_CART, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
 
 const initialState = {
+    orderData: [],
     cartProducts: [],
     cartTotal: 0,
 }
@@ -10,6 +11,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
     switch (type) {
 
         case ADD_TO_CART: {
+            if (!payload.status) payload.status = "pending"
             return {
                 ...state,
                 cartProducts: [...state.cartProducts, payload]
@@ -19,7 +21,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case GET_CART: {
             return {
                 ...state,
-                cartProducts: payload
+                cartProducts: [...payload]
             }
         }
 
@@ -35,6 +37,13 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 cartTotal: +payload
+            }
+        }
+
+        case UPDATE_ORDER_DATA: {
+            return {
+                ...state,
+                orderData: [...state.orderData, payload]
             }
         }
         default: return state;
