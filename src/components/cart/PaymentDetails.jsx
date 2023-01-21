@@ -18,6 +18,17 @@ const PaymentDetails = () => {
   const { cartTotal, cartProducts } = useSelector((store) => store.cart);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const cp = cartProducts.map((p) => {
+    p.status = "success";
+    return p;
+  });
+
+  const placeOrder = async (cp) => {
+    setLoading(true);
+    let res = await dispatch(orderSuccess(cp));
+    setLoading(false);
+    router.push("/cart/success");
+  };
 
   const dispatch = useDispatch();
   return (
@@ -64,10 +75,7 @@ const PaymentDetails = () => {
         bg={"#f43f97"}
         _hover={{ bg: "#f43f97" }}
         onClick={() => {
-          setLoading(true);
-          dispatch(orderSuccess(cartProducts));
-          setLoading(false);
-          router.push("/cart/success");
+          placeOrder(cp);
         }}
       >
         Place Order
