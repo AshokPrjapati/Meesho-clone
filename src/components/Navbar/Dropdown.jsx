@@ -23,6 +23,7 @@ import styles from "./Navbar.module.css";
 export const Dropdown = ({ setdropdown }) => {
   return (
     <Box
+    zIndex={"overlay"}
       width={"80%"}
       m="0px auto"
       boxShadow={

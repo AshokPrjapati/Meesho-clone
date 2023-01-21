@@ -6,6 +6,21 @@
   box-shadow: 3px 0px 6px 0px rgba(246, 246, 246, 0.75);
 
 }
+.header{
+  width: 70%;
+  margin: 20px auto;
+  position: relative;
+  top: 100;
+  
+}
+.header>img{
+  margin: 50px 0px;
+}
+.header>p{
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
+}
 
 .wrapper {
   padding: 10px;
@@ -51,6 +66,11 @@
 @media only screen and (max-width: 768px) {
 
   /* For mobile phones: */
+  .header{
+    width: 90%;
+   
+    
+  }
   .navcontainer {
     width: 70px;
   }
@@ -133,6 +153,11 @@
 @media only screen and (max-width: 768px) {
 
   /* For mobile phones: */
+  .header{
+    width: 90%;
+    
+    
+  }
   .headcontainer {
     width: 100%;
     margin-left: 70px;
