@@ -10,41 +10,38 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
-import { cartPriceContext } from "@/Contexts/CartPrice";
-import {
-  deleteCartProduct,
-  fetchCartProducts,
-} from "@/components/api/cart.api";
 
-const Cart = ({ cartProducts }) => {
-  const [cProducts, setCProducts] = useState(cartProducts);
-  const { totalPrice, handlePrice } = useContext(cartPriceContext);
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cartTotalPrice,
+  getCartProducts,
+  removeCartProduct,
+} from "@/redux/cart/cart.action";
+
+const Cart = () => {
+  const { cartTotal, cartProducts } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCartProducts());
+  }, []);
 
   useEffect(() => {
     let tp = 0;
-    for (let p of cProducts) {
+    for (let p of cartProducts) {
       tp += p.price;
     }
-    handlePrice(tp);
-  }, [cProducts]);
+    dispatch(cartTotalPrice(tp));
+  }, [cartProducts]);
 
   const handleTp = (p) => {
-    handlePrice(totalPrice + p);
+    dispatch(cartTotalPrice(cartTotal + p));
   };
-  const removeProduct = async (id) => {
-    try {
-      let res = await deleteCartProduct(id);
-      let data = await fetchCartProducts();
-      console.log(data);
-      setCProducts(data);
-    } catch (e) {
-      alert("something went wrong");
-    }
+  const removeProduct = (id) => {
+    dispatch(removeCartProduct(id));
   };
-  const display = "flex";
 
   return (
     <>
@@ -56,7 +53,7 @@ const Cart = ({ cartProducts }) => {
       </Head>
       <div>
         <CartNav image={"./images/s1.png"} />
-        {cProducts.length ? (
+        {cartProducts.length ? (
           <Container maxW={"4xl"} p={"20px 15px"}>
             <Flex>
               <Box
@@ -79,10 +76,10 @@ const Cart = ({ cartProducts }) => {
                       paddingLeft: "5px",
                     }}
                   >
-                    {cProducts.length} Items
+                    {cartProducts.length} Items
                   </span>
                 </Heading>
-                {cProducts.map((products) => (
+                {cartProducts.map((products) => (
                   <CartItem
                     key={products.id}
                     {...products}
@@ -92,7 +89,7 @@ const Cart = ({ cartProducts }) => {
                 ))}
               </Box>
               <Box w="38%">
-                <PriceDetails display={display} />
+                <PriceDetails display={"flex"} />
               </Box>
             </Flex>
           </Container>
@@ -129,16 +126,5 @@ const Cart = ({ cartProducts }) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  let res = await axios.get("http://localhost:8080/cart");
-  let data = await res.data;
-
-  return {
-    props: {
-      cartProducts: data,
-    }, // will be passed to the page component as props
-  };
-}
 
 export default Cart;
