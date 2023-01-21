@@ -25,7 +25,7 @@ const PaymentDetails = () => {
 
   const placeOrder = async (cp) => {
     setLoading(true);
-    let res = await dispatch(orderSuccess(cp));
+    dispatch(orderSuccess(cp));
     setLoading(false);
     router.push("/cart/success");
   };

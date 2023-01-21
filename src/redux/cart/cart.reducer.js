@@ -1,9 +1,9 @@
 import { ADD_TO_CART, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
 
 const initialState = {
-    orderData: [],
     cartProducts: [],
     cartTotal: 0,
+    orderData: {},
 }
 
 export const cartReducer = (state = initialState, { type, payload }) => {
@@ -43,7 +43,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case UPDATE_ORDER_DATA: {
             return {
                 ...state,
-                orderData: [...state.orderData, payload]
+                orderData: payload
             }
         }
         default: return state;

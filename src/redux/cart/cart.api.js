@@ -7,7 +7,7 @@ export const addCartProduct = async (obj) => {
 }
 
 export const updateOrder = async (products) => {
-    let res = await axios.post(`http://localhost:8080/order`, { orderId: Date.now(), product: [...products] });
+    let res = await axios.post(`http://localhost:8080/order`, { orderId: Date.now(), products });
     let d = await res.data;
     return d;
 }
