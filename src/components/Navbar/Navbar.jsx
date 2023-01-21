@@ -26,8 +26,15 @@ import {
 import Link from "next/link";
 import styles from "./Navbar.module.css";
 import { useState } from "react";
+import firebase from '../../pages/firebase'
 
- const Profile = () => {
+
+export const Profile = () => {
+
+
+   
+
+
   return (
     <div className={styles.download}>
       <h1>Download from</h1>

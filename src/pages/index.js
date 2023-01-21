@@ -1,7 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
+
+import Header from "../components/Admin/Header"
+import LeftNavbar from '../components/Admin/LeftNavbar'
+import Content from '../components/Admin/Content'
+
+
 import Navbar from '@/components/Navbar/Navbar'
+
 import React from 'react'
 import {ChevronDownIcon} from "@chakra-ui/icons"
 import {
@@ -35,6 +42,11 @@ export default function Home({data}) {
     "Khadi Cotton"]
     let Size = ['0-2 Years','2-5 Years','S','M','L','XL','2XL','4XL']
     let Discount = ['10% off','20% off','All Discount','Deals']
+
+
+
+export default function Home() {
+
   return (
     <>
       <div>
