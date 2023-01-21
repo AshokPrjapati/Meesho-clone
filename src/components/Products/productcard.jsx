@@ -2,8 +2,8 @@ import React from "react";
 import { Box, Image, Text, Flex, border, Button } from "@chakra-ui/react";
 const Productcard = ({ image, price, title, reviews }) => {
   title = title.split(" ");
-  if (title.length > 3) {
-    title = title.slice(0, 3).join(" ");
+  if (title.length > 5) {
+    title = title.slice(0, 5).join(" ");
   }
   let x;
   if (reviews.rate > 3.5) {
