@@ -1,4 +1,5 @@
 import { StarIcon } from "@chakra-ui/icons";
+import Link from "next/link";
 import {
   Button,
   Divider,
@@ -8,11 +9,13 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
+import { cartPriceContext } from "@/Contexts/CartPrice";
 
-const PriceDetails = ({ totalPrice }) => {
+const PriceDetails = ({ display }) => {
+  const { totalPrice } = useContext(cartPriceContext);
   return (
-    <Stack p={"20px"} lineHeight={8}>
+    <Stack p={"10px 20px"} lineHeight={8}>
       <Text fontSize={"17px"} fontWeight={"500"}>
         Price Details
       </Text>
@@ -34,6 +37,7 @@ const PriceDetails = ({ totalPrice }) => {
         </Text>
       </Flex>
       <Button
+        display={display}
         w="100%"
         sixe="xl"
         bg={"#d3f4ea"}
@@ -44,18 +48,23 @@ const PriceDetails = ({ totalPrice }) => {
       >
         <StarIcon mr="5px" /> Yay! Your Total Discount is ₹0
       </Button>
-      <Text fontSize={"12px"} textAlign="center">
+      <Text display={display} fontSize={"12px"} textAlign="center">
         Clicking on `Continue`` will not deduct any money
       </Text>
+
       <Button
+        display={display}
         size="lg"
         color={"#fff"}
         bg={"#f43f97"}
         _hover={{ bg: "#f43f97" }}
       >
-        Continue
+        <Link style={{ width: "100%" }} href="/cart/address">
+          Continue
+        </Link>
       </Button>
-      <Box pt={"20px"}>
+
+      <Box display={display} pt={"20px"}>
         <Image src="https://images.meesho.com/images/marketing/1588578650850.webp" />
       </Box>
     </Stack>

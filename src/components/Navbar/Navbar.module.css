@@ -1,0 +1,59 @@
+.download {
+  padding: 10px;
+  background: white;
+  color: black;
+  /* position: relative;
+  left: 1030px;
+  top:1px;
+  display: none; */
+}
+
+.download>img {
+  margin: 5px 0px;
+}
+
+.rightside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  border-right: 1px solid;
+  height: 60px;
+  color: gainsboro;
+}
+
+.nav_1 {
+  padding: 6px 100px;
+}
+
+.nav_2 {
+
+  padding: 0px 70px;
+  border: 1px solid grey;
+}
+
+.nav_2>div>p{
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav_2>div>p:hover{
+  cursor: pointer;
+  color: #f43397;
+}
+.nav_2>div>p:active{
+  color: #f43397;
+}
+.dropdown>ul li{
+ list-style: none;
+ margin: 5px 0px;
+ color: gray;
+}
+.dropdown>ul li:nth-child(1){
+  color: #f43397;
+  margin-bottom: 14px;
+  font-weight: bold;
+}

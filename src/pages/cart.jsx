@@ -8,23 +8,44 @@ import {
   Box,
   Container,
   Heading,
-  Divider,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
+import { cartPriceContext } from "@/Contexts/CartPrice";
+import {
+  deleteCartProduct,
+  fetchCartProducts,
+} from "@/components/api/cart.api";
 
 const Cart = ({ cartProducts }) => {
-  let tp = 0;
-  for (let p of cartProducts) {
-    tp += p.price;
-  }
+  const [cProducts, setCProducts] = useState(cartProducts);
+  const { totalPrice, handlePrice } = useContext(cartPriceContext);
 
-  const [totalPrice, setTotalPrice] = useState(tp);
+  useEffect(() => {
+    let tp = 0;
+    for (let p of cProducts) {
+      tp += p.price;
+    }
+    handlePrice(tp);
+  }, [cProducts]);
+
   const handleTp = (p) => {
-    setTotalPrice(totalPrice + p);
+    handlePrice(totalPrice + p);
   };
+  const removeProduct = async (id) => {
+    try {
+      let res = await deleteCartProduct(id);
+      let data = await fetchCartProducts();
+      console.log(data);
+      setCProducts(data);
+    } catch (e) {
+      alert("something went wrong");
+    }
+  };
+  const display = "flex";
+
   return (
     <>
       <Head>
@@ -35,7 +56,7 @@ const Cart = ({ cartProducts }) => {
       </Head>
       <div>
         <CartNav image={"./images/s1.png"} />
-        {cartProducts.length ? (
+        {cProducts.length ? (
           <Container maxW={"4xl"} p={"20px 15px"}>
             <Flex>
               <Box
@@ -58,19 +79,20 @@ const Cart = ({ cartProducts }) => {
                       paddingLeft: "5px",
                     }}
                   >
-                    {cartProducts.length} Items
+                    {cProducts.length} Items
                   </span>
                 </Heading>
-                {cartProducts.map((products) => (
+                {cProducts.map((products) => (
                   <CartItem
                     key={products.id}
                     {...products}
                     handleTp={handleTp}
+                    removeProduct={removeProduct}
                   />
                 ))}
               </Box>
               <Box w="38%">
-                <PriceDetails totalPrice={totalPrice} />
+                <PriceDetails display={display} />
               </Box>
             </Flex>
           </Container>

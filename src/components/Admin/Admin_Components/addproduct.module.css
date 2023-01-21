@@ -1,0 +1,86 @@
+.container{
+    color: var(--black);
+    background: linear-gradient(
+      106.37deg,
+      #bcc8ff 29.63%,
+      #0b064e 51.55%,
+      #100427 90.85%
+    );
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.blurr{
+    /* display: grid; */
+    height: 97%;
+    width: 97%;
+    background: rgba(247, 243, 243, 0.8);
+    border-radius: 2rem;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.form Input, .form Select{
+  background-color: white;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 17px;
+}
+
+.form Input{
+  margin: 10px 0px;
+}
+
+.form Textarea{
+  background-color: white;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 17px;
+}
+
+.form Select{
+  margin:0px 0px 10px 0px;
+}
+
+.option option{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.form{
+  width: 500px;
+  margin: auto;
+}
+
+.button{
+  width: fit-content;
+  margin: auto;
+}
+
+.updateButton{
+  width: fit-content;
+  margin: auto auto 10px auto;
+}
+
+.updateButton Button:hover{
+  background-color: rgb(238, 9, 9);
+}
+
+.updateButton Button{
+  background-color: red;
+  color: white;
+}
+
+@media (max-width:540px){
+  .form{
+    width:90%
+  }
+}
+
+@media (min-width:0px) and (max-width:767.20px){
+  .container{
+    height: auto;
+  }
+}
