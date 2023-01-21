@@ -9,12 +9,28 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { orderSuccess } from "@/redux/cart/cart.action";
 
-const PriceDetails = ({ display, dest, text }) => {
-  const { cartTotal } = useSelector((store) => store.cart);
+const PaymentDetails = () => {
+  const { cartTotal, cartProducts } = useSelector((store) => store.cart);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const cp = cartProducts.map((p) => {
+    p.status = "success";
+    return p;
+  });
+
+  const placeOrder = async (cp) => {
+    setLoading(true);
+    dispatch(orderSuccess(cp));
+    setLoading(false);
+    router.push("/cart/success");
+  };
+
+  const dispatch = useDispatch();
   return (
     <Stack p={"10px 20px"} lineHeight={8}>
       <Text fontSize={"17px"} fontWeight={"500"}>
@@ -38,7 +54,6 @@ const PriceDetails = ({ display, dest, text }) => {
         </Text>
       </Flex>
       <Button
-        display={display}
         w="100%"
         sixe="xl"
         bg={"#d3f4ea"}
@@ -49,28 +64,28 @@ const PriceDetails = ({ display, dest, text }) => {
       >
         <StarIcon mr="5px" /> Yay! Your Total Discount is ₹0
       </Button>
-      <Text display={display} fontSize={"12px"} textAlign="center">
-        Clicking on `Continue`` will not deduct any money
+      <Text fontSize={"12px"} textAlign="center">
+        Clicking on `Continue`` will place order
       </Text>
 
       <Button
-        display={display}
+        isLoading={loading}
         size="lg"
         color={"#fff"}
         bg={"#f43f97"}
         _hover={{ bg: "#f43f97" }}
         onClick={() => {
-          router.push(dest);
+          placeOrder(cp);
         }}
       >
-        {text}
+        Place Order
       </Button>
 
-      <Box display={display} pt={"20px"}>
+      <Box pt={"20px"}>
         <Image src="https://images.meesho.com/images/marketing/1588578650850.webp" />
       </Box>
     </Stack>
   );
 };
 
-export default PriceDetails;
+export default PaymentDetails;

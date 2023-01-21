@@ -24,8 +24,8 @@ import styles from "./Navbar.module.css";
 export const Dropdown = ({ setdropdown }) => {
   return (
     <Box
-    zIndex={"1"}
-  
+      zIndex={"1"}
+      position={"absolute"}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -35,8 +35,9 @@ export const Dropdown = ({ setdropdown }) => {
       onMouseLeave={() => setdropdown(false)}
       color="black"
       p="20px"
-      bg="white.500"
       rounded="md"
+      bg="#fff"
+      left="10%"
     >
       <Flex gap="10" className={styles.dropdown}>
         <ul>
