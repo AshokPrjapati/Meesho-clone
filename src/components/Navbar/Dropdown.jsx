@@ -17,13 +17,15 @@ import {
   Center,
   MenuDivider,
   MenuItem,
+  Slider,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
 export const Dropdown = ({ setdropdown }) => {
   return (
     <Box
-    zIndex={"overlay"}
+    zIndex={"1"}
+  
       width={"80%"}
       m="0px auto"
       boxShadow={

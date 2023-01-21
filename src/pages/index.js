@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import Navbar from '@/components/Navbar/Navbar'
 import React from 'react'
+import {ChevronDownIcon} from "@chakra-ui/icons"
 import {
   Text,
   Flex,
@@ -10,10 +11,15 @@ import {
   Grid,
   SimpleGrid,
   Select,
-  VStack,
+Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
   
 } from "@chakra-ui/react";
 import Productcard from '@/components/Products/productcard'
+import Footer from '@/components/Footer/Footer'
 export default function Home({data}) {
   let category = ['dresses','kurti','jeans']
   let Gender = ['Mens','Womens','Girl','Boys']
@@ -182,8 +188,25 @@ export default function Home({data}) {
 
 </div>
 
+<div style={{position:"relative",top:"4600px"}}> <Footer/>
+
+
+<Menu>
+  <MenuButton as={Button} w="800px" rightIcon={<ChevronDownIcon />}>
+  More About Meesho
+  </MenuButton>
+  <MenuList>
+    <MenuItem>Download</MenuItem>
+    <MenuItem>Create a Copy</MenuItem>
+    <MenuItem>Mark as Draft</MenuItem>
+    <MenuItem>Delete</MenuItem>
+    <MenuItem>Attend a Workshop</MenuItem>
+  </MenuList>
+</Menu>
+</div>
       
       </div>
+     
     </>
   )
 }
