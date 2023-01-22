@@ -13,21 +13,21 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import axios from "axios";
 import Head from "next/head";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const Success = ({ addressData }) => {
+const Success = () => {
   const { orderData } = useSelector((store) => store.cart);
-  // const { addressData } = useSelector((store) => store.address);
+  const { addressData } = useSelector((store) => store.address);
   const sa = addressData.map((a) => {
     if (a.selected === true) return a;
   });
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getAddress());
-  // }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAddress());
+  }, []);
 
   return (
     <>
@@ -63,7 +63,7 @@ const Success = ({ addressData }) => {
               >
                 <Text>Order Details</Text>
               </Flex>
-              {orderData?.products.map((props) => (
+              {orderData?.products?.map((props) => (
                 <Stack
                   key={props.id}
                   padding={"10px"}
@@ -119,21 +119,25 @@ const Success = ({ addressData }) => {
                 borderRadius="5px"
                 bg="#e7eeff"
               >
-                <Stack p={"0 10px"} lineHeight="1.5">
-                  <Text fontSize={"lg"} fontWeight={500}>
-                    {sa[0].name}
-                  </Text>
-                  <Box fontWeight={500}>
-                    <Text>
-                      {sa[0].house}, {sa[0].road}, {sa[0].city}
+                {sa.length ? (
+                  <Stack p={"0 10px"} lineHeight="1.5">
+                    <Text fontSize={"lg"} fontWeight={500}>
+                      {sa[0].name}
                     </Text>
-                    <Text>
-                      {sa[0].state} - {sa[0].pin},
-                    </Text>
-                    <Text>{sa[0].nearby}</Text>
-                    <Text>+91 {sa[0].mobile}</Text>
-                  </Box>
-                </Stack>
+                    <Box fontWeight={500}>
+                      <Text>
+                        {sa[0].house}, {sa[0].road}, {sa[0].city}
+                      </Text>
+                      <Text>
+                        {sa[0].state} - {sa[0].pin},
+                      </Text>
+                      <Text>{sa[0].nearby}</Text>
+                      <Text>+91 {sa[0].mobile}</Text>
+                    </Box>
+                  </Stack>
+                ) : (
+                  "Address not available"
+                )}
               </Stack>
               <Flex
                 fontSize={"18px"}
@@ -160,14 +164,14 @@ const Success = ({ addressData }) => {
   );
 };
 
-export async function getServerSideProps(context) {
-  let res = await axios.get(`http://localhost:8080/address`);
-  let data = await res.data;
-  return {
-    props: {
-      addressData: data,
-    }, // will be passed to the page component as props
-  };
-}
+// export async function getServerSideProps() {
+//   let res = await axios.get(`http://localhost:8080/address`);
+//   let data = await res.data;
+//   return {
+//     props: {
+//       addressData: data,
+//     }, // will be passed to the page component as props
+//   };
+// }
 
 export default Success;

@@ -4,7 +4,6 @@ import {
   Heading,
   Center,
   FormControl,
-  FormLabel,
   Input,
   Select,
   Button,
@@ -20,7 +19,7 @@ const update = ({ product }) => {
   const router = useRouter();
 
   const [productdata, setData] = React.useState(product);
-  console.log(product);
+  // console.log(product);
 
   const onInputChange = (e) => {
     let a = e.target.value;
@@ -78,15 +77,17 @@ const update = ({ product }) => {
       //   url: `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
       // });
 
-      await fetch(`https://lazy-erin-caridea-veil.cyclic.app/products/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let res = await fetch(
+        `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      alert("Product deleted successfulyl");
-
+      alert("Product deleted successfully");
       router.push("/updateProduct");
     } catch (err) {
       alert("Facing some issues please try again");
