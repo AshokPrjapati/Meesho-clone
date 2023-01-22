@@ -24,16 +24,21 @@ import styles from "./Navbar.module.css";
 export const Dropdown = ({ setdropdown }) => {
   return (
     <Box
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> 072dc3f7cbff815db465767b0cd47a6d71bc65a9
      position={"absolute"}
-     backgroundColor={"white"}
-     
+     backgroundColor={"white"}    
      zIndex={1}
+<<<<<<< HEAD
 
      
       position={"absolute"}
 
+=======
+>>>>>>> 072dc3f7cbff815db465767b0cd47a6d71bc65a9
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -44,12 +49,16 @@ export const Dropdown = ({ setdropdown }) => {
       color="black"
       p="20px"
       rounded="md"
+<<<<<<< HEAD
 
       left={"10%"}
 
       bg="#fff"
       left="10%"
 
+=======
+      left={"10%"}
+>>>>>>> 072dc3f7cbff815db465767b0cd47a6d71bc65a9
     >
       <Flex gap="10" className={styles.dropdown}>
         <ul>

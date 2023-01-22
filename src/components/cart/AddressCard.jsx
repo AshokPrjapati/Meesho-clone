@@ -16,7 +16,7 @@ const AddressCard = ({
   mobile,
   nearby,
   handlePatchAddress,
-  display,
+  display = flex,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();

@@ -13,23 +13,22 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import axios from "axios";
 import Head from "next/head";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-const Success = () => {
+const Success = ({ addressData }) => {
   const { orderData } = useSelector((store) => store.cart);
-  const { addressData } = useSelector((store) => store.address);
-  const selectedAddress = addressData.map((a) => {
+  // const { addressData } = useSelector((store) => store.address);
+  const sa = addressData.map((a) => {
     if (a.selected === true) return a;
   });
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAddress());
-  }, []);
-  const { name, house, road, city, state, nearby, pin, mobile } =
-    selectedAddress[0];
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getAddress());
+  // }, []);
+
   return (
     <>
       <Head>
@@ -64,8 +63,9 @@ const Success = () => {
               >
                 <Text>Order Details</Text>
               </Flex>
-              {orderData.products.map((props) => (
+              {orderData?.products.map((props) => (
                 <Stack
+                  key={props.id}
                   padding={"10px"}
                   marginBottom={"15px"}
                   border={"1px solid #e1e1e1"}
@@ -121,17 +121,17 @@ const Success = () => {
               >
                 <Stack p={"0 10px"} lineHeight="1.5">
                   <Text fontSize={"lg"} fontWeight={500}>
-                    {name}
+                    {sa[0].name}
                   </Text>
                   <Box fontWeight={500}>
                     <Text>
-                      {house}, {road}, {city}
+                      {sa[0].house}, {sa[0].road}, {sa[0].city}
                     </Text>
                     <Text>
-                      {state} - {pin},
+                      {sa[0].state} - {sa[0].pin},
                     </Text>
-                    <Text>{nearby}</Text>
-                    <Text>+91 {mobile}</Text>
+                    <Text>{sa[0].nearby}</Text>
+                    <Text>+91 {sa[0].mobile}</Text>
                   </Box>
                 </Stack>
               </Stack>
@@ -140,14 +140,8 @@ const Success = () => {
                 fontWeight="500"
                 color={"#000"}
                 padding={"15px 0"}
-                justify="space-between"
               >
                 <Text>Payment Method</Text>
-                <Image
-                  src="../../../images/payment.png"
-                  width={"80px"}
-                  height={"35px"}
-                />
               </Flex>
               <PaymentCard />
             </Box>
@@ -165,5 +159,15 @@ const Success = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context) {
+  let res = await axios.get(`http://localhost:8080/address`);
+  let data = await res.data;
+  return {
+    props: {
+      addressData: data,
+    }, // will be passed to the page component as props
+  };
+}
 
 export default Success;

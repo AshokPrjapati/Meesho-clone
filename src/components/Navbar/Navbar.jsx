@@ -66,7 +66,10 @@ const getApi=async()=>{
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 072dc3f7cbff815db465767b0cd47a6d71bc65a9
 const Navbar = ({ display = "flex" }) => {
 
   const [dropdown, setdropdown] = useState(false);
@@ -106,7 +109,8 @@ const Navbar = ({ display = "flex" }) => {
         <Flex minWidth="max-content" bg={"#ffffff"} alignItems="center" gap="2">
           <Box p="2" display={"flex"}>
             <Heading size="xl" color={"#f43397"}>
-              meesho
+              {/* <img src="Apni.png" width={"60px"}/> */}
+              ApniDukan
             </Heading>
             <InputGroup marginLeft={"20px"}>
               <InputLeftElement
