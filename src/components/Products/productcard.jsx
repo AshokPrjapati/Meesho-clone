@@ -1,14 +1,21 @@
 import React from "react";
-import { Box, Image, Text, Flex, border, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Image,
+  Text,
+  Flex,
+  Button,
+  StylesProvider,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import styles from "../../styles/Home.module.css";
 
 const Productcard = ({ id, image, price, title, reviews }) => {
-
   const router = useRouter();
 
-    const handleClick = (id) => {
-        router.push(`/singleuser/${id}`)
-    }
+  const handleClick = (id) => {
+    router.push(`/singleuser/${id}`);
+  };
 
   title = title.split(" ");
   if (title.length > 5) {
@@ -27,9 +34,8 @@ const Productcard = ({ id, image, price, title, reviews }) => {
         borderRadius={"10px"}
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
         padding={"1rem"}
-
-        onClick={()=>handleClick(id)}
-
+        onClick={() => handleClick(id)}
+        cursor={"pointer"}
       >
         <Image h={"35vh"} w={"100%"} src={image} alt={title} />
         <Text
@@ -38,8 +44,7 @@ const Productcard = ({ id, image, price, title, reviews }) => {
           fontWeight={"bold"}
           fontSize={"1rem"}
           color={"grey"}
-          
-
+          className={styles.lineClamp}
         >
           {title}
         </Text>

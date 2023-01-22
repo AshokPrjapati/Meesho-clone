@@ -1,32 +1,12 @@
-import {
-  Flex,
-  Spacer,
-  Box,
-  Heading,
-  ButtonGroup,
-  Button,
-  InputLeftElement,
-  InputGroup,
-  Input,
-  Tooltip,
-  Text,
-  Menu,
-  MenuButton,
-  Avatar,
-  MenuList,
-  Center,
-  MenuDivider,
-  MenuItem,
-  Slider,
-} from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
 export const Dropdown = ({ setdropdown }) => {
   return (
     <Box
-     position={"absolute"}
-     backgroundColor={"white"}    
-     zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -39,8 +19,6 @@ export const Dropdown = ({ setdropdown }) => {
       rounded="md"
       left={"10%"}
       bg="#fff"
-      left="10%"
-
     >
       <Flex gap="10" className={styles.dropdown}>
         <ul>
@@ -48,8 +26,7 @@ export const Dropdown = ({ setdropdown }) => {
             <Link href={""}>All Women Ethnic</Link>
           </li>
           <li>
-            {" "}
-            <Link href={""}>View All</Link>
+            <Link href={"/products"}>View All</Link>
           </li>
         </ul>
         <ul>

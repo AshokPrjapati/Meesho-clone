@@ -6,6 +6,7 @@ export const addToCart = (data) => async (dispatch) => {
     try {
         let d = await addCartProduct(data);
         dispatch({ type: ADD_TO_CART, payload: data });
+        alert(`${d.title} is added to cart`);
     } catch (e) {
         alert("something went wrong while adding to cart")
     }

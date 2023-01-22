@@ -825,6 +825,13 @@ charts css started  */
   margin-left: 120px;
 }
 
+.lineClamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 
 @media only screen and (max-width: 768px) {
   .small {

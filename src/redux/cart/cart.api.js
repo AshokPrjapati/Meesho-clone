@@ -3,6 +3,7 @@ import axios from "axios"
 export const addCartProduct = async (obj) => {
     let res = await axios.post(`http://localhost:8080/cart`, obj);
     let d = await res.data;
+    console.log(d);
     return d;
 }
 

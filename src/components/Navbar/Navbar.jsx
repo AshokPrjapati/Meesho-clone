@@ -89,7 +89,7 @@ const Navbar = ({ display = "flex" }) => {
   return (
     <div>
       <nav className={styles.nav_1}>
-        <Flex  bg={"#ffffff"} alignItems="center" gap="2">
+        <Flex bg={"#ffffff"} alignItems="center" gap="2">
           <Box p="2" display={"flex"}>
             <Heading size="lg" color={"#f43397"}>
               ApniDukan
@@ -136,9 +136,7 @@ const Navbar = ({ display = "flex" }) => {
                   </Center>
                 </Flex>
               </MenuButton>
-             {
               {data ? (
-
                 <MenuList alignItems={"center"}>
                   <br />
                   <Center>
