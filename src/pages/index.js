@@ -18,7 +18,9 @@ import {
 import Productcard from '@/components/Products/productcard'
 import Footer from '@/components/Footer/Footer'
 export default function Home({ data }) {
+
   const [des, setdes] = useState(true);
+
   let category = ['dresses', 'kurti', 'jeans']
   let Gender = ['Mens', 'Womens', 'Girl', 'Boys']
   let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
@@ -53,6 +55,7 @@ export default function Home({ data }) {
 
 
         </header>
+
 
 
         <Flex direction={"column"}>
@@ -388,11 +391,7 @@ export default function Home({ data }) {
           </Box>
 
         </Flex>
-
-
-
-
-      </div>
+      </div >
 
     </>
   )
