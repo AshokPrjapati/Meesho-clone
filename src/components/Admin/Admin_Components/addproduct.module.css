@@ -4,7 +4,7 @@
       #bcc8ff 29.63%,
       #0b064e 51.55%,
       #100427 90.85%);
-  height: auto;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
