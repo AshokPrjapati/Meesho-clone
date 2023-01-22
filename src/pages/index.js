@@ -35,6 +35,7 @@ import {
 import Productcard from '@/components/Products/productcard'
 import Footer from '@/components/Footer/Footer'
 export default function Home({ data }) {
+  const [des,setdes]=useState(true)
   let category = ['dresses', 'kurti', 'jeans']
   let Gender = ['Mens', 'Womens', 'Girl', 'Boys']
   let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
@@ -79,7 +80,7 @@ export default function Home({ data }) {
         gap={"1.5%"}
        
         p={"2rem"}>
-          <Box w={"23%"} display={{base:"none",md:"none",sm:"none",lg:"block",xl:"block",'2xl':"block"}}>
+          <Box w={"23%"}>
           <Select  mb={"1rem"}>
             <option>Sort By: Relevence</option>
             <option>New Arrival</option>
@@ -117,163 +118,69 @@ export default function Home({ data }) {
            )
          }
            </Select>
-
-        <div>
-          <Box>
-            <Text fontSize={"32px"} ml="30px">Products for you</Text>
-            <Flex
-              w="100%"
-              gap={"1.5%"}
-              height={"120rem"}
-              p={"2rem"}>
-              <Box w={"23%"}>
-                <Select mb={"1rem"}>
-                  <option>Sort By: Relevence</option>
-                  <option>New Arrival</option>
-                  <option>Price(Low to High)</option>
-                  <option>Price(High to Low)</option>
-                  <option>Rating</option>
-                  <option>Discount</option>
-                </Select>
-
-                <Flex direction={"column"} borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} height={"70rem"}>
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h3 style={{ fontWeight: "normal" }}>FILTERS</h3>
-                    <p style={{ color: "grey" }}>1000+ products</p>
-                    <br />
-                    <hr />
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h3 style={{ fontWeight: "normal" }}>Category</h3>
-                    <Select m={"4px"}>
-                      {category.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Fabric</h2>
-
-                    <Select m={"4px"}>
-                      {fabric.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Gender</h2>
-
-                    <Select m={"4px"}>
-                      {Gender.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Size</h2>
-
-                    <Select m={"4px"}>
-                      {Size.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Colors</h2>
-
-                    <Select m={"4px"}>
-                      {colors.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Price</h2>
-
-                    <Select m={"4px"}>
-                      {Price.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Rating</h2>
-
-                    <Select m={"4px"}>
-                      {Rating.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Discount</h2>
-
-                    <Select m={"4px"}>
-                      {Discount.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-                </Flex>
-              </Box>
-              <Box w={"76%"} bg={"white"} height={"80%"}>
-                <SimpleGrid columns={{ base: 1, md: 2, sm: 2, lg: 3, xl: 4, '2xl': 4 }} gap={"1.5rem"}>
-                  {data.map((el) => (
-                    <Box key={el.id}>
-                      <Productcard key={el.id} id={el.id} {...el} />
-                    </Box>
-                  ))}
-                </SimpleGrid>
-              </Box>
-            </Flex>
-
           </Box>
 
+          <Box mt={"1rem"} p={"5px"} w={"90%"} >
+            <h2 style={{fontWeight:"normal"}}>Gender</h2>
+            
+           <Select m={"4px"}>
+         { Gender.map((el)=>(
+            <option>{el}</option>
+           )
+           )
+         }
+           </Select>
+          </Box>
 
-        </div>
+          <Box mt={"1rem"} p={"5px"} w={"90%"} >
+            <h2 style={{fontWeight:"normal"}}>Size</h2>
+            
+           <Select m={"4px"}>
+         { Size.map((el)=>(
+            <option>{el}</option>
+           )
+           )
+         }
+           </Select>
+          </Box>
 
-        <div style={{ position: "relative", top: "4600px" }}> <Footer />
+        
 
+          <Box mt={"1rem"} p={"5px"} w={"90%"} >
+            <h2 style={{fontWeight:"normal"}}>Colors</h2>
+            
+           <Select m={"4px"}>
+         {colors.map((el)=>(
+            <option>{el}</option>
+           )
+           )
+         }
+           </Select>
+          </Box>
 
-          <Menu>
-            <MenuButton as={Button} w="800px" rightIcon={<ChevronDownIcon />}>
-              More About Meesho
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Download</MenuItem>
-              <MenuItem>Create a Copy</MenuItem>
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
-              <MenuItem>Attend a Workshop</MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
+          <Box mt={"1rem"} p={"5px"} w={"90%"} >
+            <h2 style={{fontWeight:"normal"}}>Price</h2>
+            
+           <Select m={"4px"}>
+         {Price.map((el)=>(
+            <option>{el}</option>
+           )
+           )
+         }
+           </Select>
+          </Box>
 
+          <Box mt={"1rem"} p={"5px"} w={"90%"} >
+            <h2 style={{fontWeight:"normal"}}>Rating</h2>
+            
+           <Select m={"4px"}>
+         {Rating.map((el)=>(
+            <option>{el}</option>
+           )
+           )
+         }
+           </Select>
+          </Box>
 
           <Box mt={"1rem"} p={"5px"} w={"90%"} >
             <h2 style={{fontWeight:"normal"}}>Discount</h2>
@@ -301,7 +208,7 @@ export default function Home({ data }) {
     </Box>
     <Box  > <Footer/>
 <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}>
-<Button w="90%" ml="70px" mt={"20px"} mb="5px" onClick={()=>setdes(!des)}>More About Meesho {des?<ChevronUpIcon/>:<ChevronDownIcon />} </Button>
+<Button w="90%" ml="70px" mt={"10px"} mb="20px" onClick={()=>setdes(!des)}>More About Meesho {des?<ChevronUpIcon/>:<ChevronDownIcon />} </Button>
 {des?<div className={styles.description}>
 <div>
   <Heading>Meesho: Affordable Online Shopping at Your Fingertips</Heading>
