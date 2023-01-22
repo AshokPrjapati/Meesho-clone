@@ -89,7 +89,11 @@ const Cart = () => {
                 ))}
               </Box>
               <Box w="38%">
-                <PriceDetails display={"flex"} />
+                <PriceDetails
+                  display={"flex"}
+                  dest="/cart/address"
+                  text="Continue"
+                />
               </Box>
             </Flex>
           </Container>

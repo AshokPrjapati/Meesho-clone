@@ -2,14 +2,14 @@ import React from "react";
 import { Box, Image, Text, Flex, border, Button } from "@chakra-ui/react";
 const Productcard = ({ image, price, title, reviews }) => {
   title = title.split(" ");
-  if (title.length > 3) {
-    title = title.slice(0, 3).join(" ");
+  if (title.length > 5) {
+    title = title.slice(0, 5).join(" ");
   }
   let x;
   if (reviews.rate > 3.5) {
-    x = "green";
+    x = "rgb(35, 187, 117)";
   } else {
-    x = "orange";
+    x = "rgb(244, 182, 25)";
   }
   return (
     <div>
@@ -18,6 +18,7 @@ const Productcard = ({ image, price, title, reviews }) => {
         borderRadius={"10px"}
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
         padding={"1rem"}
+        
       >
         <Image h={"35vh"} w={"100%"} src={image} alt={title} />
         <Text
@@ -26,6 +27,8 @@ const Productcard = ({ image, price, title, reviews }) => {
           fontWeight={"bold"}
           fontSize={"1rem"}
           color={"grey"}
+          
+
         >
           {title}
         </Text>

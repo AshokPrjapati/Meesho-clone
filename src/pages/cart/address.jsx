@@ -32,8 +32,6 @@ const Address = () => {
     dispatch(editAddress(data, id));
   };
 
-  // console.log(addressData);
-
   return (
     <>
       <Head>
@@ -76,13 +74,19 @@ const Address = () => {
                 </Text>
               </Flex>
               {addressData.length ? (
-                addressData.map((a) => <AddressCard key={a.id} {...a} />)
+                addressData.map((a) => (
+                  <AddressCard key={a.id} {...a} display="flex" />
+                ))
               ) : (
                 <AddressForm />
               )}
             </Box>
             <Box w="38%">
-              <PriceDetails display={"none"} />
+              <PriceDetails
+                display={"none"}
+                dest="/cart/payment"
+                text="Continue"
+              />
             </Box>
           </Flex>
         </Container>

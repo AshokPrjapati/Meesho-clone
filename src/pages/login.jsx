@@ -31,17 +31,35 @@ import {
   } from '@chakra-ui/react';
   import styles from "../components/Navbar/Navbar.module.css";
   import { CiSearch } from "react-icons/ci";
-
+import { AuthContext } from '../../context/authContext';
 import { AiOutlineShoppingCart, AiOutlineMobile } from "react-icons/ai";
-import { useState } from 'react';
+import { useState,useContext } from 'react';
   export default function Login() {
     const [otp,setotp]=useState(false)
     const [num,setnum]=useState("")
+
+    const {authState,loginUser}=useContext(AuthContext)
+
+   
+      
+  
+    
+  const signin=()=>{
+    loginUser()
+  }
+
+  
+  
+    
     function handlechange(e){
-        setnum(e.target.value)
+      setnum(e.target.value)
     }
- const Profile = () => {
-        return (
+    const Profile = () => {
+      
+     
+
+
+    return (
           <div className={styles.download}>
             <h1>Download from</h1>
             <img
@@ -142,8 +160,8 @@ import { useState } from 'react';
                   }}>
                   Generate otp
                 </Button>
-                <Button
-               
+                <a href="./"><Button
+                onClick={signin}
                display={otp?"block":"none"}
                   bg={'blue.400'}
                   color={'white'}
@@ -151,7 +169,7 @@ import { useState } from 'react';
                     bg: 'blue.500',
                   }}>
                   SignIn
-                </Button>
+                </Button></a>
               </Stack>
             </Stack>
           </Box>
