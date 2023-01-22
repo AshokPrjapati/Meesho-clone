@@ -24,9 +24,9 @@ import styles from "./Navbar.module.css";
 export const Dropdown = ({ setdropdown }) => {
   return (
     <Box
-     position={"absolute"}
-     backgroundColor={"white"}    
-     zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -38,6 +38,7 @@ export const Dropdown = ({ setdropdown }) => {
       p="20px"
       rounded="md"
       left={"10%"}
+      bg="#fff"
     >
       <Flex gap="10" className={styles.dropdown}>
         <ul>
@@ -159,12 +160,10 @@ export const Dropdown = ({ setdropdown }) => {
 export const Dropdown1 = ({ setdropdown1 }) => {
   return (
     <Box
-    position={"absolute"}
-    backgroundColor={"white"}
-    
-    zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      zIndex={1}
       width={"80%"}
-      
       boxShadow={
         "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;"
       }
@@ -253,10 +252,10 @@ export const Dropdown1 = ({ setdropdown1 }) => {
 export const Dropdown2 = ({ setdropdown2 }) => {
   return (
     <Box
-    position={"absolute"}
-    backgroundColor={"white"}
-    left={"10%"}
-    zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      left={"10%"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -385,10 +384,10 @@ export const Dropdown2 = ({ setdropdown2 }) => {
 export const Dropdown3 = ({ setdropdown3 }) => {
   return (
     <Box
-    position={"absolute"}
-    backgroundColor={"white"}
-    left={"10%"}
-    zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      left={"10%"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -460,10 +459,10 @@ export const Dropdown3 = ({ setdropdown3 }) => {
 export const Dropdown4 = ({ setdropdown4 }) => {
   return (
     <Box
-    position={"absolute"}
-    backgroundColor={"white"}
-    left={"10%"}
-    zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      left={"10%"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -538,10 +537,10 @@ export const Dropdown4 = ({ setdropdown4 }) => {
 export const Dropdown5 = ({ setdropdown5 }) => {
   return (
     <Box
-    position={"absolute"}
-    backgroundColor={"white"}
-    left={"10%"}
-    zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      left={"10%"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -608,10 +607,10 @@ export const Dropdown5 = ({ setdropdown5 }) => {
 export const Dropdown6 = ({ setdropdown6 }) => {
   return (
     <Box
-    position={"absolute"}
-    backgroundColor={"white"}
-    left={"10%"}
-    zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      left={"10%"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -689,10 +688,10 @@ export const Dropdown6 = ({ setdropdown6 }) => {
 export const Dropdown7 = ({ setdropdown7 }) => {
   return (
     <Box
-    position={"absolute"}
-    backgroundColor={"white"}
-    left={"10%"}
-    zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      left={"10%"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={
@@ -783,10 +782,10 @@ export const Dropdown7 = ({ setdropdown7 }) => {
 export const Dropdown8 = ({ setdropdown8 }) => {
   return (
     <Box
-    position={"absolute"}
-    backgroundColor={"white"}
-    left={"10%"}
-    zIndex={1}
+      position={"absolute"}
+      backgroundColor={"white"}
+      left={"10%"}
+      zIndex={1}
       width={"80%"}
       m="0px auto"
       boxShadow={

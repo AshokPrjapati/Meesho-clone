@@ -31,15 +31,16 @@ import {
   Center,
   MenuDivider,
   MenuItem,
+  Image,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import styles from "./Navbar.module.css";
-import { useState,useContext,useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "context/authContext";
 import axios from "axios";
 import { useRouter } from "next/router";
 
 export const Profile = () => {
+  const router = useRouter();
   return (
     <div className={styles.download}>
       <h1>Download from</h1>
@@ -55,19 +56,13 @@ export const Profile = () => {
   );
 };
 
-
-
-const getApi=async()=>{
-  let res = await axios.get("http://localhost:8080/auth")
-  let data=  await res.data;
- return data.isAuth;
-}
-
-
-
+const getApi = async () => {
+  let res = await axios.get("http://localhost:8080/auth");
+  let data = await res.data;
+  return data;
+};
 
 const Navbar = ({ display = "flex" }) => {
-
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
   const [dropdown2, setdropdown2] = useState(false);
@@ -77,37 +72,29 @@ const Navbar = ({ display = "flex" }) => {
   const [dropdown6, setdropdown6] = useState(false);
   const [dropdown7, setdropdown7] = useState(false);
   const [dropdown8, setdropdown8] = useState(false);
-  const router=useRouter()
- 
-  const {isAuth,logoutUser}=useContext(AuthContext)
-  const [data,setData]=useState(false)
-  
-    
-  
-   useEffect(()=>{
-    getApi()
-    .then((res)=>setData(res)).catch((err)=>console.log(err))
-   },[data])
-  console.log(data)
-  
-     
-   const logout=()=>{
-    logoutUser()
-    getApi()
-    .then((res)=>setData(res)).catch((err)=>console.log(err))
-   
-   }
+  const router = useRouter();
 
+  const { state, logoutUser } = useContext(AuthContext);
+  const [data, setData] = useState(false);
+
+  useEffect(() => {
+    getApi().then((res) => setData(res.isAuth));
+  }, []);
+
+  const logout = async () => {
+    let res = await logoutUser();
+    setData(state);
+  };
 
   return (
     <div>
       <nav className={styles.nav_1}>
         <Flex  bg={"#ffffff"} alignItems="center" gap="2">
           <Box p="2" display={"flex"}>
-            <Heading size="xl" color={"#f43397"}>
-              {/* <img src="Apni.png" width={"60px"}/> */}
+            <Heading size="lg" color={"#f43397"}>
               ApniDukan
             </Heading>
+
             <InputGroup marginLeft={"20px"}>
               <InputLeftElement
                 pointerEvents="none"
@@ -149,43 +136,67 @@ const Navbar = ({ display = "flex" }) => {
                   </Center>
                 </Flex>
               </MenuButton>
-             {
-              data?( <MenuList alignItems={"center"}>
-              <br />
-              <Center>
-                <Avatar
-                  size={"lg"}
-                  src={
-                    "https://cdn-icons-png.flaticon.com/128/149/149071.png"
-                  }
-                />
-              </Center>
-              <br />
-              <Center>
-                <p>Hello User</p>
-              </Center>
-              <br />
-              <MenuDivider />
-              <MenuItem>My Orders</MenuItem>
-              <MenuItem>Admin Side</MenuItem>
-              <MenuItem onClick={logout}>Logout</MenuItem>
-            </MenuList>):(
+              {data ? (
                 <MenuList alignItems={"center"}>
-                   <Center>
-                <p>Hello User</p>
-              </Center>
-              <br />
-              <Center style={{color:"rgb(102,102,102)"}}>To access your Meesho account</Center>
-              <br />
-              <a href="./login"><MenuItem style={{background:"rgb(231,48,150)",color:"white",fontSize:"20px",textAlign:"center",fontWeight:"bolder",width:"90%",justifyContent:"center",marginLeft:"10px"}}>Signup</MenuItem></a>
-
+                  <br />
+                  <Center>
+                    <Avatar
+                      size={"lg"}
+                      src={
+                        "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+                      }
+                    />
+                  </Center>
+                  <br />
+                  <Center>
+                    <p>Hello User</p>
+                  </Center>
+                  <br />
+                  <MenuDivider />
+                  <MenuItem>My Orders</MenuItem>
+                  <MenuItem>Admin Side</MenuItem>
+                  <MenuItem onClick={logout}>Logout</MenuItem>
                 </MenuList>
-
-            )
-             }
+              ) : (
+                <MenuList alignItems={"center"}>
+                  <Center>
+                    <p>Hello User</p>
+                  </Center>
+                  <br />
+                  <Center style={{ color: "rgb(102,102,102)" }}>
+                    To access your Meesho account
+                  </Center>
+                  <br />
+                  <a href="./login">
+                    <MenuItem
+                      style={{
+                        background: "rgb(231,48,150)",
+                        color: "white",
+                        fontSize: "20px",
+                        textAlign: "center",
+                        fontWeight: "bolder",
+                        width: "90%",
+                        justifyContent: "center",
+                        marginLeft: "10px",
+                      }}
+                    >
+                      Signup
+                    </MenuItem>
+                  </a>
+                </MenuList>
+              )}
             </Menu>
-            <Button variant={"ghost"}>
-              <AiOutlineShoppingCart /> Cart
+            <Button
+              variant={"ghost"}
+              onClick={() => {
+                if (data) router.push("/cart");
+                else alert("Please Login/Signup to access cart");
+              }}
+            >
+              <Flex align="center">
+                <AiOutlineShoppingCart />
+                <Text>Cart</Text>
+              </Flex>
             </Button>
           </ButtonGroup>
         </Flex>

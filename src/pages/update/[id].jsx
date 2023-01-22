@@ -20,6 +20,7 @@ const update = ({ product }) => {
   const router = useRouter();
 
   const [productdata, setData] = React.useState(product);
+  console.log(product);
 
   const onInputChange = (e) => {
     let a = e.target.value;
