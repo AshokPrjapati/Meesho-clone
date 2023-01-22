@@ -1387,5 +1387,8 @@
       "nearby": "asd",
       "id": 1
     }
-  ]
+  ],
+  "auth": {
+    "isAuth": false
+  }
 }
