@@ -15,7 +15,7 @@
 
 .blurr{
     /* display: grid; */
-    height: 97%;
+    height: auto;
     width: 97%;
     background: rgba(247, 243, 243, 0.8);
     border-radius: 2rem;

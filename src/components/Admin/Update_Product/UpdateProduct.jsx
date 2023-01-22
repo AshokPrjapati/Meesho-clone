@@ -76,10 +76,9 @@ const UpdateProduct = () => {
             >
               <option value="women-ethnic">Women Ethnic</option>
               <option value="women-western">Women Western</option>
-              <option value="men">Men</option>
-              <option value="kids">Kids</option>
+              <option value="Kids">Kids</option>
               <option value="home-kitchen">Home & Kitchen</option>
-              <option value="beauty-health">Beauty & Health</option>
+              <option value="beauty">Beauty & Health</option>
             </Select>
           </Box>
         </Flex>
