@@ -32,13 +32,25 @@ import { AuthContext } from '../../context/authContext';
 import { AiOutlineShoppingCart, AiOutlineMobile } from "react-icons/ai";
 import { useState,useContext } from 'react';
 
+import { useRouter } from 'next/router';
 
+  export default function Login() {
+    const [otp,setotp]=useState(false)
+    const [num,setnum]=useState("")
+
+    const {authState,loginUser}=useContext(AuthContext)
+     const router=useRouter()
  
-import styles from "../components/Navbar/Navbar.module.css";
-import { CiSearch } from "react-icons/ci";
-import { AuthContext } from "../../context/authContext";
-import { AiOutlineMobile } from "react-icons/ai";
-import { useState, useContext } from "react";
+  const signin=()=>{
+    if(num==8708751239){
+      router.push("./admin")
+    }else{
+      router.push("./")
+    }
+    loginUser()
+  }
+ 
+
 export default function Login() {
   const [otp, setotp] = useState(false);
   const [num, setnum] = useState("");
@@ -157,19 +169,18 @@ export default function Login() {
                 >
                   Generate otp
                 </Button>
-                <a href="./">
-                  <Button
-                    onClick={signin}
-                    display={otp ? "block" : "none"}
-                    bg={"blue.400"}
-                    color={"white"}
-                    _hover={{
-                      bg: "blue.500",
-                    }}
-                  >
-                    SignIn
-                  </Button>
-                </a>
+
+               <Button
+                onClick={signin}
+                
+               display={otp?"block":"none"}
+                  bg={'blue.400'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'blue.500',
+                  }}>
+                  SignIn
+                </Button>
               </Stack>
             </Stack>
           </Box>

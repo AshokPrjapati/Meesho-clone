@@ -136,7 +136,9 @@ const Navbar = ({ display = "flex" }) => {
                   </Center>
                 </Flex>
               </MenuButton>
+             {
               {data ? (
+
                 <MenuList alignItems={"center"}>
                   <br />
                   <Center>
