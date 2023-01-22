@@ -7,6 +7,10 @@
   box-shadow: 3px 0px 6px 0px rgba(246, 246, 246, 0.75);
 
 }
+.small{
+  display: none;
+}
+
 .footer{
   background-color:white;
  position: relative;
@@ -26,6 +30,10 @@
   font-size: 42px;
   font-weight: bold;
   text-align: center;
+}
+.desbtn{
+  width: 100%;
+  
 }
 .description{
  
@@ -191,6 +199,7 @@
 }
 
 @media only screen and (max-width: 768px) {
+
   .header>p{
     font-size: 28px;
     
@@ -774,7 +783,12 @@ charts css started  */
 
 
 @media only screen and (max-width: 768px) {
-
+.small{
+  display: block;
+}
+.big{
+  display: none;
+}
   .charts {
     display: flex;
     flex-direction: column;
@@ -811,4 +825,21 @@ charts css started  */
 
 }
 
+@media screen and (min-width: 480px) and (max-width: 1050px) {
+  .big{
+    display: none;
+  }
+.small{
+  display: block;
+}
+}
+@media screen and (min-width:0px) and (max-width: 600px){
+  .cardsprod>div>div{
+  
+    height: fit-content;
+  }
+  .cardsprod>div>div>div:nth-child(2){
+    display: none;
+  }
+}
 

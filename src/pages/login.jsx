@@ -21,13 +21,9 @@ import {
     Input,
     Tooltip,
     Text,
-    Menu,
-    MenuButton,
-    Avatar,
-    MenuList,
+   
     Center,
-    MenuDivider,
-    MenuItem,
+   
   } from '@chakra-ui/react';
   import styles from "../components/Navbar/Navbar.module.css";
   import { CiSearch } from "react-icons/ci";

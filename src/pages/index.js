@@ -34,7 +34,9 @@ import {
 
 import Productcard from '@/components/Products/productcard'
 import Footer from '@/components/Footer/Footer'
+import SmallNavbar from '@/components/Navbar/SmallNavbar'
 export default function Home({ data }) {
+  
   const [des,setdes]=useState(true)
   let category = ['dresses', 'kurti', 'jeans']
   let Gender = ['Mens', 'Womens', 'Girl', 'Boys']
@@ -57,11 +59,16 @@ export default function Home({ data }) {
   return (
     <>
       <div>
-        <Navbar />
+        <div className={styles.big}><Navbar /></div>
+        <div className={styles.small}><SmallNavbar/></div>
+        {/*  */}
+        
         <header className={styles.header}>
 
 <img src='./header1.png'></img>
-<p>Top Categories to choose from</p>
+<p>Top Categories to choose from
+
+</p>
 <img src='./header2.png'></img>
 <img src='./header3.png'></img>
 <img src='./header4.png'></img>
@@ -78,9 +85,9 @@ export default function Home({ data }) {
       <Flex
         w="100%"
         gap={"1.5%"}
-       
+       direction={["column","column","row","row"]}
         p={"2rem"}>
-          <Box w={"23%"}>
+          <Box mb={"10px"} w={["100%","100%","40%","23%"]}>
           <Select  mb={"1rem"}>
             <option>Sort By: Relevence</option>
             <option>New Arrival</option>
@@ -90,7 +97,7 @@ export default function Home({ data }) {
             <option>Discount</option>
           </Select>
     
-          <Flex  direction={"column"}  borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} height={"70rem"}>
+          <Flex  overflow="hidden" direction={["row","row","column","column"]}  borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} >
           <Box mt={"1rem"} p={"5px"} w={"90%"} >
             <h3 style={{fontWeight:"normal"}}>FILTERS</h3>
             <p style={{color:"grey"}}>1000+ products</p>
@@ -195,10 +202,10 @@ export default function Home({ data }) {
           </Box>
           </Flex>
         </Box>
-        <Box w={"76%"} bg={"white"} m="0px auto" height={"80%"}>
+        <Box w={["90%","90%","76%","76%"]} bg={"white"} m="0px auto" height={"80%"}>
           <SimpleGrid columns={{base:2,md:2,sm:2,lg:3,xl:4,'2xl':4}} gridTemplateRows={"max-content"}  gap={"1.5rem"}>
             {data.map((el) => (
-              <Box height={"100%"} key={el.id}>
+              <Box className={styles.cardsprod} height={"100%"} key={el.id}>
                 <Productcard key = {el.id} id={el.id} {...el} />
               </Box>
             ))}
@@ -208,7 +215,7 @@ export default function Home({ data }) {
     </Box>
     <Box  > <Footer/>
 <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}>
-<Button w="90%" ml="70px" mt={"10px"} mb="20px" onClick={()=>setdes(!des)}>More About Meesho {des?<ChevronUpIcon/>:<ChevronDownIcon />} </Button>
+<Button className={styles.desbtn} onClick={()=>setdes(!des)}>More About Meesho {des?<ChevronUpIcon/>:<ChevronDownIcon />} </Button>
 {des?<div className={styles.description}>
 <div>
   <Heading>Meesho: Affordable Online Shopping at Your Fingertips</Heading>

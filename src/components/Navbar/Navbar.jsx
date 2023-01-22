@@ -102,7 +102,7 @@ const Navbar = ({ display = "flex" }) => {
   return (
     <div>
       <nav className={styles.nav_1}>
-        <Flex minWidth="max-content" bg={"#ffffff"} alignItems="center" gap="2">
+        <Flex  bg={"#ffffff"} alignItems="center" gap="2">
           <Box p="2" display={"flex"}>
             <Heading size="xl" color={"#f43397"}>
               {/* <img src="Apni.png" width={"60px"}/> */}
