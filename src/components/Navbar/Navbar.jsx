@@ -154,7 +154,6 @@ const Navbar = ({ display = "flex" }) => {
                   <br />
                   <MenuDivider />
                   <MenuItem>My Orders</MenuItem>
-                  <MenuItem>Admin Side</MenuItem>
                   <MenuItem onClick={logout}>Logout</MenuItem>
                 </MenuList>
               ) : (
