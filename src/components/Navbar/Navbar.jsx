@@ -33,7 +33,6 @@ import {
   MenuItem,
   Image,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import styles from "./Navbar.module.css";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "context/authContext";
@@ -41,6 +40,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export const Profile = () => {
+  const router = useRouter();
   return (
     <div className={styles.download}>
       <h1>Download from</h1>
@@ -59,7 +59,7 @@ export const Profile = () => {
 const getApi = async () => {
   let res = await axios.get("http://localhost:8080/auth");
   let data = await res.data;
-  return data.isAuth;
+  return data;
 };
 
 const Navbar = ({ display = "flex" }) => {
@@ -74,21 +74,16 @@ const Navbar = ({ display = "flex" }) => {
   const [dropdown8, setdropdown8] = useState(false);
   const router = useRouter();
 
-  const { isAuth, logoutUser } = useContext(AuthContext);
+  const { state, logoutUser } = useContext(AuthContext);
   const [data, setData] = useState(false);
 
   useEffect(() => {
-    getApi()
-      .then((res) => setData(res))
-      .catch((err) => console.log(err));
-  }, [data]);
-  console.log(data);
+    getApi().then((res) => setData(res.isAuth));
+  }, []);
 
-  const logout = () => {
-    logoutUser();
-    getApi()
-      .then((res) => setData(res))
-      .catch((err) => console.log(err));
+  const logout = async () => {
+    let res = await logoutUser();
+    setData(state);
   };
 
   return (
@@ -191,13 +186,17 @@ const Navbar = ({ display = "flex" }) => {
                 </MenuList>
               )}
             </Menu>
-            <Button variant={"ghost"}>
-              <Link href="/cart">
-                <Flex align="center">
-                  <AiOutlineShoppingCart />
-                  <Text>Cart</Text>
-                </Flex>
-              </Link>
+            <Button
+              variant={"ghost"}
+              onClick={() => {
+                if (data) router.push("/cart");
+                else alert("Please Login/Signup to access cart");
+              }}
+            >
+              <Flex align="center">
+                <AiOutlineShoppingCart />
+                <Text>Cart</Text>
+              </Flex>
             </Button>
           </ButtonGroup>
         </Flex>

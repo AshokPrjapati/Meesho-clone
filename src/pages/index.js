@@ -1,14 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-
-import Header from "../components/Admin/Header"
-import LeftNavbar from '../components/Admin/LeftNavbar'
-import Content from '../components/Admin/Content'
-
-
 import Navbar from '@/components/Navbar/Navbar'
-
 import React, { useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons"
 
@@ -16,18 +7,10 @@ import {
   Text,
   Flex,
   Box,
-  Grid,
   SimpleGrid,
   Select,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-
-  Container,
   Heading,
-
 } from "@chakra-ui/react";
 
 
@@ -102,7 +85,7 @@ export default function Home({ data }) {
                     <h3 style={{ fontWeight: "normal" }}>Category</h3>
                     <Select m={"4px"}>
                       {category.map((el) => (
-                        <option>{el}</option>
+                        <option key={el}>{el}</option>
                       )
                       )
                       }
@@ -113,7 +96,7 @@ export default function Home({ data }) {
 
                     <Select m={"4px"}>
                       {fabric.map((el) => (
-                        <option>{el}</option>
+                        <option key={el}>{el}</option>
                       )
                       )
                       }
@@ -125,7 +108,7 @@ export default function Home({ data }) {
 
                     <Select m={"4px"}>
                       {Gender.map((el) => (
-                        <option>{el}</option>
+                        <option key={el}>{el}</option>
                       )
                       )
                       }
@@ -137,7 +120,7 @@ export default function Home({ data }) {
 
                     <Select m={"4px"}>
                       {Size.map((el) => (
-                        <option>{el}</option>
+                        <option key={el}>{el}</option>
                       )
                       )
                       }
@@ -151,7 +134,7 @@ export default function Home({ data }) {
 
                     <Select m={"4px"}>
                       {colors.map((el) => (
-                        <option>{el}</option>
+                        <option key={el}>{el}</option>
                       )
                       )
                       }
@@ -163,7 +146,7 @@ export default function Home({ data }) {
 
                     <Select m={"4px"}>
                       {Price.map((el) => (
-                        <option>{el}</option>
+                        <option key={el}>{el}</option>
                       )
                       )
                       }
@@ -175,7 +158,7 @@ export default function Home({ data }) {
 
                     <Select m={"4px"}>
                       {Rating.map((el) => (
-                        <option>{el}</option>
+                        <option key={el}>{el}</option>
                       )
                       )
                       }
@@ -187,7 +170,7 @@ export default function Home({ data }) {
 
                     <Select m={"4px"}>
                       {Discount.map((el) => (
-                        <option>{el}</option>
+                        <option key={el}>{el}</option>
                       )
                       )
                       }
