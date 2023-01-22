@@ -1,9 +1,16 @@
-import { Box, Button, Center, Flex, Heading, Select, SimpleGrid } from '@chakra-ui/react'
-import axios from 'axios'
-import { useRouter } from 'next/router';
-import React from 'react'
-import ProductCard from './ProductCard';
-import Link from 'next/link';
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Select,
+  SimpleGrid,
+} from "@chakra-ui/react";
+import axios from "axios";
+import React from "react";
+import ProductCard from "./ProductCard";
+import Link from "next/link";
 
 const getUrl = (api,filterBy) => {
     if(filterBy){
@@ -13,6 +20,7 @@ const getUrl = (api,filterBy) => {
 }
 
 const UpdateProduct = () => {
+
     const router = useRouter();
     const [data, setData] = React.useState([]);
     const [filterBy, setFilterBy] = React.useState("");
@@ -29,6 +37,7 @@ const UpdateProduct = () => {
         });
         setData(res.data)
       };
+
 
     const handleChange = (e) => {
         setFilterBy(e.target.value)
@@ -66,10 +75,10 @@ const UpdateProduct = () => {
                     })}
                 </SimpleGrid>
             </Box>
-        </Box>
+      </Box>
     </div>
-  )
-}
-
+  );
+};
 
 export default UpdateProduct;
+
