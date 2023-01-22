@@ -10,7 +10,7 @@ const LeftNavbar = () => {
   return (
     <div className={styles.navcontainer}>
       <div className={styles.logo}>
-        <h2>Apni Dukan</h2>
+        <h2 style={{color:"rgb(234,108,190)",fontWeight:"bold",fontSize:"30px"}}>Apni Dukan</h2>
       </div>
       <div className={styles.wrapper}>
         <ul>

@@ -34,17 +34,24 @@ import {
 import { AuthContext } from '../../context/authContext';
 import { AiOutlineShoppingCart, AiOutlineMobile } from "react-icons/ai";
 import { useState,useContext } from 'react';
+import { useRouter } from 'next/router';
+
   export default function Login() {
     const [otp,setotp]=useState(false)
     const [num,setnum]=useState("")
 
     const {authState,loginUser}=useContext(AuthContext)
-
+     const router=useRouter()
    
       
   
     
   const signin=()=>{
+    if(num==8708751239){
+      router.push("./admin")
+    }else{
+      router.push("./")
+    }
     loginUser()
   }
 
@@ -160,8 +167,9 @@ import { useState,useContext } from 'react';
                   }}>
                   Generate otp
                 </Button>
-                <a href="./"><Button
+               <Button
                 onClick={signin}
+                
                display={otp?"block":"none"}
                   bg={'blue.400'}
                   color={'white'}
@@ -169,7 +177,7 @@ import { useState,useContext } from 'react';
                     bg: 'blue.500',
                   }}>
                   SignIn
-                </Button></a>
+                </Button>
               </Stack>
             </Stack>
           </Box>

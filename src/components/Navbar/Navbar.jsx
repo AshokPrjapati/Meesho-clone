@@ -66,10 +66,7 @@ const getApi=async()=>{
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 072dc3f7cbff815db465767b0cd47a6d71bc65a9
 const Navbar = ({ display = "flex" }) => {
 
   const [dropdown, setdropdown] = useState(false);
@@ -171,7 +168,6 @@ const Navbar = ({ display = "flex" }) => {
               <br />
               <MenuDivider />
               <MenuItem>My Orders</MenuItem>
-              <MenuItem>Admin Side</MenuItem>
               <MenuItem onClick={logout}>Logout</MenuItem>
             </MenuList>):(
                 <MenuList alignItems={"center"}>
