@@ -1,3 +1,4 @@
+
 import React from 'react'
 import styles from "./update.module.css"
 import { 
@@ -69,6 +70,7 @@ const update = ({product}) => {
       //   method: 'DELETE',
       //   url: `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
       // });
+
       
       await fetch(`https://lazy-erin-caridea-veil.cyclic.app/products/${id}`, {
       method: 'DELETE',
@@ -240,3 +242,4 @@ export async function getStaticProps (context) {
 }
 
 export default update
+

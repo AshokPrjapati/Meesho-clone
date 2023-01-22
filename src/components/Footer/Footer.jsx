@@ -58,11 +58,15 @@ export default function Footer() {
       <Container as={Stack} maxW={'6xl'} py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
           <Stack align={'flex-start'}>
-            <ListHeader>Company</ListHeader>
-            <Link href={'#'}>About Us</Link>
-            <Link href={'#'}>Blog</Link>
+            <ListHeader>Contact us</ListHeader>
+            <Text>Fashnear Technologies Private Limited,
+CIN: U74900KA2015PTC082263
+06-105-B, 06-102, (138 Wu) Vaishnavi Signature, No. 78/9, Outer Ring Road, Bellandur, Varthur Hobli, Bengaluru-560103, Karnataka, India
+E-mail address: query@meesho.com
+© 2015-2022 Meesho.com</Text>
+            {/* <Link href={'#'}>Blog</Link>
             <Link href={'#'}>Careers</Link>
-            <Link href={'#'}>Contact Us</Link>
+            <Link href={'#'}>Contact Us</Link> */}
           </Stack>
 
           <Stack align={'flex-start'}>
@@ -81,7 +85,9 @@ export default function Footer() {
           </Stack>
 
           <Stack align={'flex-start'}>
-            <ListHeader>Install App</ListHeader>
+            <Text>Shop Non-Stop on Meesho
+Trusted by more than 1 Crore Indians
+Cash on Delivery | Free Delivery</Text>
             {/* <AppStoreBadge />
             <PlayStoreBadge /> */}
           </Stack>
@@ -100,7 +106,7 @@ export default function Footer() {
           spacing={4}
           justify={{ md: 'space-between' }}
           align={{ md: 'center' }}>
-          <Text>© 2022 Chakra Templates. All rights reserved</Text>
+          <Text>Reach out to us</Text>
           <Stack direction={'row'} spacing={6}>
             <SocialButton label={'Twitter'} href={'#'}>
               <FaTwitter />

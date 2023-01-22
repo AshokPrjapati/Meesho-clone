@@ -1,15 +1,9 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Image,
-  Stack,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Button, Stack, Text, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import AddressSideBar from "./AddressSideBar";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { editAddress } from "@/redux/address/address.action";
 
 const AddressCard = ({
   id,
@@ -22,9 +16,11 @@ const AddressCard = ({
   mobile,
   nearby,
   handlePatchAddress,
+  display = flex,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  const dispatch = useDispatch();
 
   return (
     <Stack
@@ -78,6 +74,10 @@ const AddressCard = ({
           bg={"#f43f97"}
           _hover={{ bg: "#f43f97" }}
           textAlign="left"
+          display={display}
+          onClick={() => {
+            dispatch(editAddress(id, { selected: true }));
+          }}
         >
           <Link href={"/cart/payment"}> Deliver to this Address</Link>
         </Button>
