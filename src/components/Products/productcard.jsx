@@ -1,6 +1,15 @@
 import React from "react";
 import { Box, Image, Text, Flex, border, Button } from "@chakra-ui/react";
-const Productcard = ({ image, price, title, reviews }) => {
+import { useRouter } from "next/router";
+
+const Productcard = ({ id, image, price, title, reviews }) => {
+
+  const router = useRouter();
+
+    const handleClick = (id) => {
+        router.push(`/singleuser/${id}`)
+    }
+
   title = title.split(" ");
   if (title.length > 5) {
     title = title.slice(0, 5).join(" ");
@@ -18,8 +27,9 @@ const Productcard = ({ image, price, title, reviews }) => {
         borderRadius={"10px"}
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
         padding={"1rem"}
-       
-        
+
+        onClick={()=>handleClick(id)}
+
       >
         <Image h={"35vh"} w={"100%"} src={image} alt={title} />
         <Text
