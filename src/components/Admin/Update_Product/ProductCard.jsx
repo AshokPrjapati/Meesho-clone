@@ -6,7 +6,7 @@ const ProductCard = ({title,id,image,discout,category,price,description}) => {
     const router = useRouter();
 
     const handleClick = (id) => {
-        router.push(`/updateProduct/${id}`)
+        router.push(`/update/${id}`)
     }
 
   return (

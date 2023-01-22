@@ -5,21 +5,34 @@ import React from 'react'
 import ProductCard from './ProductCard';
 import Link from 'next/link';
 
+const getUrl = (api,filterBy) => {
+    if(filterBy){
+        api = `${api}?category=${filterBy}`;
+    }
+    return api
+}
+
 const UpdateProduct = () => {
     const router = useRouter();
     const [data, setData] = React.useState([]);
+    const [filterBy, setFilterBy] = React.useState("");
 
     React.useEffect(()=>{
         getProductsData();
-    },[])
+    },[filterBy])
 
     const getProductsData = async (params) => {
+        let getApi = getUrl(`https://lazy-erin-caridea-veil.cyclic.app/products`,filterBy)
         let res = await axios({
-          baseURL: `https://lazy-erin-caridea-veil.cyclic.app/products`,
+          baseURL: getApi,
           method: `get`
         });
         setData(res.data)
       };
+
+    const handleChange = (e) => {
+        setFilterBy(e.target.value)
+    }
 
   return (
     <div>
@@ -34,7 +47,7 @@ const UpdateProduct = () => {
                     <Button fontWeight={"bold"} background={"black"} color={"white"} _hover={{background:"#444444", color:"white"}}><Link href={"/admin"}>Dashboard</Link></Button>
                 </Box>
                 <Box width="200px">
-                <Select placeholder='Select Category' name="category" fontWeight={"bold"} _hover={{ cursor:"pointer" }}>
+                <Select placeholder='Select Category' name="category" fontWeight={"bold"} _hover={{ cursor:"pointer" }} onChange={handleChange}>
                   <option value="women-ethnic">Women Ethnic</option>
                   <option value="women-western">Women Western</option>
                   <option value="men">Men</option>
@@ -58,15 +71,5 @@ const UpdateProduct = () => {
   )
 }
 
-// export async function getStaticProps(){
-//     let r = await fetch("https://lazy-erin-caridea-veil.cyclic.app/products")
-//     let d = await r.json();
-//     console.log(r)
-//     return{
-//       props:{
-//         data: d
-//       }
-//     }
-//   }
 
-export default UpdateProduct
+export default UpdateProduct;
