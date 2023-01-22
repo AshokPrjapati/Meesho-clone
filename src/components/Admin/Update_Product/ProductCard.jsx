@@ -16,9 +16,11 @@ import { useRouter } from "next/router";
 const ProductCard = ({ title, id, image, price }) => {
   const router = useRouter();
 
-  const handleClick = (id) => {
-    router.push(`/update/${id}`);
-  };
+
+    const handleClick = (id) => {
+        router.push(`/update/${id}`)
+    }
+
 
   return (
     <div style={{ width: "fit-content" }}>
