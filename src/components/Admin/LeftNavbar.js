@@ -3,7 +3,7 @@
 import React from 'react'
 import styles from "../../styles/Home.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBookOpen, faCog, faRocket, faSignOut, faTachometerAlt } from "@fortawesome/free-solid-svg-icons"
+import { faCog, faRocket, faSignOut, faTachometerAlt } from "@fortawesome/free-solid-svg-icons"
 
 
 const LeftNavbar = () => {

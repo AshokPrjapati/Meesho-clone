@@ -1195,20 +1195,6 @@
   },
   "cart": [
     {
-      "id": 30,
-      "image": "https://images.meesho.com/images/products/100835721/w2iky_400.jpg",
-      "title": "Trendy Modern Women Tops & Tunics",
-      "price": 232,
-      "reviews": {
-        "rate": 3.9,
-        "count": 169
-      },
-      "category": "women-western",
-      "discount": 35,
-      "description": "currently no description we will add it soon",
-      "status": "pending"
-    },
-    {
       "id": 33,
       "image": "https://images.meesho.com/images/products/168503168/3fc9x_400.jpg",
       "title": "Casual  Tops & Tunics",
@@ -1319,23 +1305,10 @@
       ],
       "id": 2
     },
-    {
-      "orderId": 1674372993570,
-      "products": [
         {
-          "id": 30,
-          "image": "https://images.meesho.com/images/products/100835721/w2iky_400.jpg",
-          "title": "Trendy Modern Women Tops & Tunics",
-          "price": 232,
-          "reviews": {
-            "rate": 3.9,
-            "count": 169
-          },
-          "category": "women-western",
-          "discount": 35,
-          "description": "currently no description we will add it soon",
-          "status": "success"
-        },
+
+      "orderId": 1674379444448,
+      "products": [
         {
           "id": 33,
           "image": "https://images.meesho.com/images/products/168503168/3fc9x_400.jpg",

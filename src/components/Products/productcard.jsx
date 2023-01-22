@@ -18,6 +18,7 @@ const Productcard = ({ image, price, title, reviews }) => {
         borderRadius={"10px"}
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
         padding={"1rem"}
+       
         
       >
         <Image h={"35vh"} w={"100%"} src={image} alt={title} />

@@ -1,31 +1,25 @@
-
-
 import {
-    Table,
-    Thead,
-    Tbody,
-    Tfoot,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
-    TableContainer,
-  } from '@chakra-ui/react'
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from "@chakra-ui/react";
 
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-import React,{useState,useEffect} from 'react'
-import axios from "axios"
-
-
-const getApi=async()=>{
-
-   let res= await axios.get("http://localhost:8080/order") 
-   let data= await res.data;
+const getApi = async () => {
+  let res = await axios.get("http://localhost:8080/order");
+  let data = await res.data;
   return data;
-}
-
+};
 
 const Order = () => {
+
     const [total,setTotal]=useState(0)
     const [data,setData]=useState([])
  
@@ -78,16 +72,13 @@ const Order = () => {
             <Td>{items.products.length}</Td>
             </Tr>
           })
-        }
-        
-        
-      
-      </Tbody>
-    
+        }            
+      </Tbody>   
     </Table>
   </TableContainer>
  </div>
     )
   }
 
-  export default Order;
+
+export default Order;
