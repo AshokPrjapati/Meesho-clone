@@ -34,7 +34,10 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
-import { useState } from "react";
+import { useState,useContext,useEffect } from "react";
+import { AuthContext } from "context/authContext";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export const Profile = () => {
   return (
@@ -52,7 +55,19 @@ export const Profile = () => {
   );
 };
 
+
+
+const getApi=async()=>{
+  let res = await axios.get("http://localhost:8080/auth")
+  let data=  await res.data;
+ return data.isAuth;
+}
+
+
+
+
 const Navbar = ({ display = "flex" }) => {
+
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
   const [dropdown2, setdropdown2] = useState(false);
@@ -62,6 +77,28 @@ const Navbar = ({ display = "flex" }) => {
   const [dropdown6, setdropdown6] = useState(false);
   const [dropdown7, setdropdown7] = useState(false);
   const [dropdown8, setdropdown8] = useState(false);
+  const router=useRouter()
+ 
+  const {isAuth,logoutUser}=useContext(AuthContext)
+  const [data,setData]=useState(false)
+  
+    
+  
+   useEffect(()=>{
+    getApi()
+    .then((res)=>setData(res)).catch((err)=>console.log(err))
+   },[data])
+  console.log(data)
+  
+     
+   const logout=()=>{
+    logoutUser()
+    getApi()
+    .then((res)=>setData(res)).catch((err)=>console.log(err))
+   
+   }
+
+
   return (
     <div>
       <nav className={styles.nav_1}>
@@ -111,26 +148,40 @@ const Navbar = ({ display = "flex" }) => {
                   </Center>
                 </Flex>
               </MenuButton>
-              <MenuList alignItems={"center"}>
-                <br />
-                <Center>
-                  <Avatar
-                    size={"lg"}
-                    src={
-                      "https://cdn-icons-png.flaticon.com/128/149/149071.png"
-                    }
-                  />
-                </Center>
-                <br />
-                <Center>
-                  <p>Hello User</p>
-                </Center>
-                <br />
-                <MenuDivider />
-                <MenuItem>My Orders</MenuItem>
-                <MenuItem>Admin Side</MenuItem>
-                <MenuItem>Logout</MenuItem>
-              </MenuList>
+             {
+              data?( <MenuList alignItems={"center"}>
+              <br />
+              <Center>
+                <Avatar
+                  size={"lg"}
+                  src={
+                    "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+                  }
+                />
+              </Center>
+              <br />
+              <Center>
+                <p>Hello User</p>
+              </Center>
+              <br />
+              <MenuDivider />
+              <MenuItem>My Orders</MenuItem>
+              <MenuItem>Admin Side</MenuItem>
+              <MenuItem onClick={logout}>Logout</MenuItem>
+            </MenuList>):(
+                <MenuList alignItems={"center"}>
+                   <Center>
+                <p>Hello User</p>
+              </Center>
+              <br />
+              <Center style={{color:"rgb(102,102,102)"}}>To access your Meesho account</Center>
+              <br />
+              <a href="./login"><MenuItem style={{background:"rgb(231,48,150)",color:"white",fontSize:"20px",textAlign:"center",fontWeight:"bolder",width:"90%",justifyContent:"center",marginLeft:"10px"}}>Signup</MenuItem></a>
+
+                </MenuList>
+
+            )
+             }
             </Menu>
             <Button variant={"ghost"}>
               <AiOutlineShoppingCart /> Cart

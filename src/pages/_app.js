@@ -1,8 +1,8 @@
 
 import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
-import { Provider } from "react-redux";
-
+import { Provider } from 'react-redux'
+import AuthContextProvider from "../../context/authContext"
 
 
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -18,9 +18,11 @@ export default function App({ Component, pageProps }) {
   return (
 
     <ChakraProvider>
-      <Provider store={store}>
+      <AuthContextProvider>
+        <Provider store={store}>
         <Component {...pageProps} />
       </Provider>
+      </AuthContextProvider>
     </ChakraProvider>
   )
 }
