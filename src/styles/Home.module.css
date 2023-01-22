@@ -7,6 +7,11 @@
   box-shadow: 3px 0px 6px 0px rgba(246, 246, 246, 0.75);
 
 }
+.footer{
+  background-color:white;
+ position: relative;
+ top: 4400px;
+}
 .header{
   width: 70%;
   margin: 20px auto;
@@ -22,7 +27,33 @@
   font-weight: bold;
   text-align: center;
 }
-
+.description{
+ 
+  width: 90%;
+  margin: 10px auto;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 20px;
+}
+.description>div>h2{
+  font-size: 22px;
+  margin: 10px 0px;
+  font-weight: lighter;
+  color: black;
+}
+.description>div>p{
+  font-weight: 500;
+  margin: 10px 0px;
+  color: gray;
+}
+.linkSection{
+  margin: 20px 0px;
+}
+.linkSection>h3{
+  color: #f43397;
+}
+.links>a{
+  color: #f43397;
+}
 .wrapper {
   padding: 10px;
   z-index: 1;
@@ -65,6 +96,14 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .header>p{
+    font-size: 32px;
+    
+  }
+  .footer{
+    position: relative;
+    top: 8900px;
+   }
 
   /* For mobile phones: */
   .header{
@@ -152,7 +191,10 @@
 }
 
 @media only screen and (max-width: 768px) {
-
+  .header>p{
+    font-size: 28px;
+    
+  }
   /* For mobile phones: */
   .header{
     width: 90%;
