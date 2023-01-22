@@ -1,5 +1,4 @@
 import { StarIcon } from "@chakra-ui/icons";
-import Link from "next/link";
 import {
   Button,
   Divider,
@@ -25,7 +24,7 @@ const PaymentDetails = () => {
 
   const placeOrder = async (cp) => {
     setLoading(true);
-    dispatch(orderSuccess(cp));
+    let data = await dispatch(orderSuccess(cp));
     setLoading(false);
     router.push("/cart/success");
   };

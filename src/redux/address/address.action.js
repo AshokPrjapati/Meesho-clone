@@ -9,16 +9,16 @@ export const getAddress = () => async (dispatch) => {
         dispatch({ type: GET_ADDRESS, payload: data });
 
     } catch (e) {
-        alert("something when wrong while fatching")
+        alert("something when wrong while fetching")
     }
 };
 
 export const sendAddress = (data) => async (dispatch) => {
     try {
         let d = await postAddress(data);
-        dispatch({ type: POST_ADDRESS, payload: data });
+        dispatch({ type: POST_ADDRESS, payload: d });
     } catch (e) {
-        alert("something when wrong while removing product");
+        alert("something when wrong while posting address");
     }
 }
 
@@ -27,7 +27,7 @@ export const editAddress = (id, data) => async (dispatch) => {
         let d = await patchAddress(data, id);
         dispatch({ type: EDIT_ADDRESS, payload: { id, data } });
     } catch (e) {
-        alert("something when wrong while removing product");
+        alert("something when wrong while editing address");
     }
 }
 
