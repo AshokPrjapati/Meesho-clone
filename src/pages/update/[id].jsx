@@ -304,7 +304,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let id = context.params.id;
   // console.log(`Building id: ${id}`);
   let r = await fetch(

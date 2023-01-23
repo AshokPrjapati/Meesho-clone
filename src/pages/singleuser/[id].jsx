@@ -144,7 +144,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let id = context.params.id;
   let r = await fetch(
     `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
