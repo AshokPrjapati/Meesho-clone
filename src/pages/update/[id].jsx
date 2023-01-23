@@ -15,7 +15,7 @@ import Link from "next/link";
 import UploadImage from "../../components/Admin/UploadImage";
 import { useRouter } from "next/router";
 
-const update = ({ product }) => {
+const Update = ({ product }) => {
   const router = useRouter();
 
   const [productdata, setData] = React.useState(product);
@@ -306,6 +306,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   let id = context.params.id;
+  // console.log(`Building id: ${id}`);
   let r = await fetch(
     `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
   );
@@ -317,4 +318,4 @@ export async function getStaticProps(context) {
   };
 }
 
-export default update;
+export default Update;

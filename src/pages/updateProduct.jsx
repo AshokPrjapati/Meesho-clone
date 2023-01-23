@@ -1,12 +1,12 @@
-import React from 'react'
-import UpdateProduct from '@/components/Admin/Update_Product/UpdateProduct'
+import React from "react";
+import UpdateProduct from "@/components/Admin/Update_Product/UpdateProduct";
 
 const updateProduct = () => {
   return (
     <div>
-      <UpdateProduct/>
+      <UpdateProduct />
     </div>
-  )
-}
+  );
+};
 
-export default updateProduct
+export default updateProduct;

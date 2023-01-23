@@ -17,6 +17,7 @@ import {
   Tooltip,
   Text,
   Center,
+  Image,
 } from "@chakra-ui/react";
 import styles from "../components/Navbar/Navbar.module.css";
 import { CiSearch } from "react-icons/ci";
@@ -50,11 +51,13 @@ export default function Login() {
     return (
       <div className={styles.download}>
         <h1>Download from</h1>
-        <img
+        <Image
+          alt=""
           width="200px"
           src="	https://images.meesho.com/images/pow/playstore-icon-big.png"
         />
-        <img
+        <Image
+          alt=""
           width="200px"
           src="https://images.meesho.com/images/pow/appstore-icon-big.png"
         />
@@ -72,7 +75,7 @@ export default function Login() {
           <InputGroup marginLeft={"20px"}>
             <InputLeftElement
               pointerEvents="none"
-              children={<CiSearch color="gray.300" />}
+              child={<CiSearch color="gray.300" />}
             />
             <Input
               width={"400px"}

@@ -57,7 +57,7 @@ const Productpage = ({ data }) => {
               <h3 style={{ fontWeight: "normal" }}>Category</h3>
               <Select m={"4px"}>
                 {category.map((el) => (
-                  <option>{el}</option>
+                  <option key={el}>{el}</option>
                 ))}
               </Select>
             </Box>
@@ -66,7 +66,7 @@ const Productpage = ({ data }) => {
 
               <Select m={"4px"}>
                 {fabric.map((el) => (
-                  <option>{el}</option>
+                  <option key={el}>{el}</option>
                 ))}
               </Select>
             </Box>
@@ -76,7 +76,7 @@ const Productpage = ({ data }) => {
 
               <Select m={"4px"}>
                 {Gender.map((el) => (
-                  <option>{el}</option>
+                  <option key={el}>{el}</option>
                 ))}
               </Select>
             </Box>
@@ -86,7 +86,7 @@ const Productpage = ({ data }) => {
 
               <Select m={"4px"}>
                 {Size.map((el) => (
-                  <option>{el}</option>
+                  <option key={el}>{el}</option>
                 ))}
               </Select>
             </Box>
@@ -96,7 +96,7 @@ const Productpage = ({ data }) => {
 
               <Select m={"4px"}>
                 {colors.map((el) => (
-                  <option>{el}</option>
+                  <option key={el}>{el}</option>
                 ))}
               </Select>
             </Box>
@@ -106,7 +106,7 @@ const Productpage = ({ data }) => {
 
               <Select m={"4px"}>
                 {Price.map((el) => (
-                  <option>{el}</option>
+                  <option key={el}>{el}</option>
                 ))}
               </Select>
             </Box>
@@ -116,7 +116,7 @@ const Productpage = ({ data }) => {
 
               <Select m={"4px"}>
                 {Rating.map((el) => (
-                  <option>{el}</option>
+                  <option key={el}>{el}</option>
                 ))}
               </Select>
             </Box>
@@ -126,7 +126,7 @@ const Productpage = ({ data }) => {
 
               <Select m={"4px"}>
                 {Discount.map((el) => (
-                  <option>{el}</option>
+                  <option key={el}>{el}</option>
                 ))}
               </Select>
             </Box>

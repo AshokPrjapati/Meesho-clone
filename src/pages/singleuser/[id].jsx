@@ -27,7 +27,7 @@ const SingleUserpage = ({ product }) => {
           alignContent={"center"}
           boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
         >
-          <Image m={"auto"} w={"70%"} src={image} />
+          <Image alt="" m={"auto"} w={"70%"} src={image} />
           <br />
           <Flex m={"auto"} w={"50%"}>
             <Button
@@ -92,6 +92,7 @@ const SingleUserpage = ({ product }) => {
           <Flex gap={"0.5%"} h={"20vh"}>
             <Flex p={"2px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
               <Image
+                alt=""
                 ml={"4px"}
                 w={"60%"}
                 src="https://images.meesho.com/images/value_props/lowest_price_pbd.png"
@@ -102,6 +103,7 @@ const SingleUserpage = ({ product }) => {
             </Flex>
             <Flex p={"4px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
               <Image
+                alt=""
                 ml={"4px"}
                 w={"60%"}
                 src="https://images.meesho.com/images/value_props/cash_on_delivery_pbd.png"
@@ -112,6 +114,7 @@ const SingleUserpage = ({ product }) => {
             </Flex>
             <Flex p={"4px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
               <Image
+                alt=""
                 ml={"4px"}
                 w={"60%"}
                 src="https://images.meesho.com/images/value_props/7_day_returns_pbd.png"
