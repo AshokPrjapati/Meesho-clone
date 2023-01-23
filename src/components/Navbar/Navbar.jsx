@@ -31,7 +31,6 @@ import {
   Center,
   MenuDivider,
   MenuItem,
-  Image,
 } from "@chakra-ui/react";
 import styles from "./Navbar.module.css";
 import { useState, useContext, useEffect } from "react";
@@ -40,7 +39,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export const Profile = () => {
-  const router = useRouter();
   return (
     <div className={styles.download}>
       <h1>Download from</h1>
@@ -63,6 +61,7 @@ const getApi = async () => {
 };
 
 const Navbar = ({ display = "flex" }) => {
+  const router = useRouter();
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
   const [dropdown2, setdropdown2] = useState(false);
@@ -72,7 +71,6 @@ const Navbar = ({ display = "flex" }) => {
   const [dropdown6, setdropdown6] = useState(false);
   const [dropdown7, setdropdown7] = useState(false);
   const [dropdown8, setdropdown8] = useState(false);
-  const router = useRouter();
 
   const { state, logoutUser } = useContext(AuthContext);
   const [data, setData] = useState(false);

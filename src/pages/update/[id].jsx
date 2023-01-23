@@ -12,14 +12,13 @@ import {
   Box,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import UploadImage from "./index";
+import UploadImage from "../../components/Admin/UploadImage";
 import { useRouter } from "next/router";
 
 const update = ({ product }) => {
   const router = useRouter();
 
   const [productdata, setData] = React.useState(product);
-  // console.log(product);
 
   const onInputChange = (e) => {
     let a = e.target.value;
@@ -33,7 +32,7 @@ const update = ({ product }) => {
         rate: a,
         count: 0,
       };
-      setData({ ...productdata, [b]: r });
+      setData({ ...productdata, [b]: { ...r } });
       return;
     }
     setData({ ...productdata, [b]: a });

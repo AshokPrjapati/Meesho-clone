@@ -26,8 +26,8 @@ export default function Home({ data }) {
 
   let category = ['dresses', 'kurti', 'jeans']
   let Gender = ['Mens', 'Womens', 'Girl', 'Boys']
-  let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
-  let Price = ['Below ₹500', 'Below ₹1000', 'Below ₹1500', 'Below ₹200', 'Above ₹2000']
+  // let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
+  // let Price = ['Below ₹500', 'Below ₹1000', 'Below ₹1500', 'Below ₹200', 'Above ₹2000']
   let Rating = ['2.0 and Above', '3.0 and Above', '4.0 and Above', 'M-Trusted']
 
   let fabric = [
@@ -46,9 +46,9 @@ export default function Home({ data }) {
     <>
       <div>
         <div className={styles.big}><Navbar /></div>
-        <div className={styles.small}><SmallNavbar/></div>
+        <div className={styles.small}><SmallNavbar /></div>
         {/*  */}
-        
+
         <header className={styles.header}>
 
 
@@ -66,7 +66,7 @@ export default function Home({ data }) {
 
 
 
-{/* <Flex direction={"column"}>
+        {/* <Flex direction={"column"}>
 <Box >
      <Text fontSize={"32px"} ml="30px">Products for you</Text>
       <Flex
@@ -99,9 +99,9 @@ export default function Home({ data }) {
             <Flex
               w="100%"
               gap={"1.5%"}
-              direction={["column","column","row","row"]}
+              direction={["column", "column", "row", "row"]}
               p={"2rem"}>
-              <Box mb={"10px"} w={["100%","100%","40%","23%"]}>
+              <Box mb={"10px"} w={["100%", "100%", "40%", "23%"]}>
                 <Select mb={"1rem"}>
                   <option>Sort By: Relevence</option>
                   <option>New Arrival</option>
@@ -111,7 +111,7 @@ export default function Home({ data }) {
                   <option>Discount</option>
                 </Select>
 
-                <Flex overflow="hidden" direction={["row","row","column","column"]}  borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}>
+                <Flex overflow="hidden" direction={["row", "row", "column", "column"]} borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}>
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h3 style={{ fontWeight: "normal" }}>FILTERS</h3>
                     <p style={{ color: "grey" }}>1000+ products</p>
@@ -176,31 +176,31 @@ export default function Home({ data }) {
                   </Box>
 
 
-          <Box mt={"1rem"} p={"5px"} w={"90%"} >
-            <h2 style={{fontWeight:"normal"}}>Discount</h2>
-            
-           <Select m={"4px"}>
-         {Discount.map((el)=>(
-            <option>{el}</option>
-           )
-           )
-         }
-           </Select>
-          </Box>
-          </Flex>
-        </Box>
-        <Box w={["90%","90%","76%","76%"]} bg={"white"} m="0px auto" height={"80%"}>
-          <SimpleGrid columns={{base:2,md:2,sm:2,lg:3,xl:4,'2xl':4}} gridTemplateRows={"max-content"}  gap={"1.5rem"}>
-            {data.map((el) => (
-              <Box className={styles.cardsprod} height={"100%"} key={el.id}>
-                <Productcard key = {el.id} id={el.id} {...el} />
+                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+                    <h2 style={{ fontWeight: "normal" }}>Discount</h2>
+
+                    <Select m={"4px"}>
+                      {Discount.map((el) => (
+                        <option>{el}</option>
+                      )
+                      )
+                      }
+                    </Select>
+                  </Box>
+                </Flex>
               </Box>
-            ))}
-          </SimpleGrid>
-        </Box>
-      </Flex>
-    </Box>
-    {/* <Box  > <Footer/>
+              <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={"80%"}>
+                <SimpleGrid columns={{ base: 2, md: 2, sm: 2, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
+                  {data.map((el) => (
+                    <Box className={styles.cardsprod} height={"100%"} key={el.id}>
+                      <Productcard key={el.id} id={el.id} {...el} />
+                    </Box>
+                  ))}
+                </SimpleGrid>
+              </Box>
+            </Flex>
+          </Box>
+          {/* <Box  > <Footer/>
 <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}>
 <Button className={styles.desbtn} onClick={()=>setdes(!des)}>More About Meesho {des?<ChevronUpIcon/>:<ChevronDownIcon />} </Button>
 {des?<div className={styles.description}>
@@ -287,7 +287,7 @@ When it comes to women's ethnic wear, we have everything you need to find the pe
                   </Box>
                 </Flex>
               </Box> */}
-             
+
           <Box  > <Footer />
             <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}>
               <Button className={styles.desbtn} onClick={() => setdes(!des)}>More About Meesho {des ? <ChevronUpIcon /> : <ChevronDownIcon />} </Button>
