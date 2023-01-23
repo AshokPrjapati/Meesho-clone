@@ -2,6 +2,7 @@ import React from "react";
 import Productcard from "../components/Products/productcard";
 import { Flex, Box, SimpleGrid, Select } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar/Navbar";
+import { api } from "@/api";
 const Productpage = ({ data }) => {
   let category = ["dresses", "kurti", "jeans"];
   let Gender = ["Mens", "Womens", "Girl", "Boys"];
@@ -150,7 +151,7 @@ const Productpage = ({ data }) => {
 };
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://lazy-erin-caridea-veil.cyclic.app/products`);
+  const res = await fetch(`${api}/products`);
   const data = await res.json();
 
   // Pass data to the page via props

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.action";
 import { useRouter } from "next/router";
+import { api } from "@/api";
 
 const SingleUserpage = () => {
   const router = useRouter();
@@ -11,9 +12,7 @@ const SingleUserpage = () => {
 
   const [product, setProduct] = useState({});
   const fetchData = async (id) => {
-    let r = await fetch(
-      `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
-    );
+    let r = await fetch(`${api}/products/${id}`);
     let d = await r.json();
     setProduct({ ...d });
   };

@@ -261,7 +261,7 @@
       "description": "Go long and strong in your lash-game with Miss Claire Eyelash Glue. Lets get all your falsies in their place to slay all day long. This gentle eyelash adhesive is latex free, non-toxic and pH-balanced for safe use. It is waterproof and holds your eyelashes securely in place making them look natural and flawless. It features a handy bottle with an easy-to-use applicator and a formula that blends in seamlessly. Clear tone allows seamless bond between extension and natural lashes."
     }
   ],
-  "posts": [
+  "products": [
     {
       "id": 21,
       "image": "https://images.meesho.com/images/products/168600453/hx3hl_400.jpg",
@@ -1193,9 +1193,57 @@
   "profile": {
     "name": "typicode"
   },
-  "cart": [],
-  "address": [],
-  "order": [],
+  "cart": [
+    {
+      "id": 22,
+      "image": "https://images.meesho.com/images/products/170210080/enaw1_400.jpg",
+      "title": "Trendy Feminine Women Tops & Tunics",
+      "price": 272,
+      "reviews": {
+        "rate": 3.8,
+        "count": 1115
+      },
+      "category": "women-western",
+      "discount": 35,
+      "description": "currently no description we will add it soon"
+    }
+  ],
+  "address": [
+    {
+      "name": "Ashok Kumar",
+      "mobile": "9799191449",
+      "house": "21",
+      "road": "sainik colony",
+      "pin": "306912",
+      "city": "Tagathgarh",
+      "state": "Hariyana",
+      "nearby": "",
+      "id": 1,
+      "selected": true
+    }
+  ],
+  "order": [
+    {
+      "orderId": 1674489579023,
+      "products": [
+        {
+          "id": 22,
+          "image": "https://images.meesho.com/images/products/170210080/enaw1_400.jpg",
+          "title": "Trendy Feminine Women Tops & Tunics",
+          "price": 272,
+          "reviews": {
+            "rate": 3.8,
+            "count": 1115
+          },
+          "category": "women-western",
+          "discount": 35,
+          "description": "currently no description we will add it soon",
+          "status": "success"
+        }
+      ],
+      "id": 1
+    }
+  ],
   "auth": {
     "isAuth": true
   }

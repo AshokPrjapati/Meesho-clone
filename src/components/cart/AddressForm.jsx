@@ -44,7 +44,7 @@ const AddressForm = () => {
             handleChange={handleChange}
           />
           <Stack spacing={10} pt={2}>
-            <Link href="cart/address">
+            <Link href="/cart/address">
               <Button
                 w={"100%"}
                 size="lg"

@@ -37,6 +37,7 @@ import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "context/authContext";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { api } from "@/api";
 
 export const Profile = () => {
   return (
@@ -55,7 +56,7 @@ export const Profile = () => {
 };
 
 const getApi = async () => {
-  let res = await axios.get("https://lazy-erin-caridea-veil.cyclic.app/auth");
+  let res = await axios.get(`${api}/auth`);
   let data = await res.data;
   return data;
 };

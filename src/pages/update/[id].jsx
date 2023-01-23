@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import UploadImage from "../../components/Admin/UploadImage";
 import { useRouter } from "next/router";
+import { api } from "@/api";
 
 const Update = ({ product }) => {
   const router = useRouter();
@@ -47,16 +48,13 @@ const Update = ({ product }) => {
       productdata.price
     ) {
       try {
-        let res = await fetch(
-          `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(productdata),
-          }
-        );
+        let res = await fetch(`${api}/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(productdata),
+        });
       } catch (err) {
         console.log(err);
         alert("Facing some issues please try again");
@@ -76,15 +74,12 @@ const Update = ({ product }) => {
       //   url: `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
       // });
 
-      let res = await fetch(
-        `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      let res = await fetch(`${api}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       alert("Product deleted successfully");
       router.push("/updateProduct");
@@ -296,7 +291,7 @@ const Update = ({ product }) => {
 };
 
 export async function getStaticPaths() {
-  let r = await fetch("https://lazy-erin-caridea-veil.cyclic.app/products");
+  let r = await fetch(`${api}/products`);
   let d = await r.json();
   return {
     paths: d.map((product) => ({ params: { id: String(product.id) } })),
@@ -307,9 +302,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   let id = context.params.id;
   // console.log(`Building id: ${id}`);
-  let r = await fetch(
-    `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
-  );
+  let r = await fetch(`${api}/${id}`);
   let d = await r.json();
   return {
     props: {

@@ -5,15 +5,15 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { api } from "@/api";
 
 const getApi = async () => {
-  let res = await axios.get("https://lazy-erin-caridea-veil.cyclic.app/order");
+  let res = await axios.get(`${api}/order`);
   let data = await res.data;
   return data;
 };

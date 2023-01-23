@@ -164,7 +164,7 @@ const Profile = () => {
       <Image
         alt=""
         width="200px"
-        src="	https://images.meesho.com/images/pow/playstore-icon-big.png"
+        src="https://images.meesho.com/images/pow/playstore-icon-big.png"
       />
       <Image
         alt=""

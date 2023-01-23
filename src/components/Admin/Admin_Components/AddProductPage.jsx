@@ -74,7 +74,7 @@ const AddProductPage = () => {
       try {
         axios({
           method: `post`,
-          baseURL: `https://lazy-erin-caridea-veil.cyclic.app/products`,
+          baseURL: `${api}/products`,
           data: { ...productdata },
         });
       } catch (err) {
