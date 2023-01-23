@@ -31,7 +31,7 @@ export default function Login() {
   const [otp, setotp] = useState(false);
   const [num, setnum] = useState("");
 
-  const { authState, loginUser } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
   const router = useRouter();
 
   const signin = () => {
@@ -40,30 +40,12 @@ export default function Login() {
     } else {
       router.push("./");
     }
-    loginUser();
+    loginUser(true);
   };
 
   function handlechange(e) {
     setnum(e.target.value);
   }
-
-  const Profile = () => {
-    return (
-      <div className={styles.download}>
-        <h1>Download from</h1>
-        <Image
-          alt=""
-          width="200px"
-          src="	https://images.meesho.com/images/pow/playstore-icon-big.png"
-        />
-        <Image
-          alt=""
-          width="200px"
-          src="https://images.meesho.com/images/pow/appstore-icon-big.png"
-        />
-      </div>
-    );
-  };
 
   return (
     <div>
@@ -174,3 +156,21 @@ export default function Login() {
     </div>
   );
 }
+
+const Profile = () => {
+  return (
+    <div className={styles.download}>
+      <h1>Download from</h1>
+      <Image
+        alt=""
+        width="200px"
+        src="	https://images.meesho.com/images/pow/playstore-icon-big.png"
+      />
+      <Image
+        alt=""
+        width="200px"
+        src="https://images.meesho.com/images/pow/appstore-icon-big.png"
+      />
+    </div>
+  );
+};

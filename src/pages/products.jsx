@@ -25,7 +25,7 @@ const Productpage = ({ data }) => {
   ];
   let Size = ["0-2 Years", "2-5 Years", "S", "M", "L", "XL", "2XL", "4XL"];
   let Discount = ["10% off", "20% off", "All Discount", "Deals"];
-  console.log(data);
+  // console.log(data);
   return (
     <Box>
       <Navbar />

@@ -55,7 +55,7 @@ export const Profile = () => {
 };
 
 const getApi = async () => {
-  let res = await axios.get("http://localhost:8080/auth");
+  let res = await axios.get("https://lazy-erin-caridea-veil.cyclic.app/auth");
   let data = await res.data;
   return data;
 };

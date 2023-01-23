@@ -8,24 +8,29 @@ const isAuth = false;
 function AuthContextProvider({ children }) {
   const [state, setState] = useState(isAuth);
 
-  const loginUser = () => {
-    axios
-      .patch("https://lazy-erin-caridea-veil.cyclic.app/auth", {
-        isAuth: true,
-      })
-      .then((res) => {
-        setState(res.data.isAuth);
-      });
+  const loginUser = async (isAuth) => {
+    try {
+      let res = await axios.patch(
+        "https://lazy-erin-caridea-veil.cyclic.app/auth",
+        { isAuth }
+      );
+      setState(isAuth);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const logoutUser = () => {
-    axios
-      .patch("https://lazy-erin-caridea-veil.cyclic.app/auth", {
-        isAuth: false,
-      })
-      .then((res) => {
-        setState(res.data.isAuth);
-      });
+  const logoutUser = async () => {
+    try {
+      let res = await axios.patch(
+        "https://lazy-erin-caridea-veil.cyclic.app/auth",
+        { isAuth: false }
+      );
+      setState(false);
+      return state;
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

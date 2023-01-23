@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Flex, Box, Image, Text, Button, SimpleGrid } from "@chakra-ui/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar/Navbar";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.action";
-const SingleUserpage = ({ product }) => {
+import { useRouter } from "next/router";
+
+const SingleUserpage = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const [product, setProduct] = useState({});
+  const fetchData = async (id) => {
+    let r = await fetch(
+      `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
+    );
+    let d = await r.json();
+    setProduct({ ...d });
+  };
+
   const dispatch = useDispatch();
-  console.log(product);
+  useEffect(() => {
+    fetchData(id);
+  }, []);
   let image = product.image;
   let price = product.price;
   let title = product.title;
@@ -135,25 +149,4 @@ const SingleUserpage = ({ product }) => {
   );
 };
 
-export async function getStaticPaths() {
-  let r = await fetch("https://lazy-erin-caridea-veil.cyclic.app/products");
-  let d = await r.json();
-  return {
-    paths: d.map((product) => ({ params: { id: String(product.id) } })),
-    fallback: false,
-  };
-}
-
-export async function getServerSideProps(context) {
-  let id = context.params.id;
-  let r = await fetch(
-    `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
-  );
-  let d = await r.json();
-  return {
-    props: {
-      product: d,
-    },
-  };
-}
 export default SingleUserpage;
