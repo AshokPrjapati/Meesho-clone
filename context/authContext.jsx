@@ -10,7 +10,7 @@ function AuthContextProvider({ children }) {
 
   const loginUser = () => {
     axios
-      .patch("https://lazy-erin-caridea-veil.cyclic.app/", {
+      .patch("https://lazy-erin-caridea-veil.cyclic.app/auth", {
         isAuth: true,
       })
       .then((res) => {
@@ -20,7 +20,7 @@ function AuthContextProvider({ children }) {
 
   const logoutUser = () => {
     axios
-      .patch("https://lazy-erin-caridea-veil.cyclic.app/", {
+      .patch("https://lazy-erin-caridea-veil.cyclic.app/auth", {
         isAuth: false,
       })
       .then((res) => {

@@ -27,14 +27,14 @@ const Update = ({ product }) => {
       a = +a;
     }
 
-    if (b == "reviews") {
-      let r = {
-        rate: a,
-        count: 0,
-      };
-      setData({ ...productdata, [b]: { ...r } });
-      return;
-    }
+    // if (b == "reviews") {
+    //   let r = {
+    //     rate: a,
+    //     count: 0,
+    //   };
+    //   setData({ ...productdata, [b]: { ...r } });
+    //   return;
+    // }
     setData({ ...productdata, [b]: a });
   };
 
@@ -43,7 +43,7 @@ const Update = ({ product }) => {
       productdata.title &&
       productdata.image &&
       productdata.category &&
-      productdata.reviews.rate &&
+      // productdata.reviews.rate &&
       productdata.price
     ) {
       try {
@@ -192,7 +192,7 @@ const Update = ({ product }) => {
                     onChange={onInputChange}
                   />
 
-                  <label
+                  {/* <label
                     style={{
                       width: "fit-content",
                       fontFamily:
@@ -213,7 +213,7 @@ const Update = ({ product }) => {
                     name="reviews"
                     onChange={onInputChange}
                     disabled
-                  />
+                  /> */}
 
                   <label
                     style={{
