@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 - Deployement [Link](https://meesho-clone-mauve.vercel.app/)
 
-# Teck Stacks
+# Tech Stack
 - Next.js
 - Redux
 - Chakra-UI
