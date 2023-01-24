@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { api } from "@/api";
 
 export const AuthContext = React.createContext();
 
@@ -10,10 +11,7 @@ function AuthContextProvider({ children }) {
 
   const loginUser = async (isAuth) => {
     try {
-      let res = await axios.patch(
-        "https://lazy-erin-caridea-veil.cyclic.app/auth",
-        { isAuth }
-      );
+      let res = await axios.patch(`${api}/auth`, { isAuth });
       setState(isAuth);
     } catch (e) {
       console.log(e);
@@ -22,10 +20,7 @@ function AuthContextProvider({ children }) {
 
   const logoutUser = async () => {
     try {
-      let res = await axios.patch(
-        "https://lazy-erin-caridea-veil.cyclic.app/auth",
-        { isAuth: false }
-      );
+      let res = await axios.patch(`${api}/auth`, { isAuth: false });
       setState(false);
       return state;
     } catch (e) {
