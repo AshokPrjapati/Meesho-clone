@@ -10,6 +10,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - Chakra-UI
 - Cyclic deployed JSON server
 
-
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSZ4AHzvCCEkl8UlO-nkgJftQHoElC75zfKQ&usqp=CAU"/>
 
 
