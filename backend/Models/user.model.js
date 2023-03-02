@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const { PostModel, CommentModel, CommentLikeModel, LikesModel } = require("./post.model");
 require("dotenv").config();
 
 
@@ -148,4 +147,4 @@ const UserModel = mongoose.model('user', userSchema);
 const CartModel = mongoose.model('cart', cartSchema);
 const AddressModel = mongoose.model('address', addressSchema);
 
-module.exports = { UserModel, CartModel, addressModel };
+module.exports = { UserModel, CartModel, AddressModel };
