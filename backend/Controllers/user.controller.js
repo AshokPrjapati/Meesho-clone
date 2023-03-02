@@ -110,7 +110,6 @@ module.exports = {
     UserDetail,
     UserLogin,
     UserLogout,
-    GoogleAuth,
     UserRegisteration,
     UpdateUser,
     DeleteUser

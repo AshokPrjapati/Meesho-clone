@@ -54,6 +54,19 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+
+// review schema
+const reviewSchema = new mongoose.Schema({
+    rate: {
+        type: Number,
+        required: true
+    },
+    count: {
+        type: Number,
+        required: true
+    }
+});
+
 // cart schema for products details
 
 const cartSchema = new mongoose.Schema({
@@ -62,7 +75,7 @@ const cartSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: string,
+        type: String,
         require: true
     },
     title: {
@@ -73,7 +86,10 @@ const cartSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    reviews,
+    reviews: {
+        type: reviewSchema,
+        required: true
+    },
     category: {
         type: String,
         required: true
