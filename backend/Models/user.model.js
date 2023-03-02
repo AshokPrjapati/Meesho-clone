@@ -4,7 +4,7 @@ require("dotenv").config();
 
 
 // user schema for user details 
-const userSchema = new mongoose.Schema({
+const userSchema = mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -37,7 +37,6 @@ const userSchema = new mongoose.Schema({
     },
     isCoupanApplied: {
         type: Boolean,
-        required: true,
         default: false
     },
     createdAt: {
