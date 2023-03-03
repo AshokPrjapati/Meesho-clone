@@ -2,8 +2,7 @@ import React from "react";
 import Productcard from "../components/Products/productcard";
 import { Flex, Box, SimpleGrid, Select } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar/Navbar";
-import axios from "axios";
-import { api } from "@/api";
+import axios, { Axios } from "axios";
 const Productpage = ({ data }) => {
   let category = ["dresses", "kurti", "jeans"];
   let Gender = ["Mens", "Womens", "Girl", "Boys"];
@@ -259,8 +258,8 @@ const Productpage = ({ data }) => {
 
             {data.map((el) => (
 
-              <Box key={el.id}>
-                <Productcard key={el.id} id={el.id} {...el} />
+              <Box key={el._id}>
+                <Productcard key={el._id} id={el._id} {...el} />
               </Box>
             ))}
           </SimpleGrid>
@@ -272,9 +271,9 @@ const Productpage = ({ data }) => {
 export async function getServerSideProps() {
   // Fetch data from external API
 
-  const res = await fetch(`${api}/products`);
-
-  const data = await res.json();
+  const res = await axios.get(`/products/getall`);
+  const d = await res.data;
+  const products = d.products
 
   // Pass data to the page via props
   return { props: { data } };

@@ -171,9 +171,9 @@ export default function Home({ data }) {
               </Box>
               <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={{ sm: "90%", lg: "80%" }} >
                 <SimpleGrid columns={{ base: 1, md: 1, sm: 1, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
-                  {data.map((el) => (
-                    <Box className={styles.cardsprod} height={"100%"} key={el.id}>
-                      <Productcard key={el.id} id={el.id} {...el} />
+                  {data.length && data.map((el) => (
+                    <Box className={styles.cardsprod} height={"100%"} key={el._id}>
+                      <Productcard key={el._id} id={el._id} {...el} />
                     </Box>
                   ))}
                 </SimpleGrid>
