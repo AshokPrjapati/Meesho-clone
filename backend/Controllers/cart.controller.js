@@ -72,7 +72,7 @@ async function UpdateCart(req, res) {
 }
 
 // adding addresss to db
-async function AddToAddress(req, res) {
+async function AddAddress(req, res) {
     const payload = req.body;
     try {
         let address = new AddressModel(payload);
@@ -85,7 +85,7 @@ async function AddToAddress(req, res) {
 }
 
 // getting address dfrom db
-async function GetCart(req, res) {
+async function GetAddress(req, res) {
     let { user } = req.body;
     try {
         let address = await AddressModel.find({ user });
@@ -125,5 +125,7 @@ module.exports = {
     GetCart,
     CartTotal,
     UpdateCart,
-    placeOrder
+    placeOrder,
+    AddAddress,
+    GetAddress
 }
