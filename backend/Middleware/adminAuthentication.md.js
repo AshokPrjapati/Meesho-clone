@@ -2,6 +2,7 @@ const { UserModel } = require("../Models/user.model");
 const jwt = require("jsonwebtoken");
 
 const adminAuthentication = (req, res, next) => {
+    if (req.method === 'GET') return next();
     const token = req.headers.authorization;
     if (token) {
         jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
@@ -10,9 +11,8 @@ const adminAuthentication = (req, res, next) => {
                 // only admin can update add or delete products form db
                 let user = decoded.user;
                 let u = await UserModel.findOne({ _id: user });
-                if (req.method === 'GET') next();
                 // call next() only for non-GET requests
-                else u.role === 'ADMIN' ? next() : res.status(401).send({ message: "You are not authorize to do this operation" });
+                u.role === 'ADMIN' ? next() : res.status(401).send({ message: "You are not authorize to do this operation" });
             }
             else res.status(401).send({ error: e.message })
         })
