@@ -1,6 +1,5 @@
 require("dotenv").config();
-const bcrypt = require("bcrypt");
-const { CartModel } = require("../Models/user.model")
+const { CartModel, AddressModel } = require("../Models/user.model")
 
 
 // adding to cart
@@ -72,25 +71,32 @@ async function UpdateCart(req, res) {
     }
 }
 
-
-// order suceess
-
-async function PlaceOrder(req, res) {
-    const { _id, ...payload } = req.body;
+// adding addresss to db
+async function AddToAddress(req, res) {
+    const payload = req.body;
     try {
-        let cart = await CartModel.findOne({ _id });
-        Object.assign(cart, payload);
-        await cart.save();
-        return res.status(201).json({ message: 'cart quantity has been updated' })
+        let address = new AddressModel(payload);
+        await address.save();
+        res.status(200).send({ "message": "address added successfully in cart" });
     } catch (error) {
         console.log(error);
-        return res.status(201).json({ error: error.message })
+        res.status(400).send({ message: error.message });
     }
 }
 
+// getting address dfrom db
+async function GetCart(req, res) {
+    let { user } = req.body;
+    try {
+        let address = await AddressModel.find({ user });
+        res.status(200).send({ message: "cart products fetched successfully", address });
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({ message: error.message });
+    }
+}
 
 // on order placing
-
 async function placeOrder(req, res) {
     const user = req.body.user;
     try {
