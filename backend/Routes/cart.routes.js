@@ -13,4 +13,6 @@ CartRouter.post("/update", cart_controller.UpdateCart);
 
 CartRouter.get("/carttotal", cart_controller.CartTotal);
 
+CartRouter.get("/order", cart_controller.placeOrder);
+
 module.exports = CartRouter;
