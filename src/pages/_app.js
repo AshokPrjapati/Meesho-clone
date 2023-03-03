@@ -12,6 +12,7 @@ import axios from 'axios'
 config.autoAddCss = false
 
 axios.defaults.baseURL = `http://localhost:8080`;
+// axios.defaults.baseURL = 'https://dull-helmet-wasp.cyclic.app'
 
 export default function App({ Component, pageProps }) {
 

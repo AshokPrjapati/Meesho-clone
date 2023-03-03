@@ -2,7 +2,6 @@ import styles from '@/styles/Home.module.css'
 import Navbar from '@/components/Navbar/Navbar'
 import React, { useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons"
-import axios from 'axios'
 
 import {
   Text,
@@ -18,15 +17,21 @@ import {
 import Productcard from '@/components/Products/productcard'
 import Footer from '@/components/Footer/Footer'
 import SmallNavbar from '@/components/Navbar/SmallNavbar'
-import Link from 'next/link';
 
-export default function Home({ products }) {
+import Link from 'next/link';
+import { api } from '@/api';
+import axios from 'axios';
+
+export default function Home({ data }) {
+
 
   const [des, setdes] = useState(true);
 
+
   let category = ['dresses', 'kurti', 'jeans']
   let Gender = ['Mens', 'Womens', 'Girl', 'Boys']
-
+  // let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
+  // let Price = ['Below ₹500', 'Below ₹1000', 'Below ₹1500', 'Below ₹200', 'Above ₹2000']
   let Rating = ['2.0 and Above', '3.0 and Above', '4.0 and Above', 'M-Trusted']
 
   let fabric = [
@@ -39,13 +44,17 @@ export default function Home({ products }) {
   let Size = ['0-2 Years', '2-5 Years', 'S', 'M', 'L', 'XL', '2XL', '4XL']
   let Discount = ['10% off', '20% off', 'All Discount', 'Deals']
 
+
+
   return (
     <>
       <div>
         <div className={styles.big}><Navbar /></div>
         <div className={styles.small}><SmallNavbar /></div>
+        {/*  */}
 
         <header className={styles.header}>
+
 
           <Image alt="" src='./header1.png'></Image>
           <p>Top Categories to choose from</p>
@@ -54,7 +63,12 @@ export default function Home({ products }) {
           <Image alt="" src='./header4.png'></Image>
           <Image alt="" src='./lastheader.png'></Image>
 
+
+
+
         </header>
+
+
 
         <Flex direction={"column"}>
           <Box >
@@ -64,7 +78,9 @@ export default function Home({ products }) {
               gap={"1.5%"}
               direction={["column", "column", "row", "row"]}
               p={"2rem"}>
-              <Box mb={"10px"} w={["100%", "100%", "40%", "23%"]}>
+
+              <Box mb={"10px"} w={["100%", "100%", "40%", "23%"]} display={{ base: "none", lg: "block" }}>
+
                 <Select mb={"1rem"}>
                   <option>Sort By: Relevence</option>
                   <option>New Arrival</option>
@@ -139,12 +155,13 @@ export default function Home({ products }) {
                   </Box>
 
 
+
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Discount</h2>
 
                     <Select m={"4px"}>
                       {Discount.map((el) => (
-                        <option key={el}>{el}</option>
+                        <option>{el}</option>
                       )
                       )
                       }
@@ -152,56 +169,35 @@ export default function Home({ products }) {
                   </Box>
                 </Flex>
               </Box>
-              <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={"80%"}>
-                <SimpleGrid columns={{ base: 2, md: 2, sm: 2, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
-                  {products?.map((el) => (
+              <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={{ sm: "90%", lg: "80%" }} >
+                <SimpleGrid columns={{ base: 1, md: 1, sm: 1, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
+                  {data.map((el) => (
                     <Box className={styles.cardsprod} height={"100%"} key={el.id}>
-                      <Productcard key={el._id} id={el._id} {...el} />
+                      <Productcard key={el.id} id={el.id} {...el} />
                     </Box>
                   ))}
                 </SimpleGrid>
               </Box>
             </Flex>
           </Box>
-          {/* <Box  > <Footer/>
-<div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}>
-<Button className={styles.desbtn} onClick={()=>setdes(!des)}>More About Meesho {des?<ChevronUpIcon/>:<ChevronDownIcon />} </Button>
-{des?<div className={styles.description}>
-<div>
-  <Heading>Meesho: Affordable Online Shopping at Your Fingertips</Heading>
-<Text >
-There are many benefits of shopping online. You can take your time and look at different options to find exactly what you want. It's easy to compare prices online and find exactly what you are looking for. And now with Meesho, you can shop for anything you want at the lowest prices in the market.  Even if you want to shop for cool gifts for your friends and family, there are many options that you can find on the Internet. 
-</Text>
-</div>
-<div>
-  <Heading>A Huge Selection of Products Across All Categories</Heading>
-<Text >
-We have a vast inventory of products ranging from apparel to cosmetics to home utility and kitchen products and more. With over 50 lakh products and 650+ product categories, Meesho is sure to have everything you need. In our latest collections, you will find all the popular items at an affordable price, so you can be confident you are getting the best deal. Whether you are in the market for new clothes, accessories, or just some daily-use items for home, Meesho has what you need. 
-</Text>
-</div>
-<div>
-  <Heading>Latest Wo{"men's Fashion Is Right Here
-Wo{"men’s"} Ethnic Wear Collection</Heading>
-<Text >
-When it comes to wo{"men's ethnic wear, we have everything you need to find the perfect outfit for any occasion. Whether you are looking for traditional sarees and blouses, or something more modern like suits or casual Kurtis, we have it all. And with our stunning collection of accessories, footwear, and jewellery sets, it's easy to put together a complete look that will turn heads at your next wedding or festive celebration. So come and shop with us today! 
-</Text>
-</div>
-=======
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Size</h2>
-
-                    <Select m={"4px"}>
-                      {Size.map((el) => (
-                        <option key={el}>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
 
 
 
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+          <Box mt={"1rem"} p={"5px"} w={"90%"} >
+            <h2 style={{ fontWeight: "normal" }}>Size</h2>
+
+            <Select m={"4px"}>
+              {Size.map((el) => (
+                <option key={el}>{el}</option>
+              )
+              )
+              }
+            </Select>
+          </Box>
+
+
+
+          {/* <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Colors</h2>
 
                     <Select m={"4px"}>
@@ -249,7 +245,7 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
                     </Select>
                   </Box>
                 </Flex>
-              </Box> */}
+              </Box>  */}
 
           <Box  > <Footer />
             <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}>
@@ -400,7 +396,7 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
 
                 <div className={styles.linkSection}>
 
-                  {/* |  | |  |  |  |  |  | | |  |  |  | | |  | |  |  |  |  | |  |  | Push Up Bra | Stockings | Black Camisoles | Cotton Bathrobes | Satin Night Suit | Body shapers | Women Pyjamas | Swimwear | Women Jackets | Women Thermal Set */}
+
 
                   <h4>Women Western Wear</h4>
                   <div className={styles.links}>
@@ -459,11 +455,12 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
 
 
 export async function getServerSideProps() {
+  const page = 1;
   // Fetch data from external API
-  const res = await axios.get(`/product/getall`);
-  const data = await res.data;
-  const products = data.products;
+  const res = await axios(`/product/getall`);
+  const d = await res.data;
+  const data = d.products;
 
   // Pass data to the page via props
-  return { props: { products } };
+  return { props: { data } };
 }

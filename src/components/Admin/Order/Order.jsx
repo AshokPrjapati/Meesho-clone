@@ -13,7 +13,9 @@ import axios from "axios";
 import { api } from "@/api";
 
 const getApi = async () => {
+
   let res = await axios.get(`${api}/order`);
+
   let data = await res.data;
   return data;
 };

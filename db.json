@@ -1195,52 +1195,11 @@
   },
   "cart": [
     {
-      "id": 22,
-      "image": "https://images.meesho.com/images/products/170210080/enaw1_400.jpg",
-      "title": "Trendy Feminine Women Tops & Tunics",
-      "price": 272,
-      "reviews": {
-        "rate": 3.8,
-        "count": 1115
-      },
-      "category": "women-western",
-      "discount": 35,
-      "description": "currently no description we will add it soon"
     }
   ],
   "address": [
     {
-      "name": "Ashok Kumar",
-      "mobile": "9799191449",
-      "house": "21",
-      "road": "sainik colony",
-      "pin": "306912",
-      "city": "Tagathgarh",
-      "state": "Hariyana",
-      "nearby": "",
-      "id": 1,
-      "selected": true
-    }
-  ],
-  "order": [
-    {
-      "orderId": 1674489579023,
-      "products": [
-        {
-          "id": 22,
-          "image": "https://images.meesho.com/images/products/170210080/enaw1_400.jpg",
-          "title": "Trendy Feminine Women Tops & Tunics",
-          "price": 272,
-          "reviews": {
-            "rate": 3.8,
-            "count": 1115
-          },
-          "category": "women-western",
-          "discount": 35,
-          "description": "currently no description we will add it soon",
-          "status": "success"
-        }
-      ],
+
       "id": 1
     }
   ],
