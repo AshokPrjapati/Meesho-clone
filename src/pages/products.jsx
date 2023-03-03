@@ -256,7 +256,7 @@ const Productpage = ({ data }) => {
             gap={"1.5rem"}
           >
 
-            {data.map((el) => (
+            {data.length && data.map((el) => (
 
               <Box key={el._id}>
                 <Productcard key={el._id} id={el._id} {...el} />
@@ -268,12 +268,13 @@ const Productpage = ({ data }) => {
     </Box>
   );
 };
-export async function getServerSideProps() {
-  // Fetch data from external API
 
-  const res = await axios.get(`/products/getall`);
+export async function getServerSideProps() {
+
+  // Fetch data from external API
+  const res = await axios.get(`/product/getall`);
   const d = await res.data;
-  const products = d.products
+  const data = d.products
 
   // Pass data to the page via props
   return { props: { data } };
