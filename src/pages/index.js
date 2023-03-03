@@ -14,13 +14,13 @@ import {
   Image,
 } from "@chakra-ui/react";
 
-
-
 import Productcard from '@/components/Products/productcard'
 import Footer from '@/components/Footer/Footer'
 import SmallNavbar from '@/components/Navbar/SmallNavbar'
+
 import Link from 'next/link';
 import { api } from '@/api';
+
 export default function Home({ data }) {
 
 
@@ -29,8 +29,8 @@ export default function Home({ data }) {
 
   let category = ['dresses', 'kurti', 'jeans']
   let Gender = ['Mens', 'Womens', 'Girl', 'Boys']
-  // let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
-  // let Price = ['Below ₹500', 'Below ₹1000', 'Below ₹1500', 'Below ₹200', 'Above ₹2000']
+  let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
+  let Price = ['Below ₹500', 'Below ₹1000', 'Below ₹1500', 'Below ₹200', 'Above ₹2000']
   let Rating = ['2.0 and Above', '3.0 and Above', '4.0 and Above', 'M-Trusted']
 
   let fabric = [
@@ -50,7 +50,7 @@ export default function Home({ data }) {
       <div>
         <div className={styles.big}><Navbar /></div>
         <div className={styles.small}><SmallNavbar /></div>
-        {/*  */}
+       
 
         <header className={styles.header}>
 
@@ -69,33 +69,6 @@ export default function Home({ data }) {
 
 
 
-        {/* <Flex direction={"column"}>
-<Box >
-     <Text fontSize={"32px"} ml="30px">Products for you</Text>
-      <Flex
-        w="100%"
-        gap={"1.5%"}
-       direction={["column","column","row","row"]}
-        p={"2rem"}>
-          <Box mb={"10px"} w={["100%","100%","40%","23%"]}>
-          <Select  mb={"1rem"}>
-            <option>Sort By: Relevence</option>
-            <option>New Arrival</option>
-            <option>Price(Low to High)</option>
-            <option>Price(High to Low)</option>
-            <option>Rating</option>
-            <option>Discount</option>
-          </Select>
-    
-          <Flex  overflow="hidden" direction={["row","row","column","column"]}  borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} >
-          <Box mt={"1rem"} p={"5px"} w={"90%"} >
-            <h3 style={{fontWeight:"normal"}}>FILTERS</h3>
-            <p style={{color:"grey"}}>1000+ products</p>
-            <br/>
-            <hr />
-          </Box> */}
-
-
         <Flex direction={"column"}>
           <Box >
             <Text fontSize={"32px"} ml="30px">Products for you</Text>
@@ -104,7 +77,9 @@ export default function Home({ data }) {
               gap={"1.5%"}
               direction={["column", "column", "row", "row"]}
               p={"2rem"}>
-              <Box mb={"10px"} w={["100%", "100%", "40%", "23%"]}>
+
+              <Box mb={"10px"} w={["100%","100%","40%","23%"]} display={{base:"none",lg:"block"}}>
+
                 <Select mb={"1rem"}>
                   <option>Sort By: Relevence</option>
                   <option>New Arrival</option>
@@ -179,6 +154,7 @@ export default function Home({ data }) {
                   </Box>
 
 
+
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Discount</h2>
 
@@ -226,7 +202,7 @@ Wo{"men’s"} Ethnic Wear Collection</Heading>
 When it comes to wo{"men's ethnic wear, we have everything you need to find the perfect outfit for any occasion. Whether you are looking for traditional sarees and blouses, or something more modern like suits or casual Kurtis, we have it all. And with our stunning collection of accessories, footwear, and jewellery sets, it's easy to put together a complete look that will turn heads at your next wedding or festive celebration. So come and shop with us today! 
 </Text>
 </div>
-
+=======
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Size</h2>
 
@@ -289,9 +265,9 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
                     </Select>
                   </Box>
                 </Flex>
-              </Box> */}
-
-          <Box  > <Footer />
+             
+                <Box  >
+          <Footer />
             <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}>
               <Button className={styles.desbtn} onClick={() => setdes(!des)}>More About Meesho {des ? <ChevronUpIcon /> : <ChevronDownIcon />} </Button>
               {des ? <div className={styles.description}>
@@ -490,7 +466,7 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
             </div>
           </Box>
 
-        </Flex>
+       
       </div >
 
     </>
@@ -499,6 +475,7 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
 
 
 export async function getServerSideProps() {
+  const page=1;
   // Fetch data from external API
   const res = await fetch(`${api}/products`);
   const data = await res.json();
