@@ -33,16 +33,20 @@ const Productcard = ({ id, image, price, title, reviews }) => {
         bg={"whitesmoke"}
         borderRadius={"10px"}
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
-        padding={"1rem"}
+        padding={{sm:"0.5rem",lg:"1rem"}}
         onClick={() => handleClick(id)}
         cursor={"pointer"}
+        width={{sm:"100%",md:"100%",lg:"100%"}}
+        
+        maxHeight={{sm:"600px",lg:"500px"}}
+       
       >
-        <Image h={"35vh"} w={"100%"} src={image} alt={title} />
+        <Image h={{sm:"200px",lg:"35vh"}} maxHeight={{sm:"100px",lg:"35vh"}} objectFit={"cover"} w={"100%"} src={image} alt={title} />
         <Text
           pt={"1rem"}
           pl={"1.1rem"}
           fontWeight={"bold"}
-          fontSize={"1rem"}
+          fontSize={{sm:"0.7rem",lg:"1rem"}}
           color={"grey"}
           className={styles.lineClamp}
         >
@@ -52,7 +56,7 @@ const Productcard = ({ id, image, price, title, reviews }) => {
           <Text
             color={"black"}
             pt={"0.6rem"}
-            pl={"1.3rem"}
+            pl={{sm:"2rem",lg:"1.3rem"}}
             fontSize={"1.3rem"}
             fontWeight={"bolder"}
             c={"black"}

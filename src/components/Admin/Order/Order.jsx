@@ -13,7 +13,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const getApi = async () => {
-  let res = await axios.get("http://localhost:8080/order");
+  let res = await axios.get("https://lazy-erin-caridea-veil.cyclic.app/order");
   let data = await res.data;
   return data;
 };

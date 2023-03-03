@@ -26,16 +26,17 @@ const Productpage = ({ data }) => {
     "Khadi Cotton"]
     let Size = ['0-2 Years','2-5 Years','S','M','L','XL','2XL','4XL']
     let Discount = ['10% off','20% off','All Discount','Deals']
-    console.log(data)
+    
   return (
     <Box>
       <Navbar />
       <Flex
         w="100%"
+        border="1px solid red"
         gap={"1.5%"}
         height={"120rem"}
         p={"2rem"}>
-          <Box w={"23%"}>
+          <Box w={"23%"} border={"1px solid red"}>
           <Select  mb={"1rem"}>
             <option>Sort By: Relevence</option>
             <option>New Arrival</option>
@@ -45,7 +46,7 @@ const Productpage = ({ data }) => {
             <option>Discount</option>
           </Select>
     
-          <Flex  direction={"column"}  borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} height={"70rem"}>
+          <Flex  direction={{sm:"row",lg:"column"}}  borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} height={"70rem"} border={"1px solid red"}>
           <Box mt={"1rem"} p={"5px"} w={"90%"} >
             <h3 style={{fontWeight:"normal"}}>FILTERS</h3>
             <p style={{color:"grey"}}>1000+ products</p>
@@ -150,9 +151,10 @@ const Productpage = ({ data }) => {
           </Box>
           </Flex>
         </Box>
-        <Box w={"76%"} bg={"white"} height={"80%"}>
-          <SimpleGrid columns={{base:1,md:2,sm:2,lg:3,xl:4,'2xl':4}} gap={"1.5rem"}>
+        <Box w={"76%"} bg={"white"} height={{sm:"50%",lg:"80%"}} border={"2px solid red"}>
+          <SimpleGrid columns={{base:1,md:1,sm:1,xs:1,lg:3,xl:4,'2xl':4}} gap={"1.5rem"}>
             {data.map((el) => (
+              
               <Box key={el.id}>
                 <Productcard key = {el.id} id={el.id} {...el} />
               </Box>
@@ -165,7 +167,7 @@ const Productpage = ({ data }) => {
 };
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://lazy-erin-caridea-veil.cyclic.app/products`);
+  const res = await fetch(`https://lazy-erin-caridea-veil.cyclic.app/products?per_page=1`);
   const data = await res.json();
 
   // Pass data to the page via props
