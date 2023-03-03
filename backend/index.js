@@ -5,6 +5,8 @@ const cors = require("cors");
 const UserRouter = require("./Routes/user.routes");
 const CartRouter = require("./Routes/cart.routes");
 const authentication = require("./Middleware/authentication.mw");
+const ProductRouter = require("./Routes/product.routes");
+const adminAuthentication = require("./Middleware/adminAuthentication.md");
 require("dotenv").config();
 
 app.use(cors())
@@ -13,9 +15,9 @@ app.use(express.json());
 
 app.use("/user", UserRouter);
 
-app.use(authentication);
+app.use("/product", adminAuthentication, ProductRouter);
 
-app.use("/cart", CartRouter);
+app.use("/cart", authentication, CartRouter);
 
 app.get("*", (req, res) => {
     res.status(404).json("not found")

@@ -82,13 +82,11 @@ async function UserLogout(req, res) {
 
 // * update the user details
 async function UpdateUser(req, res) {
-    const _id = req.params.id;
-    const payload = req.body;
+    const id = req.params.id;
+    console.log(id)
     try {
-        let user = await UserModel.findOne({ _id });
-        Object.assign(user, payload);
-        await user.save();
-        return res.status(201).json({ status: 200, message: 'user has been updated', credentials: user })
+        const updatedUser = await UserModel.findByIdAndUpdate({ _id: id }, req.body, { new: true });
+        return res.status(201).json({ status: 200, message: 'user has been updated', credentials: updatedUser });
     } catch (error) {
         console.log('error: ', error);
         return res.status(201).json({ status: 401, error: error.message })

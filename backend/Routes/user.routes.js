@@ -10,7 +10,7 @@ UserRouter.post("/login", user_controller.UserLogin);
 
 UserRouter.post("/logout", user_controller.UserLogout);
 
-UserRouter.post("/update/:id", user_controller.UpdateUser);
+UserRouter.patch("/update/:id", user_controller.UpdateUser);
 
 UserRouter.delete("/delete/:id", user_controller.DeleteUser);
 

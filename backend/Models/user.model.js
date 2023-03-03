@@ -69,6 +69,10 @@ const reviewSchema = new mongoose.Schema({
 // cart schema for products details
 
 const cartSchema = new mongoose.Schema({
+    productID: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     image: {
         type: String,
         require: true
@@ -145,7 +149,7 @@ const addressSchema = new mongoose.Schema({
 
 
 userSchema.methods.getAuthorizationToken = async function () {
-    const token = jwt.sign({ user: this._id }, process.env.SECRET_KEY);
+    const token = jwt.sign({ user: this._id, email: this.email }, process.env.SECRET_KEY);
     this.token = token;
     await this.save();
     return token;
