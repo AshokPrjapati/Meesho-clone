@@ -29,8 +29,8 @@ export default function Home({ data }) {
 
   let category = ['dresses', 'kurti', 'jeans']
   let Gender = ['Mens', 'Womens', 'Girl', 'Boys']
-  // let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
-  // let Price = ['Below ₹500', 'Below ₹1000', 'Below ₹1500', 'Below ₹200', 'Above ₹2000']
+  let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
+  let Price = ['Below ₹500', 'Below ₹1000', 'Below ₹1500', 'Below ₹200', 'Above ₹2000']
   let Rating = ['2.0 and Above', '3.0 and Above', '4.0 and Above', 'M-Trusted']
 
   let fabric = [
@@ -50,7 +50,7 @@ export default function Home({ data }) {
       <div>
         <div className={styles.big}><Navbar /></div>
         <div className={styles.small}><SmallNavbar /></div>
-        {/*  */}
+       
 
         <header className={styles.header}>
 
@@ -244,9 +244,9 @@ export default function Home({ data }) {
                     </Select>
                   </Box>
                 </Flex>
-              </Box> */}
-
-          <Box  > <Footer />
+             
+                <Box  >
+          <Footer />
             <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}>
               <Button className={styles.desbtn} onClick={() => setdes(!des)}>More About Meesho {des ? <ChevronUpIcon /> : <ChevronDownIcon />} </Button>
               {des ? <div className={styles.description}>
@@ -445,7 +445,7 @@ export default function Home({ data }) {
             </div>
           </Box>
 
-        </Flex>
+       
       </div >
 
     </>

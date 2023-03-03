@@ -85,7 +85,8 @@ const SmallNavbar = () => {
             </Flex> 
             </Box>
         </Flex>
-    
+    </Box>
+    </Flex>
     </div>
   );
 };
