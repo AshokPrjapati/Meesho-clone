@@ -226,7 +226,7 @@ Wo{"men’s"} Ethnic Wear Collection</Heading>
 When it comes to wo{"men's ethnic wear, we have everything you need to find the perfect outfit for any occasion. Whether you are looking for traditional sarees and blouses, or something more modern like suits or casual Kurtis, we have it all. And with our stunning collection of accessories, footwear, and jewellery sets, it's easy to put together a complete look that will turn heads at your next wedding or festive celebration. So come and shop with us today! 
 </Text>
 </div>
-=======
+
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Size</h2>
 
