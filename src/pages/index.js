@@ -193,13 +193,13 @@ export default function Home({ data }) {
                 </Flex>
               </Box>
               <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={"80%"}>
-                <SimpleGrid columns={{ base: 2, md: 2, sm: 2, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
+                {/* <SimpleGrid columns={{ base: 2, md: 2, sm: 2, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
                   {data?.map((el) => (
                     <Box className={styles.cardsprod} height={"100%"} key={el.id}>
                       <Productcard key={el.id} id={el.id} {...el} />
                     </Box>
                   ))}
-                </SimpleGrid>
+                </SimpleGrid> */}
               </Box>
             </Flex>
           </Box>
@@ -498,11 +498,11 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
 }
 
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`${api}/products`);
-  const data = await res.json();
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch(`${api}/products`);
+//   const data = await res.json();
 
-  // Pass data to the page via props
-  return { props: { data } };
-}
+//   // Pass data to the page via props
+//   return { props: { data } };
+// }
