@@ -1,6 +1,6 @@
 const express = require("express");
 const CartRouter = express.Router();
-const cart_controller = require("../Controllers/user.controller")
+const cart_controller = require("../Controllers/cart.controller");
 
 
 CartRouter.post("/add", cart_controller.AddToCart);
@@ -13,4 +13,4 @@ CartRouter.post("/update/:id", cart_controller.UpdateCart);
 
 CartRouter.get("/carttotal", cart_controller.CartTotal);
 
-module.exports = { CartRouter };
+module.exports = CartRouter;

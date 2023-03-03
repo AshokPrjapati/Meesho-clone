@@ -151,7 +151,7 @@ const addressSchema = new mongoose.Schema({
 
 
 userSchema.methods.getAuthorizationToken = async function () {
-    const token = jwt.sign({ email: this.email }, process.env.SECRET_KEY);
+    const token = jwt.sign({ user: this._id }, process.env.SECRET_KEY);
     this.token = token;
     await this.save();
     return token;

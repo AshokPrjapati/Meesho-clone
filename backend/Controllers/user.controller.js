@@ -28,6 +28,8 @@ async function UserRegisteration(req, res) {
 
         const user = new UserModel({ ...payload, password: hash });
 
+
+
         await user.save();
 
         res.status(201).json({ status: 200, message: "registeration success", credentials: user })

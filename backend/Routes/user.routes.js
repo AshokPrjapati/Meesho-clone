@@ -14,4 +14,4 @@ UserRouter.post("/update/:id", user_controller.UpdateUser);
 
 UserRouter.delete("/delete/:id", user_controller.DeleteUser);
 
-module.exports = { UserRouter };
+module.exports = UserRouter;
