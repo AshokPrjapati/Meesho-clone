@@ -1,16 +1,18 @@
-import { ADD_TO_CART, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
+import axios from "axios";
+import { ADD_TO_CART, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
 import { addCartProduct, deleteCartProduct, fetchCartProducts, updateOrder } from "./cart.api";
 
 
-export const addToCart = (data) => async (dispatch) => {
+export const addToCart = (payload, Toast) => async (dispatch) => {
+    dispatch({ type: CART_LOADING });
     try {
-        let d = await addCartProduct(data);
-        dispatch({ type: ADD_TO_CART, payload: data });
-        alert(`${d.title} is added to cart`);
-    } catch (e) {
-        alert("something went wrong while adding to cart")
+        let res = await axios.post('/cart/add', payload);
+        dispatch({ type: ADD_TO_CART });
+        Toast(`${d.title} is added to cart`, "success");
+    } catch (error) {
+        console.log(error);
+        Toast("something went wrong while adding to cart", "error")
     }
-
 }
 
 export const getCartProducts = () => async (dispatch) => {

@@ -8,10 +8,10 @@ import AuthContextProvider from "../../context/authContext"
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { store } from '@/redux/store';
+import axios from 'axios'
 config.autoAddCss = false
 
-
-
+axios.defaults.url = `http://localhost:8080`;
 
 export default function App({ Component, pageProps }) {
 
@@ -20,8 +20,8 @@ export default function App({ Component, pageProps }) {
     <ChakraProvider>
       <AuthContextProvider>
         <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+          <Component {...pageProps} />
+        </Provider>
       </AuthContextProvider>
     </ChakraProvider>
   )
