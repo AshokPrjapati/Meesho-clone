@@ -440,7 +440,7 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
 
                 <div className={styles.linkSection}>
 
-                  {/* |  | |  |  |  |  |  | | |  |  |  | | |  | |  |  |  |  | |  |  | Push Up Bra | Stockings | Black Camisoles | Cotton Bathrobes | Satin Night Suit | Body shapers | Women Pyjamas | Swimwear | Women Jackets | Women Thermal Set */}
+                 
 
                   <h4>Women Western Wear</h4>
                   <div className={styles.links}>
