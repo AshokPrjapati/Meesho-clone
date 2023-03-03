@@ -1,5 +1,10 @@
-import React from "react";
-import Link from "next/link";
+
+import React from 'react'
+import Link from "next/link"
+import {AiOutlineHeart} from "react-icons/ai"
+import {AiOutlineShoppingCart} from "react-icons/ai"
+
+
 import {
   Menu,
   MenuButton,
@@ -67,19 +72,20 @@ const SmallNavbar = () => {
               </Text>
             </Link>
 
-            <Link href={"#"}>
-              <Text
-                fontSize={"22px"}
-                color="gray.600"
-                fontWeight="500"
-                ml="10px"
-              >
-                Cart
-              </Text>
-            </Link>
-          </Flex>
-        </Box>
-      </Flex>
+
+          <Box>
+            
+            <Flex >
+              
+               <Link href={"#"}> <Box fontSize={"22px"} marginTop="5px" color="gray.600" fontWeight="500"><AiOutlineHeart /></Box></Link>
+            
+       
+          <Link href={"/cart"}><Box fontSize={"22px"} color="gray.600" fontWeight="500" ml="10px" mt="5px"><AiOutlineShoppingCart /></Box></Link>
+            
+            </Flex> 
+            </Box>
+        </Flex>
+    
     </div>
   );
 };

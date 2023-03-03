@@ -1,6 +1,12 @@
+
+
+import styles from '@/styles/Home.module.css'
+
 import React, { useEffect, useState } from "react";
+
 import { Flex, Box, Image, Text, Button, SimpleGrid } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar/Navbar";
+import SmallNavbar from "@/components/Navbar/SmallNavbar";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.action";
 import { useRouter } from "next/router";
@@ -27,14 +33,17 @@ const SingleUserpage = () => {
   let desc = product.description;
   return (
     <div>
-      <Navbar display="none" />
+      {/* <Navbar display="none" /> */}
+      <div className={styles.big}><Navbar /></div>
+        <div className={styles.small}><SmallNavbar/></div>
       <SimpleGrid
         padding={"30px 0"}
         columns={{ base: 1, sm: 1, md: 1, lg: 2, xl: 2 }}
         m={"auto"}
-        w={"90%"}
+        w={{sm:"100%",lg:"90%"}}
         margin={"auto"}
         gap={"3%"}
+        
       >
         <Box
           alignContent={"center"}
