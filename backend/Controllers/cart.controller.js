@@ -30,8 +30,9 @@ async function RemoveFromCart(req, res) {
 
 // get cart
 async function GetCart(req, res) {
+    let { user } = req.body;
     try {
-        let cartProducts = await CartModel.find();
+        let cartProducts = await CartModel.find({ user });
         res.status(200).send({ message: "cart products fetched successfully", cartProducts });
     } catch (error) {
         console.log(error);

@@ -9,7 +9,7 @@ CartRouter.post("/remove", cart_controller.RemoveFromCart);
 
 CartRouter.get("/getcart", cart_controller.GetCart);
 
-CartRouter.post("/update/:id", cart_controller.UpdateCart);
+CartRouter.post("/update", cart_controller.UpdateCart);
 
 CartRouter.get("/carttotal", cart_controller.CartTotal);
 

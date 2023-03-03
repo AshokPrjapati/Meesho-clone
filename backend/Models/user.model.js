@@ -69,10 +69,6 @@ const reviewSchema = new mongoose.Schema({
 // cart schema for products details
 
 const cartSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true
-    },
     image: {
         type: String,
         require: true
@@ -139,13 +135,11 @@ const addressSchema = new mongoose.Schema({
     },
     selected: {
         type: Boolean,
-        required: true,
         default: false
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
-        required: true
     }
 })
 
