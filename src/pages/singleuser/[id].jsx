@@ -1,15 +1,32 @@
-import React from "react";
+
+
 import styles from '@/styles/Home.module.css'
+
+import React, { useEffect, useState } from "react";
+
 import { Flex, Box, Image, Text, Button, SimpleGrid } from "@chakra-ui/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar/Navbar";
 import SmallNavbar from "@/components/Navbar/SmallNavbar";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.action";
-const SingleUserpage = ({ product }) => {
+import { useRouter } from "next/router";
+import { api } from "@/api";
+
+const SingleUserpage = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const [product, setProduct] = useState({});
+  const fetchData = async (id) => {
+    let r = await fetch(`${api}/products/${id}`);
+    let d = await r.json();
+    setProduct({ ...d });
+  };
+
   const dispatch = useDispatch();
-  console.log(product);
+  useEffect(() => {
+    fetchData(id);
+  }, []);
   let image = product.image;
   let price = product.price;
   let title = product.title;
@@ -32,7 +49,7 @@ const SingleUserpage = ({ product }) => {
           alignContent={"center"}
           boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
         >
-          <Image m={"auto"} w={"70%"} src={image} />
+          <Image alt="" m={"auto"} w={"70%"} src={image} />
           <br />
           <Flex m={"auto"} w={"50%"}>
             <Button
@@ -97,6 +114,7 @@ const SingleUserpage = ({ product }) => {
           <Flex gap={"0.5%"} h={"20vh"}>
             <Flex p={"2px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
               <Image
+                alt=""
                 ml={"4px"}
                 w={"60%"}
                 src="https://images.meesho.com/images/value_props/lowest_price_pbd.png"
@@ -107,6 +125,7 @@ const SingleUserpage = ({ product }) => {
             </Flex>
             <Flex p={"4px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
               <Image
+                alt=""
                 ml={"4px"}
                 w={"60%"}
                 src="https://images.meesho.com/images/value_props/cash_on_delivery_pbd.png"
@@ -117,6 +136,7 @@ const SingleUserpage = ({ product }) => {
             </Flex>
             <Flex p={"4px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
               <Image
+                alt=""
                 ml={"4px"}
                 w={"60%"}
                 src="https://images.meesho.com/images/value_props/7_day_returns_pbd.png"
@@ -137,25 +157,4 @@ const SingleUserpage = ({ product }) => {
   );
 };
 
-export async function getStaticPaths() {
-  let r = await fetch("https://lazy-erin-caridea-veil.cyclic.app/products");
-  let d = await r.json();
-  return {
-    paths: d.map((product) => ({ params: { id: String(product.id) } })),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(context) {
-  let id = context.params.id;
-  let r = await fetch(
-    `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
-  );
-  let d = await r.json();
-  return {
-    props: {
-      product: d,
-    },
-  };
-}
 export default SingleUserpage;

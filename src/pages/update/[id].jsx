@@ -12,14 +12,14 @@ import {
   Box,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import UploadImage from "./index";
+import UploadImage from "../../components/Admin/UploadImage";
 import { useRouter } from "next/router";
+import { api } from "@/api";
 
-const update = ({ product }) => {
+const Update = ({ product }) => {
   const router = useRouter();
 
   const [productdata, setData] = React.useState(product);
-  // console.log(product);
 
   const onInputChange = (e) => {
     let a = e.target.value;
@@ -28,14 +28,14 @@ const update = ({ product }) => {
       a = +a;
     }
 
-    if (b == "reviews") {
-      let r = {
-        rate: a,
-        count: 0,
-      };
-      setData({ ...productdata, [b]: r });
-      return;
-    }
+    // if (b == "reviews") {
+    //   let r = {
+    //     rate: a,
+    //     count: 0,
+    //   };
+    //   setData({ ...productdata, [b]: { ...r } });
+    //   return;
+    // }
     setData({ ...productdata, [b]: a });
   };
 
@@ -44,20 +44,17 @@ const update = ({ product }) => {
       productdata.title &&
       productdata.image &&
       productdata.category &&
-      productdata.reviews.rate &&
+      // productdata.reviews.rate &&
       productdata.price
     ) {
       try {
-        let res = await fetch(
-          `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(productdata),
-          }
-        );
+        let res = await fetch(`${api}/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(productdata),
+        });
       } catch (err) {
         console.log(err);
         alert("Facing some issues please try again");
@@ -77,15 +74,12 @@ const update = ({ product }) => {
       //   url: `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
       // });
 
-      let res = await fetch(
-        `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      let res = await fetch(`${api}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       alert("Product deleted successfully");
       router.push("/updateProduct");
@@ -193,7 +187,7 @@ const update = ({ product }) => {
                     onChange={onInputChange}
                   />
 
-                  <label
+                  {/* <label
                     style={{
                       width: "fit-content",
                       fontFamily:
@@ -214,7 +208,7 @@ const update = ({ product }) => {
                     name="reviews"
                     onChange={onInputChange}
                     disabled
-                  />
+                  /> */}
 
                   <label
                     style={{
@@ -297,7 +291,7 @@ const update = ({ product }) => {
 };
 
 export async function getStaticPaths() {
-  let r = await fetch("https://lazy-erin-caridea-veil.cyclic.app/products");
+  let r = await fetch(`${api}/products`);
   let d = await r.json();
   return {
     paths: d.map((product) => ({ params: { id: String(product.id) } })),
@@ -307,9 +301,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   let id = context.params.id;
-  let r = await fetch(
-    `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
-  );
+  // console.log(`Building id: ${id}`);
+  let r = await fetch(`${api}/${id}`);
   let d = await r.json();
   return {
     props: {
@@ -318,4 +311,4 @@ export async function getStaticProps(context) {
   };
 }
 
-export default update;
+export default Update;

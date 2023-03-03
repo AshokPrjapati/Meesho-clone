@@ -7,7 +7,6 @@ export const getAddress = () => async (dispatch) => {
     try {
         let data = await fetchAddress();
         dispatch({ type: GET_ADDRESS, payload: data });
-
     } catch (e) {
         alert("something when wrong while fetching")
     }

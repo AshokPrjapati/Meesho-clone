@@ -3,33 +3,32 @@ import {
   Box,
   FormControl,
   FormLabel,
-  Checkbox,
+
   Stack,
   Heading,
   useColorModeValue,
-  Text,
   Button,
   Input,
   Image,
 } from "@chakra-ui/react";
 
-
-
-import { useState} from "react";
+import { useState } from "react";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { login } from "@/redux/login/login.action";
+import { signup } from "@/redux/login/login.action";
+
 export default function Login() {
+  const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const dispatch = useDispatch();
 
   const router = useRouter();
 
-  const signin = () => {
-    dispatch(login({ email, password }));
+  const Signup = () => {
+    dispatch(signup({ username:name, email, password }));
   };
 
   function handlechange(e) {
@@ -55,20 +54,25 @@ export default function Login() {
         </Link>
       </Flex>
 
-      <Flex minH={"100vh"} justify={"center"}>
-        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Flex justify={"center"} >
+        <Stack spacing={8} mx={"auto"} py={12} px={6}width={["80%","50%","30%"]}>
           <Stack align={"center"}>
             <Heading fontSize={"4xl"} color="#f43397">
-              Sign in{" "}
+              Sign up{" "}
             </Heading>
           </Stack>
           <Box
+         
             rounded={"lg"}
             bg={useColorModeValue("white", "gray.700")}
             boxShadow={"lg"}
-            p={8}
+            p={5}
           >
-            <Stack spacing={3}>
+            <Stack spacing={4} >
+              <FormControl id="name">
+                <FormLabel>Enter your name</FormLabel>
+                <Input type="text" onChange={(e) => setname(e.target.value)} />
+              </FormControl>
               <FormControl id="email">
                 <FormLabel>Enter your email</FormLabel>
                 <Input type="email" onChange={handlechange} />
@@ -85,39 +89,21 @@ export default function Login() {
                   direction={{ base: "column", sm: "row" }}
                   align={"start"}
                   justify={"space-between"}
-                >
-                  <Checkbox>Remember me</Checkbox>
-                  <Link href="/login" color="#f43397">
-                    Forgot password?
-                  </Link>
-                </Stack>
-
+                ></Stack>
+            <Link href={"/login"}>
                 <Button
-                  onClick={signin}
+                  onClick={Signup}
                   bg={"#f43397"}
                   color={"white"}
                   _hover={{
                     bg: "green.500",
                   }}
                 >
-                 
-                  SignIn
-                </Button>
-                <Text>If you are not a registered user?</Text>
+                  Signup
+                </Button></Link>
               </Stack>
             </Stack>
           </Box>
-
-          <Button
-            bg={"#f43397"}
-            color={"white"}
-            _hover={{
-              bg: "green.500",
-            }}
-          >
-            <Link href="/Signup">
-            Create your Account here</Link>
-          </Button>
         </Stack>
       </Flex>
     </div>

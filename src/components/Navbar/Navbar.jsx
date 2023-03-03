@@ -31,16 +31,18 @@ import {
   Center,
   MenuDivider,
   MenuItem,
-  Image,
 } from "@chakra-ui/react";
 import styles from "./Navbar.module.css";
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "context/authContext";
-import axios from "axios";
+import { useState,  useEffect } from "react";
+
+
 import { useRouter } from "next/router";
 
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+
+
 export const Profile = () => {
-  const router = useRouter();
   return (
     <div className={styles.download}>
       <h1>Download from</h1>
@@ -56,13 +58,10 @@ export const Profile = () => {
   );
 };
 
-const getApi = async () => {
-  let res = await axios.get("http://localhost:8080/auth");
-  let data = await res.data;
-  return data;
-};
 
+import { logout } from "@/redux/login/login.action";
 const Navbar = ({ display = "flex" }) => {
+  const router = useRouter();
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
   const [dropdown2, setdropdown2] = useState(false);
@@ -72,18 +71,20 @@ const Navbar = ({ display = "flex" }) => {
   const [dropdown6, setdropdown6] = useState(false);
   const [dropdown7, setdropdown7] = useState(false);
   const [dropdown8, setdropdown8] = useState(false);
-  const router = useRouter();
 
-  const { state, logoutUser } = useContext(AuthContext);
+
   const [data, setData] = useState(false);
+const dispatch=useDispatch()
+const user=useSelector(store=>store.login)
+useEffect(()=>{
+  setData(user.credentials)
+},[])
 
-  useEffect(() => {
-    getApi().then((res) => setData(res.isAuth));
-  }, []);
 
-  const logout = async () => {
-    let res = await logoutUser();
-    setData(state);
+
+  const signout = async () => {
+   dispatch(logout())
+   setData("")
   };
 
   return (
@@ -91,10 +92,12 @@ const Navbar = ({ display = "flex" }) => {
       <nav className={styles.nav_1}>
         <Flex bg={"#ffffff"} alignItems="center" gap="2">
           <Box p="2" display={"flex"}>
+            <Link href={"/"}>
             <Heading size="lg" color={"#f43397"}>
+              
               ApniDukan
             </Heading>
-
+            </Link>
             <InputGroup marginLeft={"20px"}>
               <InputLeftElement
                 pointerEvents="none"
@@ -149,26 +152,43 @@ const Navbar = ({ display = "flex" }) => {
                   </Center>
                   <br />
                   <Center>
-                    <p>Hello User</p>
+                    <p>{data.username}</p>
                   </Center>
                   <br />
                   <MenuDivider />
+                  {data.role=="ADMIN"?<MenuItem>Admin panel</MenuItem>:null}
+                  
                   <MenuItem>My Orders</MenuItem>
-                  <MenuItem onClick={logout}>Logout</MenuItem>
+                  <MenuItem onClick={signout}>Logout</MenuItem>
                 </MenuList>
               ) : (
-                <MenuList alignItems={"center"}>
-                  <Center>
-                    <p>Hello User</p>
-                  </Center>
-                  <br />
-                  <Center style={{ color: "rgb(102,102,102)" }}>
-                    To access your Meesho account
-                  </Center>
-                  <br />
-                  <a href="./login">
+                <MenuList alignItems={"center"} >
+                 
+                    <MenuItem    width="90%" justifyContent={"center"}
+                         backgroundColor={"rgb(231,48,150)"}  margin="10px"color="white">Hello User  </MenuItem>
+                 
+                
+                
+                  <a href="/login">
                     <MenuItem
                       style={{
+                        background: "rgb(231,48,150)",
+                        color: "white",
+                        fontSize: "20px",
+                        
+                        fontWeight: "bolder",
+                        width: "90%",
+                        justifyContent: "center",
+                        marginLeft: "10px",
+                      }}
+                    >
+                      Login
+                    </MenuItem>
+                  </a>
+                  <a href="/Signup">
+                    <MenuItem
+                      style={{
+                        margin: "5px",
                         background: "rgb(231,48,150)",
                         color: "white",
                         fontSize: "20px",

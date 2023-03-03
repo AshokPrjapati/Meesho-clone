@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Image,
-  Text,
-  Flex,
-  Button,
-  StylesProvider,
-} from "@chakra-ui/react";
+import { Box, Image, Text, Flex, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
 

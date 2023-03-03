@@ -12,6 +12,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { api } from "@/api";
 
 const getUrl = (api, filterBy) => {
   if (filterBy) {
@@ -30,10 +31,7 @@ const UpdateProduct = () => {
   }, [filterBy]);
 
   const getProductsData = async (params) => {
-    let getApi = getUrl(
-      `https://lazy-erin-caridea-veil.cyclic.app/products`,
-      filterBy
-    );
+    let getApi = getUrl(`${api}/products`, filterBy);
     let res = await axios({
       baseURL: getApi,
       method: `get`,
@@ -76,10 +74,9 @@ const UpdateProduct = () => {
             >
               <option value="women-ethnic">Women Ethnic</option>
               <option value="women-western">Women Western</option>
-              <option value="men">Men</option>
-              <option value="kids">Kids</option>
+              <option value="Kids">Kids</option>
               <option value="home-kitchen">Home & Kitchen</option>
-              <option value="beauty-health">Beauty & Health</option>
+              <option value="beauty">Beauty & Health</option>
             </Select>
           </Box>
         </Flex>

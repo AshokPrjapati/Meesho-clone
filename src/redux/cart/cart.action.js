@@ -36,7 +36,6 @@ export const orderSuccess = (data) => async (dispatch) => {
     try {
         let payload = await updateOrder(data);
         dispatch({ type: UPDATE_ORDER_DATA, payload })
-
     } catch (e) {
         alert("somewent went wrong while placing order")
     }

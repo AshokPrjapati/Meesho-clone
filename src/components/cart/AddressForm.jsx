@@ -5,6 +5,7 @@ import { useState } from "react";
 import AddressFormBody from "./AddressFormBody";
 import { useDispatch } from "react-redux";
 import { sendAddress } from "@/redux/address/address.action";
+import Link from "next/link";
 
 const address = {
   name: "",
@@ -43,17 +44,21 @@ const AddressForm = () => {
             handleChange={handleChange}
           />
           <Stack spacing={10} pt={2}>
-            <Button
-              w={"100%"}
-              size="lg"
-              color={"#fff"}
-              bg={"#f43f97"}
-              _hover={{ bg: "#f43f97" }}
-              fontWeight="500"
-              onClick={() => dispatch(sendAddress(addressObj))}
-            >
-              Save Address and Continue
-            </Button>
+            <Link href="/cart/address">
+              <Button
+                w={"100%"}
+                size="lg"
+                color={"#fff"}
+                bg={"#f43f97"}
+                _hover={{ bg: "#f43f97" }}
+                fontWeight="500"
+                onClick={() => {
+                  dispatch(sendAddress(addressObj));
+                }}
+              >
+                Save Address and Continue
+              </Button>
+            </Link>
           </Stack>
         </Box>
       </Stack>

@@ -9,7 +9,6 @@ import {
   Container,
   Heading,
 } from "@chakra-ui/react";
-import axios from "axios";
 import React, { useEffect } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
@@ -20,6 +19,7 @@ import {
   getCartProducts,
   removeCartProduct,
 } from "@/redux/cart/cart.action";
+import Link from "next/link";
 
 const Cart = () => {
   const { cartTotal, cartProducts } = useSelector((store) => store.cart);
@@ -113,17 +113,19 @@ const Cart = () => {
             <Text fontSize={"18px"} fontWeight={"600"}>
               Your cart is empty
             </Text>
-            <Button
-              color={"#f43f97"}
-              size={"lg"}
-              border={"1px solid #f43f97"}
-              bg={"none"}
-              _hover={{
-                bg: "none",
-              }}
-            >
-              View Products
-            </Button>
+            <Link href="/products">
+              <Button
+                color={"#f43f97"}
+                size={"lg"}
+                border={"1px solid #f43f97"}
+                bg={"none"}
+                _hover={{
+                  bg: "none",
+                }}
+              >
+                View Products
+              </Button>
+            </Link>
           </Flex>
         )}
       </div>

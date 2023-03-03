@@ -4,21 +4,21 @@
       #bcc8ff 29.63%,
       #0b064e 51.55%,
       #100427 90.85%);
-  height: auto;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Inter', sans-serif;
 }
 
-.blurr {
-  /* display: grid; */
-  height: auto;
-  width: 97%;
-  background: rgba(247, 243, 243, 0.8);
-  border-radius: 2rem;
-  gap: 16px;
-  /* overflow: hidden; */
+.blurr{
+    /* display: grid; */
+    height: 97%;
+    width: 97%;
+    background: rgba(247, 243, 243, 0.8);
+    border-radius: 2rem;
+    gap: 16px;
+    overflow: hidden;
 }
 
 .form Input,
