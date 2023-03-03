@@ -67,7 +67,7 @@ export default function Home({ data }) {
 
 
 
-
+    {/* Responsiveness fixed */}
         <Flex direction={"column"}>
           <Box >
             <Text fontSize={"32px"} ml="30px">Products for you</Text>
@@ -175,13 +175,7 @@ export default function Home({ data }) {
         </Box>
       </Flex>
     </Box>
-{/* 
-    <Box style={{margin:"auto",display:"flex"}}>
-      <Button onClick={()=>activePage(page+1)}>Next Page</Button>
-      <div style={{border:"1px solid grey",display:"flex",width:"20px",justifyContent:"center",alignItems:"center"}}><h1>{currentPage}</h1></div>
-      <Button onClick={()=>activePage(page-1)}>Previous Page</Button>
-    </Box>
-     */}
+
              
           <Box  > <Footer />
             <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}>
