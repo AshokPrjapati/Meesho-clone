@@ -5,26 +5,32 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.action";
 import { useRouter } from "next/router";
 import { api } from "@/api";
+import UseToastMsg from "@/custom-hooks/useToast";
+import axios from "axios";
 
 const SingleUserpage = () => {
+  const dispatch = useDispatch();
+  const Toast = UseToastMsg();
   const router = useRouter();
-  const { id } = router.query;
 
   const [product, setProduct] = useState({});
+
   const fetchData = async (id) => {
-    let r = await fetch(`${api}/products/${id}`);
-    let d = await r.json();
-    setProduct({ ...d });
+    let r = await axios(`/product/singleproduct/${id}`);
+    let d = await r.data;
+    let product = d.product;
+    setProduct({ ...product });
   };
 
-  const dispatch = useDispatch();
   useEffect(() => {
-    fetchData(id);
-  }, []);
-  let image = product.image;
-  let price = product.price;
-  let title = product.title;
-  let desc = product.description;
+    if (router.query.id) {
+      fetchData(router.query.id);
+    }
+  }, [router.query.id]);
+
+
+  const { image, price, title, description } = product;
+
   return (
     <div>
       <Navbar display="none" />
@@ -46,7 +52,7 @@ const SingleUserpage = () => {
             <Button
               marginRight={"5px"}
               onClick={() => {
-                dispatch(addToCart(product));
+                dispatch(addToCart(product, Toast));
               }}
             >
               Add to Cart
@@ -83,7 +89,7 @@ const SingleUserpage = () => {
               Product Details
             </Text>
             <Box fontWeight={"md"} color={"grey"}>
-              <Text>{desc}</Text>
+              <Text>{description}</Text>
               <Text>Name:{title}</Text>
               <Text>Fabric : Cotton</Text>
               <Text>Sleeve Length : Sleeveless</Text>

@@ -11,7 +11,7 @@ import { store } from '@/redux/store';
 import axios from 'axios'
 config.autoAddCss = false
 
-axios.defaults.url = `http://localhost:8080`;
+axios.defaults.baseURL = `http://localhost:8080`;
 
 export default function App({ Component, pageProps }) {
 

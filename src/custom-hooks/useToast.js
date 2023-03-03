@@ -15,7 +15,7 @@ const UseToastMsg = () => {
             }
         )
     }
-    return { Toast, Type }
+    return Toast;
 }
 
 export default UseToastMsg

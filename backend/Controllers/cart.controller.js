@@ -4,11 +4,12 @@ const { CartModel, AddressModel } = require("../Models/user.model")
 
 // adding to cart
 async function AddToCart(req, res) {
-    const payload = req.body;
+    const { user, ...payload } = req.body;
     try {
         let cartProduct = new CartModel(payload);
         await cartProduct.save();
-        res.status(200).send({ "message": "Product added successfully in cart" });
+        const cartProducts = await CartModel.find({ user });
+        res.status(200).send({ "message": "Product added successfully in cart", cartProducts });
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });
@@ -17,10 +18,11 @@ async function AddToCart(req, res) {
 
 // remove to cart
 async function RemoveFromCart(req, res) {
-    const { id } = req.body;
+    const { id, user } = req.body;
     try {
         await CartModel.findByIdAndRemove({ _id: id });
-        res.status(200).send({ message: " cart product is removed" });
+        const cartProducts = await CartModel.find({ user });
+        res.status(200).send({ message: "cart product is removed", cartProducts });
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });

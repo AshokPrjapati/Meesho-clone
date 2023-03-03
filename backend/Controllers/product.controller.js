@@ -68,8 +68,8 @@ async function GetProducts(req, res) {
 async function GetSingleProducts(req, res) {
     const id = req.params.id;
     try {
-        let products = await ProductModel.find({ _id: id });
-        res.status(200).send({ message: "Single products fetched successfully", products });
+        let product = await ProductModel.findOne({ _id: id });
+        res.status(200).send({ message: "Single products fetched successfully", product });
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });

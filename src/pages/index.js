@@ -2,6 +2,7 @@ import styles from '@/styles/Home.module.css'
 import Navbar from '@/components/Navbar/Navbar'
 import React, { useState } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons"
+import axios from 'axios'
 
 import {
   Text,
@@ -14,23 +15,18 @@ import {
   Image,
 } from "@chakra-ui/react";
 
-
-
 import Productcard from '@/components/Products/productcard'
 import Footer from '@/components/Footer/Footer'
 import SmallNavbar from '@/components/Navbar/SmallNavbar'
 import Link from 'next/link';
-import { api } from '@/api';
-export default function Home({ data }) {
 
+export default function Home({ products }) {
 
   const [des, setdes] = useState(true);
 
-
   let category = ['dresses', 'kurti', 'jeans']
   let Gender = ['Mens', 'Womens', 'Girl', 'Boys']
-  // let colors = ['red', 'green', 'yellow', 'pink', 'black', 'white', 'blue']
-  // let Price = ['Below ₹500', 'Below ₹1000', 'Below ₹1500', 'Below ₹200', 'Above ₹2000']
+
   let Rating = ['2.0 and Above', '3.0 and Above', '4.0 and Above', 'M-Trusted']
 
   let fabric = [
@@ -43,17 +39,13 @@ export default function Home({ data }) {
   let Size = ['0-2 Years', '2-5 Years', 'S', 'M', 'L', 'XL', '2XL', '4XL']
   let Discount = ['10% off', '20% off', 'All Discount', 'Deals']
 
-
-
   return (
     <>
       <div>
         <div className={styles.big}><Navbar /></div>
         <div className={styles.small}><SmallNavbar /></div>
-        {/*  */}
 
         <header className={styles.header}>
-
 
           <Image alt="" src='./header1.png'></Image>
           <p>Top Categories to choose from</p>
@@ -62,39 +54,7 @@ export default function Home({ data }) {
           <Image alt="" src='./header4.png'></Image>
           <Image alt="" src='./lastheader.png'></Image>
 
-
-
-
         </header>
-
-
-
-        {/* <Flex direction={"column"}>
-<Box >
-     <Text fontSize={"32px"} ml="30px">Products for you</Text>
-      <Flex
-        w="100%"
-        gap={"1.5%"}
-       direction={["column","column","row","row"]}
-        p={"2rem"}>
-          <Box mb={"10px"} w={["100%","100%","40%","23%"]}>
-          <Select  mb={"1rem"}>
-            <option>Sort By: Relevence</option>
-            <option>New Arrival</option>
-            <option>Price(Low to High)</option>
-            <option>Price(High to Low)</option>
-            <option>Rating</option>
-            <option>Discount</option>
-          </Select>
-    
-          <Flex  overflow="hidden" direction={["row","row","column","column"]}  borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} >
-          <Box mt={"1rem"} p={"5px"} w={"90%"} >
-            <h3 style={{fontWeight:"normal"}}>FILTERS</h3>
-            <p style={{color:"grey"}}>1000+ products</p>
-            <br/>
-            <hr />
-          </Box> */}
-
 
         <Flex direction={"column"}>
           <Box >
@@ -194,9 +154,9 @@ export default function Home({ data }) {
               </Box>
               <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={"80%"}>
                 <SimpleGrid columns={{ base: 2, md: 2, sm: 2, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
-                  {data?.map((el) => (
+                  {products?.map((el) => (
                     <Box className={styles.cardsprod} height={"100%"} key={el.id}>
-                      <Productcard key={el.id} id={el.id} {...el} />
+                      <Productcard key={el._id} id={el._id} {...el} />
                     </Box>
                   ))}
                 </SimpleGrid>
@@ -500,9 +460,10 @@ When it comes to wo{"men's ethnic wear, we have everything you need to find the 
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`${api}/products`);
-  const data = await res.json();
+  const res = await axios.get(`/product/getall`);
+  const data = await res.data;
+  const products = data.products;
 
   // Pass data to the page via props
-  return { props: { data } };
+  return { props: { products } };
 }

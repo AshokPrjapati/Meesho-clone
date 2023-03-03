@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_TO_CART, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
+import { ADD_TO_CART, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
 import { addCartProduct, deleteCartProduct, fetchCartProducts, updateOrder } from "./cart.api";
 
 
@@ -7,11 +7,13 @@ export const addToCart = (payload, Toast) => async (dispatch) => {
     dispatch({ type: CART_LOADING });
     try {
         let res = await axios.post('/cart/add', payload);
-        dispatch({ type: ADD_TO_CART });
+        let data = await res.data;
+        dispatch({ type: ADD_TO_CART, payload: data.cartProducts });
         Toast(`${d.title} is added to cart`, "success");
     } catch (error) {
         console.log(error);
-        Toast("something went wrong while adding to cart", "error")
+        dispatch({ type: CART_ERROR, payload: error.message || "Something went wrong" });
+        Toast(error.message || "Something went wrong");
     }
 }
 

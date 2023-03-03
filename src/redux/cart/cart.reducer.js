@@ -1,20 +1,34 @@
-import { ADD_TO_CART, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
+import { ADD_TO_CART, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
 
 const initialState = {
+    loading: false,
+    error: "",
     cartProducts: [],
     cartTotal: 0,
-    orderData: {},
 }
 
 export const cartReducer = (state = initialState, { type, payload }) => {
 
     switch (type) {
 
-        case ADD_TO_CART: {
-            if (!payload.status) payload.status = "pending"
+        case CART_LOADING: {
             return {
                 ...state,
-                cartProducts: [...state.cartProducts, payload]
+                loading: true
+            }
+        }
+
+        case ADD_TO_CART: {
+            return {
+                ...state,
+                cartProducts: [...payload]
+            }
+        }
+
+        case CART_ERROR: {
+            return {
+                ...state,
+                error: payload
             }
         }
 
