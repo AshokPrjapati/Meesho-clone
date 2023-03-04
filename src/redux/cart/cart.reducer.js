@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER } from "./cart.actionTypes";
+import { ADD_CART_SUCESS, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER } from "./cart.actionTypes";
 
 const initialState = {
     loading: false,
@@ -19,7 +19,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             }
         }
 
-        case ADD_TO_CART: {
+        case ADD_CART_SUCESS: {
             return {
                 ...state,
                 loading: false,

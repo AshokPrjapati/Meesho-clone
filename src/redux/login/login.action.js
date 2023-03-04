@@ -20,6 +20,7 @@ export const login = (cred, router, Toast) => async (dispatch) => {
             sessionStorage.setItem("user", JSON.stringify(credentials));
             Toast(message, "success");
             router.push("/");
+            Toast("Redirectring to home page...", "info")
         } else {
             let { message } = data;
             dispatch({ type: AUTH_ERROR });
