@@ -103,9 +103,7 @@ export default function Home({ data }) {
                     <Select m={"4px"}>
                       {category.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
@@ -114,9 +112,7 @@ export default function Home({ data }) {
                     <Select m={"4px"}>
                       {fabric.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
@@ -125,32 +121,24 @@ export default function Home({ data }) {
                     <Select m={"4px"}>
                       {Size.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Rating</h2>
-
                     <Select m={"4px"}>
                       {Rating.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
 
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Gender</h2>
-
                     <Select m={"4px"}>
                       {Gender.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
 
@@ -158,96 +146,39 @@ export default function Home({ data }) {
 
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Discount</h2>
-
                     <Select m={"4px"}>
                       {Discount.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
+                        <option key={el}>{el}</option>
+                      ))}
                     </Select>
                   </Box>
                 </Flex>
               </Box>
+
+
               <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={{ sm: "90%", lg: "80%" }} >
                 <SimpleGrid columns={{ base: 1, md: 1, sm: 1, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
                   {data.length && data.map((el) => (
                     <Box className={styles.cardsprod} height={"100%"} key={el._id}>
-                      <Productcard key={el._id} id={el._id} {...el} />
+                      <Productcard id={el._id} {...el} />
                     </Box>
                   ))}
                 </SimpleGrid>
               </Box>
             </Flex>
           </Box>
-
-
-
           <Box mt={"1rem"} p={"5px"} w={"90%"} >
             <h2 style={{ fontWeight: "normal" }}>Size</h2>
 
             <Select m={"4px"}>
               {Size.map((el) => (
                 <option key={el}>{el}</option>
-              )
-              )
-              }
+              ))}
             </Select>
           </Box>
 
-
-
-          {/* <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Colors</h2>
-
-                    <Select m={"4px"}>
-                      {colors.map((el) => (
-                        <option key={el}>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Price</h2>
-
-                    <Select m={"4px"}>
-                      {Price.map((el) => (
-                        <option key={el}>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Rating</h2>
-
-                    <Select m={"4px"}>
-                      {Rating.map((el) => (
-                        <option key={el}>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-
-                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
-                    <h2 style={{ fontWeight: "normal" }}>Discount</h2>
-
-                    <Select m={"4px"}>
-                      {Discount.map((el) => (
-                        <option key={el}>{el}</option>
-                      )
-                      )
-                      }
-                    </Select>
-                  </Box>
-                </Flex>
-              </Box>  */}
-
-          <Box  > <Footer />
+          <Box  >
+            <Footer />
             <div style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}>
               <Button className={styles.desbtn} onClick={() => setdes(!des)}>More About Meesho {des ? <ChevronUpIcon /> : <ChevronDownIcon />} </Button>
               {des ? <div className={styles.description}>
@@ -270,8 +201,6 @@ export default function Home({ data }) {
                     When it comes to womens ethnic wear, we have everything you need to find the perfect outfit for any occasion. Whether you are looking for traditional sarees and blouses, or something more modern like suits or casual Kurtis, we have it all. And with our stunning collection of accessories, footwear, and jewellery sets, its easy to put together a complete look that will turn heads at your next wedding or festive celebration. So come and shop with us today!
                   </Text>
                 </div>
-
-
                 <div>
                   <Heading>Western Wear for Women</Heading>
                   <Text >
@@ -385,9 +314,6 @@ export default function Home({ data }) {
                   </div>
                 </div>
                 <div className={styles.linkSection}>
-
-
-
                   <h4>Men Ethnicwear</h4>
                   <div className={styles.links}>
                     <a href='#'>Men Dhoti Kurtas</a> | <a href='#'> Men Indo Western Dresses</a> |  <a href='#'>Men Velvet Sherwanis </a> |  <a href='#'>Cotton Bedsheets</a> |  <a href='#'> Men Dhotis</a>
@@ -395,9 +321,6 @@ export default function Home({ data }) {
                 </div>
 
                 <div className={styles.linkSection}>
-
-
-
                   <h4>Women Western Wear</h4>
                   <div className={styles.links}>
                     <a href='#'>Women Frocks</a> | <a href='#'> Long Tops Women</a> |  <a href='#'> Tshirt Dresses</a> |  <a href='#'>Designer Gown</a> |  <a href='#'>Pencil Skirts</a> |  <a href='#'>Women Trousers</a> |<a href='#'>Flared Jeans</a> |  <a href='#'>Women Sweatshirts</a> |  <a href='#'>Shrugs </a> |  <a href='#'>Jacket Dresses</a> |  <a href='#'>Fancy Ladies Sweater</a>   |  <a href='#'>Chikankari Palazzos</a> | <a href='#'> Ankle Length Leggings </a> |  <a href='#'> Tights</a> |  <a href='#'>Printed Leggings</a> |  <a href='#'>Short Night Dress </a> |  <a href='#'>Maternity Wear</a> |<a href='#'>Denim Women Shorts</a> |  <a href='#'>Black Jeggings</a> |  <a href='#'>Women Night Suits </a> |  <a href='#'>Lace Lingerie Sets</a> |  <a href='#'>Lingerie Sets</a>
@@ -405,19 +328,13 @@ export default function Home({ data }) {
                 </div>
 
                 <div className={styles.linkSection}>
-
-
-
                   <h4>Women Footwear</h4>
                   <div className={styles.links}>
                     <a href='#'>Women Slippers</a> | <a href='#'> Bellies</a> |  <a href='#'> Juttis</a> |  <a href='#'>Mojaris</a> |  <a href='#'>Sandals</a> |
                   </div>
                 </div>
 
-
                 <div className={styles.linkSection}>
-
-
                   <h4>Baby</h4>
                   <div className={styles.links}>
                     <a href='#'>Baby Pillows</a> | <a href='#'> Baby Towels</a> |  <a href='#'>Baby Hanging Cradle</a> |  <a href='#'>Baby Sleeping Bag</a> |  <a href='#'>Baby Blanket</a>
@@ -426,7 +343,6 @@ export default function Home({ data }) {
 
 
                 <div className={styles.linkSection}>
-
                   <h4>Home & Kitchen</h4>
                   <div className={styles.links}>
                     <a href='#'>Toaster</a> | <a href='#'> Mixer Grinder</a> |  <a href='#'>Cookers</a> |  <a href='#'>Juicer</a> |  <a href='#'>Food Processors</a> |  <a href='#'>Roti Maker</a> |  <a href='#'>Sandwich Maker</a> |  <a href='#'>Kettles</a> |  <a href='#'>Hand Blender </a> |  <a href='#'>Table Cover</a> |  <a href='#'>Napkins Holder</a>  |  <a href='#'>Kitchen Mat</a>  |  <a href='#'> Kitchen Towel</a>  |  <a href='#'>Aprons</a>  |  <a href='#'> Kitchen Gloves</a>  |  <a href='#'>Racks & Holders</a>  |  <a href='#'>Spice Racks</a>  |  <a href='#'>Thermos & Flasks </a>  |  <a href='#'>Lunch Boxes </a>  |  <a href='#'>Water Bottles</a>   |  <a href='#'>Jars & Container</a>  |  <a href='#'>Salt & Pepper Shakers</a>  |  <a href='#'>Knives</a>  |  <a href='#'>Food Strainers</a>  |  <a href='#'>Choppers</a>  |  <a href='#'> Mashers</a>  |  <a href='#'>Graters </a>  |  <a href='#'>Cutlery</a>
@@ -435,8 +351,6 @@ export default function Home({ data }) {
 
 
                 <div className={styles.linkSection}>
-
-
                   <h4>Personal Care & Wellness</h4>
                   <div className={styles.links}>
                     <a href='#'>Tummy trimmer</a> | <a href='#'>Makeup Kits</a> |  <a href='#'> Hair Care </a> |  <a href='#'>Hair Color</a> |  <a href='#'>Hair Steamers</a> |  <a href='#'>Oral Care </a> |  <a href='#'>Beard Oil</a> |  <a href='#'>Deodorants</a> |  <a href='#'>Eye Lenses</a> |  <a href='#'>Soap</a> |  <a href='#'>Oximeter </a> |  <a href='#'> Bb Cream </a> |  <a href='#'>Body Scrub</a> |  <a href='#'> Olive Oils </a> |  <a href='#'>Talcum Powder </a> |  <a href='#'> Face Steamers  </a> |  <a href='#'>Compact </a> |  <a href='#'>Nail Cutter</a> |  <a href='#'>Lip Balm </a>
@@ -445,10 +359,8 @@ export default function Home({ data }) {
               </div> : null}
             </div>
           </Box>
-
         </Flex>
       </div >
-
     </>
   )
 }

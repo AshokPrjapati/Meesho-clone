@@ -22,13 +22,11 @@ async function UserRegisteration(req, res) {
     try {
         const CheckUser = await UserModel.findOne({ email: payload.email })
 
-        if (CheckUser) return res.status(400).json({ message: "User already exist" })
+        if (CheckUser) return res.status(401).json({ message: "User already exist" })
 
         const hash = await bcrypt.hash(password, 5);
 
         const user = new UserModel({ ...payload, password: hash });
-
-
 
         await user.save();
 
