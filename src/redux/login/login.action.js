@@ -2,20 +2,22 @@
 
 
 
-import { AUTH_ERROR, AUTH_LOGIN, AUTH_LOGOUT, AUTH_SIGNUP } from "./login.actionTypes";
+import axios from "axios";
+import { AUTH_ERROR, AUTH_LOADING, AUTH_LOGIN, AUTH_LOGOUT, AUTH_SIGNUP } from "./login.actionTypes";
 import { userLogin, userSignup } from "./login.api";
 
 
-export const login = (data, router, Toast) => async (dispatch) => {
+export const login = (cred, router, Toast) => async (dispatch) => {
 
+    dispatch({ type: AUTH_LOADING });
     try {
-        let res = await axios.post(`/user/login`, data);
+        let res = await axios.post(`/user/login`, cred);
         let data = res.data;
 
         if (data.status === 200) {
-            let { token, credentials, message } = data;
-            dispatch({ type: AUTH_LOGIN, payload: { token, ...credentials } });
-            sessionStorage.setItem("user", credentials);
+            let { credentials, message } = data;
+            dispatch({ type: AUTH_LOGIN, payload: credentials });
+            sessionStorage.setItem("user", JSON.stringify(credentials));
             Toast(message, "success");
             router.push("/");
         } else {
@@ -24,9 +26,9 @@ export const login = (data, router, Toast) => async (dispatch) => {
             Toast(message, "info");
         }
 
-    } catch (e) {
+    } catch (error) {
         dispatch({ type: AUTH_ERROR });
-        alert("something went wrong while login")
+        Toast(error.message, "error");
     }
 
 }
@@ -53,7 +55,22 @@ export const signup = (data) => async (dispatch) => {
 
 
 
-export const logout = () => (dispatch) => {
-    dispatch({ type: AUTH_LOGOUT })
-    return
+export const logout = (email, Toast) => async (dispatch) => {
+    dispatch({ type: AUTH_LOADING });
+    try {
+        let res = await axios.post(`/user/logout`, { email });
+        let data = await res.data;
+
+        if (data.status === 200) {
+            dispatch({ type: AUTH_LOGOUT, payload: data.message });
+            sessionStorage.clear();;
+            Toast(data.message, "success");
+        } else {
+            dispatch({ type: AUTH_ERROR });
+            Toast(data.message, "info");
+        }
+    } catch (error) {
+        dispatch({ type: AUTH_ERROR });
+        Toast(error.message, "error");
+    }
 }
