@@ -5,6 +5,7 @@ const initialState = {
     error: "",
     cartProducts: [],
     cartTotal: 0,
+    orderData: []
 }
 
 export const cartReducer = (state = initialState, { type, payload }) => {
@@ -21,7 +22,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case ADD_TO_CART: {
             return {
                 ...state,
-                cartProducts: [...payload]
+                cartProducts: [...state.cartProducts, payload]
             }
         }
 
@@ -40,10 +41,9 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         }
 
         case DELETE_TO_CART: {
-            let newCart = state.cartProducts.filter(p => p.id !== payload);
             return {
                 ...state,
-                cartProducts: newCart
+                cartProducts: payload
             }
         }
 
@@ -54,12 +54,27 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             }
         }
 
-        case UPDATE_ORDER_DATA: {
+        case ORDER_LOADING: {
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+
+        case PLACE_ORDER: {
             return {
                 ...state,
                 orderData: payload
             }
         }
+
+        case ORDER_ERROR: {
+            return {
+                ...state,
+                error: payload
+            }
+        }
+
         default: return state;
 
     }

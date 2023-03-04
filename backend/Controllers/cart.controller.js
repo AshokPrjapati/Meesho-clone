@@ -8,8 +8,7 @@ async function AddToCart(req, res) {
     try {
         let cartProduct = new CartModel(payload);
         await cartProduct.save();
-        const cartProducts = await CartModel.find({ user });
-        res.status(200).send({ "message": "Product added successfully in cart", cartProducts });
+        res.status(200).send({ "message": "Product added successfully in cart", cartProduct });
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });
