@@ -1,40 +1,11 @@
 import { CiSearch } from "react-icons/ci";
 import { MdManageAccounts } from "react-icons/md";
 import { AiOutlineShoppingCart, AiOutlineMobile } from "react-icons/ai";
-import {
-  Dropdown,
-  Dropdown1,
-  Dropdown2,
-  Dropdown4,
-  Dropdown5,
-  Dropdown6,
-  Dropdown7,
-  Dropdown8,
-  Dropdown3,
-} from "./Dropdown";
-import {
-  Flex,
-  Spacer,
-  Box,
-  Heading,
-  ButtonGroup,
-  Button,
-  InputLeftElement,
-  InputGroup,
-  Input,
-  Tooltip,
-  Text,
-  Menu,
-  MenuButton,
-  Avatar,
-  MenuList,
-  Center,
-  MenuDivider,
-  MenuItem,
-} from "@chakra-ui/react";
+import { Dropdown, Dropdown1, Dropdown2, Dropdown4, Dropdown5, Dropdown6, Dropdown7, Dropdown8, Dropdown3 } from "./Dropdown";
+import { Flex, Spacer, Box, Heading, ButtonGroup, Button, InputLeftElement, InputGroup, Input, Tooltip, Text, Menu, MenuButton, Avatar, MenuList, Center, MenuDivider, MenuItem } from "@chakra-ui/react";
 import styles from "./Navbar.module.css";
-import { useState,  useEffect } from "react";
-
+import { useState, useEffect } from "react";
+import useToastMsg from "@/custom-hooks/useToast";
 
 import { useRouter } from "next/router";
 
@@ -61,6 +32,7 @@ export const Profile = () => {
 
 import { logout } from "@/redux/login/login.action";
 const Navbar = ({ display = "flex" }) => {
+  const Toast = useToastMsg();
   const router = useRouter();
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
@@ -73,18 +45,19 @@ const Navbar = ({ display = "flex" }) => {
   const [dropdown8, setdropdown8] = useState(false);
 
 
-  const [data, setData] = useState(false);
-const dispatch=useDispatch()
-const user=useSelector(store=>store.login)
-useEffect(()=>{
-  setData(user.credentials)
-},[])
+  const [data, setData] = useState({});
+  const dispatch = useDispatch()
+  const user = useSelector(store => store.login.credentials);
+
+  useEffect(() => {
+    setData(user)
+  }, []);
 
 
 
   const signout = async () => {
-   dispatch(logout())
-   setData("")
+    if (user.email) dispatch(logout(user.email, Toast));
+    setData({})
   };
 
   return (
@@ -93,10 +66,10 @@ useEffect(()=>{
         <Flex bg={"#ffffff"} alignItems="center" gap="2">
           <Box p="2" display={"flex"}>
             <Link href={"/"}>
-            <Heading size="lg" color={"#f43397"}>
-              
-              ApniDukan
-            </Heading>
+              <Heading size="lg" color={"#f43397"}>
+
+                ApniDukan
+              </Heading>
             </Link>
             <InputGroup marginLeft={"20px"}>
               <InputLeftElement
@@ -139,7 +112,7 @@ useEffect(()=>{
                   </Center>
                 </Flex>
               </MenuButton>
-              {data ? (
+              {data.token ? (
                 <MenuList alignItems={"center"}>
                   <br />
                   <Center>
@@ -156,26 +129,23 @@ useEffect(()=>{
                   </Center>
                   <br />
                   <MenuDivider />
-                  {data.role=="ADMIN"?<MenuItem>Admin panel</MenuItem>:null}
-                  
+                  {data.role == "ADMIN" ? <MenuItem>Admin panel</MenuItem> : null}
+
                   <MenuItem>My Orders</MenuItem>
                   <MenuItem onClick={signout}>Logout</MenuItem>
                 </MenuList>
               ) : (
                 <MenuList alignItems={"center"} >
-                 
-                    <MenuItem    width="90%" justifyContent={"center"}
-                         backgroundColor={"rgb(231,48,150)"}  margin="10px"color="white">Hello User  </MenuItem>
-                 
-                
-                
+
+                  <MenuItem width="90%" justifyContent={"center"}
+                    backgroundColor={"rgb(231,48,150)"} margin="10px" color="white">Hello User  </MenuItem>
                   <a href="/login">
                     <MenuItem
                       style={{
                         background: "rgb(231,48,150)",
                         color: "white",
                         fontSize: "20px",
-                        
+
                         fontWeight: "bolder",
                         width: "90%",
                         justifyContent: "center",
@@ -208,8 +178,8 @@ useEffect(()=>{
             <Button
               variant={"ghost"}
               onClick={() => {
-                if (data) router.push("/cart");
-                else alert("Please Login/Signup to access cart");
+                if (data.token) router.push("/cart");
+                else Toast("Please Login/Signup to access cart", "error");
               }}
             >
               <Flex align="center">

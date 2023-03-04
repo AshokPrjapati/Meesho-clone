@@ -1,19 +1,27 @@
 import axios from "axios";
-import { ADD_TO_CART, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER, UPDATE_ORDER_DATA } from "./cart.actionTypes";
-import { addCartProduct, deleteCartProduct, fetchCartProducts, updateOrder } from "./cart.api";
+import { ADD_CART_SUCESS, ADD_TO_CART, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER, UPDATE_ORDER_DATA } from "./cart.actionTypes";
 
 
-export const addToCart = (payload, Toast) => async (dispatch) => {
+export const addToCart = (token, product, Toast) => async (dispatch) => {
     dispatch({ type: CART_LOADING });
     try {
-        let res = await axios.post('/cart/add', payload);
+        // adding product id to cart product
+        const payload = { ...product, productID: product._id }
+        // removing default _id from product
+        delete payload._id;
+        // passing payload as request body to server
+        let res = await axios.post('/cart/add', payload, { headers: { 'Authorization': token } });
+        // if product already exists in cart
+        if (res.data.status === 201) return Toast(res.data.message, "info");
+        // adding product to cart state
         let data = await res.data.cartProduct;
-        dispatch({ type: ADD_TO_CART, payload: data });
+        dispatch({ type: ADD_CART_SUCESS, payload: data });
+        // success message
         Toast(`${data.title} is added to cart`, "success");
     } catch (error) {
         console.log(error);
         dispatch({ type: CART_ERROR, payload: error.message || "Something went wrong" });
-        Toast(error.message || "Something went wrong", "error");
+        Toast(error.response?.data?.message || "Something went wrong", "error");
     }
 }
 
