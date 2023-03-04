@@ -72,11 +72,7 @@ const AddProductPage = () => {
       productdata.price
     ) {
       try {
-        axios({
-          method: `post`,
-          baseURL: `${api}/products`,
-          data: { ...productdata },
-        });
+        axios.post("/product/add")
       } catch (err) {
         alert("Facing some issues please try again");
         return;

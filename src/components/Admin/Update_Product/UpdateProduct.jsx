@@ -16,7 +16,7 @@ import { api } from "@/api";
 
 const getUrl = (api, filterBy) => {
   if (filterBy) {
-    api = `${api}?category=${filterBy}`;
+    api = `${api}/product/getall?category=${filterBy}`;
   }
   return api;
 };
@@ -28,15 +28,17 @@ const UpdateProduct = () => {
 
   React.useEffect(() => {
     getProductsData();
-  }, [filterBy]);
+  }, []);
 
   const getProductsData = async (params) => {
-    let getApi = getUrl(`${api}/products`, filterBy);
-    let res = await axios({
-      baseURL: getApi,
-      method: `get`,
-    });
-    setData(res.data);
+  
+    const res = await axios.get(`/product/getall`);
+    const d = await res.data;
+    setData( d.products);
+  
+  
+    
+   
   };
 
   const handleChange = (e) => {

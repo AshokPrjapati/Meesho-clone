@@ -28,14 +28,7 @@ const Update = ({ product }) => {
       a = +a;
     }
 
-    // if (b == "reviews") {
-    //   let r = {
-    //     rate: a,
-    //     count: 0,
-    //   };
-    //   setData({ ...productdata, [b]: { ...r } });
-    //   return;
-    // }
+  
     setData({ ...productdata, [b]: a });
   };
 
@@ -48,7 +41,7 @@ const Update = ({ product }) => {
       productdata.price
     ) {
       try {
-        let res = await fetch(`${api}/${id}`, {
+        let res = await fetch(`${api}/product/update/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -69,12 +62,9 @@ const Update = ({ product }) => {
 
   const deleteProduct = async (id) => {
     try {
-      // axios({
-      //   method: 'DELETE',
-      //   url: `https://lazy-erin-caridea-veil.cyclic.app/products/${id}`
-      // });
+     
 
-      let res = await fetch(`${api}/${id}`, {
+      let res = await fetch(`${api}/product/update/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -291,10 +281,11 @@ const Update = ({ product }) => {
 };
 
 export async function getStaticPaths() {
-  let r = await fetch(`${api}/products`);
+  let r = await fetch(`${api}/product/getall`);
   let d = await r.json();
+  console.log(d)
   return {
-    paths: d.map((product) => ({ params: { id: String(product.id) } })),
+    paths: d?.map((product) => ({ params: { id: String(product._id) } })),
     fallback: false,
   };
 }
@@ -302,7 +293,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   let id = context.params.id;
   // console.log(`Building id: ${id}`);
-  let r = await fetch(`${api}/${id}`);
+  let r = await fetch(`${api}/product/update/${id}`);
   let d = await r.json();
   return {
     props: {
