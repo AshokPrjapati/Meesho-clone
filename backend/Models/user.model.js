@@ -71,6 +71,7 @@ const reviewSchema = new mongoose.Schema({
 const cartSchema = new mongoose.Schema({
     productID: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: "product",
         required: true
     },
     image: {

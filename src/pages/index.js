@@ -51,7 +51,6 @@ export default function Home({ data }) {
       <div>
         <div className={styles.big}><Navbar /></div>
         <div className={styles.small}><SmallNavbar /></div>
-        {/*  */}
 
         <header className={styles.header}>
 

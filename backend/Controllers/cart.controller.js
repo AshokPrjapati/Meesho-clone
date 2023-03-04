@@ -4,9 +4,11 @@ const { CartModel, AddressModel } = require("../Models/user.model")
 
 // adding to cart
 async function AddToCart(req, res) {
-    const { user, ...payload } = req.body;
+    let id = req.body.productID;
     try {
-        let cartProduct = new CartModel(payload);
+        let isExists = await CartModel.findOne({ productID: id });
+        if (isExists) return res.status(201).send({ status: 201, "message": "Product already exists in cart" });
+        let cartProduct = new CartModel(req.body);
         await cartProduct.save();
         res.status(200).send({ "message": "Product added successfully in cart", cartProduct });
     } catch (error) {

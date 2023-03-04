@@ -7,10 +7,9 @@ import React, { useEffect, useState } from "react";
 import { Flex, Box, Image, Text, Button, SimpleGrid } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar/Navbar";
 import SmallNavbar from "@/components/Navbar/SmallNavbar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.action";
 import { useRouter } from "next/router";
-import { api } from "@/api";
 import UseToastMsg from "@/custom-hooks/useToast";
 import axios from "axios";
 
@@ -18,6 +17,7 @@ const SingleUserpage = () => {
   const dispatch = useDispatch();
   const Toast = UseToastMsg();
   const router = useRouter();
+  const token = useSelector(store => store.login.token);
 
   const [product, setProduct] = useState({});
 
@@ -33,6 +33,15 @@ const SingleUserpage = () => {
       fetchData(router.query.id);
     }
   }, [router.query.id]);
+
+  const addProduct = () => {
+    if (token) {
+      product._id ? dispatch(addToCart(token, product, Toast)) : Toast("Please wait...", "info");
+    } else {
+      Toast("Please login/signup first to add product into cart", "info");
+      router.push("/login");
+    }
+  }
 
 
   const { image, price, title, description } = product;
@@ -60,9 +69,7 @@ const SingleUserpage = () => {
           <Flex m={"auto"} w={"50%"}>
             <Button
               marginRight={"5px"}
-              onClick={() => {
-                dispatch(addToCart(product));
-              }}
+              onClick={addProduct}
             >
               Add to Cart
             </Button>
