@@ -14,12 +14,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { api } from "@/api";
 
-const getUrl = (api, filterBy) => {
-  if (filterBy) {
-    api = `${api}?category=${filterBy}`;
-  }
-  return api;
-};
+// const getUrl = (api, filterBy) => {
+//   if (filterBy) {
+//     api = `${api}/product/getall?category=${filterBy}`;
+//   }
+//   return api;
+// };
 
 const UpdateProduct = () => {
   const router = useRouter();
@@ -31,12 +31,12 @@ const UpdateProduct = () => {
   }, [filterBy]);
 
   const getProductsData = async (params) => {
-    let getApi = getUrl(`${api}/products`, filterBy);
-    let res = await axios({
-      baseURL: getApi,
-      method: `get`,
-    });
-    setData(res.data);
+  
+    let res = await axios("/product/getall");
+    const d = await res.data;
+     setData(d.products);
+  
+   
   };
 
   const handleChange = (e) => {
@@ -104,7 +104,7 @@ const UpdateProduct = () => {
             gap="20px"
           >
             {data?.map((product) => {
-              return <ProductCard key={product.id} {...product} />;
+              return <ProductCard key={product._id} id={product._id} {...product} />;
             })}
           </SimpleGrid>
         </Box>
