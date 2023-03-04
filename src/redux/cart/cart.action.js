@@ -25,6 +25,8 @@ export const addToCart = (token, product, Toast) => async (dispatch) => {
     }
 }
 
+
+// for getting all cart products
 export const getCartProducts = (Toast) => async (dispatch) => {
     dispatch({ type: CART_LOADING });
     try {
@@ -38,6 +40,8 @@ export const getCartProducts = (Toast) => async (dispatch) => {
     }
 };
 
+
+// for removing product from cart
 export const removeCartProduct = (id, Toast) => async (dispatch) => {
     dispatch({ type: CART_LOADING });
     try {
@@ -52,6 +56,7 @@ export const removeCartProduct = (id, Toast) => async (dispatch) => {
     }
 }
 
+// for getting total of cart
 export const cartTotalPrice = () => async (dispatch) => {
     dispatch({ type: CART_LOADING });
     try {
@@ -65,7 +70,9 @@ export const cartTotalPrice = () => async (dispatch) => {
     }
 }
 
-export const orderSuccess = () => async (dispatch) => {
+
+// for placing order
+export const placeOrder = () => async (dispatch) => {
     dispatch({ type: ORDER_LOADING });
     try {
         let res = await axios.post(`cart/order`);

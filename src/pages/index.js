@@ -102,9 +102,7 @@ export default function Home({ data }) {
                     <Select m={"4px"}>
                       {category.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
@@ -113,9 +111,7 @@ export default function Home({ data }) {
                     <Select m={"4px"}>
                       {fabric.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
@@ -124,32 +120,24 @@ export default function Home({ data }) {
                     <Select m={"4px"}>
                       {Size.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Rating</h2>
-
                     <Select m={"4px"}>
                       {Rating.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
 
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Gender</h2>
-
                     <Select m={"4px"}>
                       {Gender.map((el) => (
                         <option key={el}>{el}</option>
-                      )
-                      )
-                      }
+                      ))}
                     </Select>
                   </Box>
 
@@ -157,31 +145,27 @@ export default function Home({ data }) {
 
                   <Box mt={"1rem"} p={"5px"} w={"90%"} >
                     <h2 style={{ fontWeight: "normal" }}>Discount</h2>
-
                     <Select m={"4px"}>
                       {Discount.map((el) => (
-                        <option>{el}</option>
-                      )
-                      )
-                      }
+                        <option key={el}>{el}</option>
+                      ))}
                     </Select>
                   </Box>
                 </Flex>
               </Box>
+
+
               <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={{ sm: "90%", lg: "80%" }} >
                 <SimpleGrid columns={{ base: 1, md: 1, sm: 1, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
                   {data.length && data.map((el) => (
                     <Box className={styles.cardsprod} height={"100%"} key={el._id}>
-                      <Productcard key={el._id} id={el._id} {...el} />
+                      <Productcard id={el._id} {...el} />
                     </Box>
                   ))}
                 </SimpleGrid>
               </Box>
             </Flex>
           </Box>
-
-
-
           <Box mt={"1rem"} p={"5px"} w={"90%"} >
             <h2 style={{ fontWeight: "normal" }}>Size</h2>
 
