@@ -15,6 +15,7 @@ import styles from "./addproduct.module.css";
 import UploadImage from "./UploadImage";
 import axios from "axios";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const productObject = {
   category: "",
@@ -30,6 +31,7 @@ const productObject = {
 };
 
 const AddProductPage = () => {
+  const token=useSelector(store=>store.login.token)
   const [productdata, setData] = React.useState({
     image: "",
     title: "",
@@ -72,9 +74,10 @@ const AddProductPage = () => {
       productdata.price
     ) {
       try {
-        axios.post("/product/add")
+        axios.post("/product/add",productdata,{ headers: { 'Authorization': token } })
       } catch (err) {
         alert("Facing some issues please try again");
+        console.log(err)
         return;
       }
 

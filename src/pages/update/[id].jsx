@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import styles from "./update.module.css";
+import axios from "axios";
 import {
   Heading,
   Center,
@@ -15,11 +16,43 @@ import Link from "next/link";
 import UploadImage from "../../components/Admin/UploadImage";
 import { useRouter } from "next/router";
 import { api } from "@/api";
+import { useSelector } from "react-redux";
 
-const Update = ({ product }) => {
+
+
+
+const Update = ( ) => {
+  const token=useSelector(store=>store.login.token)
   const router = useRouter();
+  let id=router.query.id
+   
+  // const [product,setProduct]=useState({})
+  const [productdata, setData] = React.useState({});
 
-  const [productdata, setData] = React.useState(product);
+
+  
+const getData=async(id)=>{
+  try{
+    let r = await axios(`/product/singleproduct/${id}`);
+      let d = await r.data;
+      let product=d.products[0]
+    setData(product)
+   
+    console.log(d)
+  }catch(err){
+    console.log(err)
+  }
+}
+
+  useEffect(()=>{
+  if(id){
+
+   getData(id)
+   
+  }
+},[id])
+console.log(productdata)
+  
 
   const onInputChange = (e) => {
     let a = e.target.value;
@@ -41,13 +74,7 @@ const Update = ({ product }) => {
       productdata.price
     ) {
       try {
-        let res = await fetch(`${api}/product/update/${id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(productdata),
-        });
+        axios.patch(`/product/update/${id}`,productdata,{ headers: { 'Authorization': token } })
       } catch (err) {
         console.log(err);
         alert("Facing some issues please try again");
@@ -61,25 +88,31 @@ const Update = ({ product }) => {
   };
 
   const deleteProduct = async (id) => {
-    try {
-     
+    if (
+      productdata.title &&
+      productdata.image &&
+      productdata.category &&
+      // productdata.reviews.rate &&
+      productdata.price
+    ) {
+      try {
+        axios.delete(`/product/remove/${id}`,{ headers: { 'Authorization': token } })
+      } catch (err) {
+        console.log(err);
+        alert("Facing some issues please try again");
+        return;
+      }
 
-      let res = await fetch(`${api}/product/update/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      alert("Product deleted successfully");
-      router.push("/updateProduct");
-    } catch (err) {
-      alert("Facing some issues please try again");
+      alert("Product deleted Successfully");
     }
   };
 
+ 
+
   return (
-    <div className={styles.container}>
+  <>
+ 
+   <div className={styles.container}>
       <div className={styles.blurr}>
         <Center>
           <Heading
@@ -127,7 +160,7 @@ const Update = ({ product }) => {
                   </label>
 
                   <Input
-                    value={productdata.title}
+                    value={productdata?.title}
                     placeholder="Title"
                     name="title"
                     onChange={onInputChange}
@@ -148,7 +181,7 @@ const Update = ({ product }) => {
                   </label>
 
                   <Input
-                    value={productdata.price}
+                    value={productdata?.price}
                     type="number"
                     placeholder="Price"
                     name="price"
@@ -170,7 +203,7 @@ const Update = ({ product }) => {
                   </label>
 
                   <Input
-                    value={productdata.discount}
+                    value={productdata?.discount}
                     type="number"
                     placeholder="Discount"
                     name="discount"
@@ -215,7 +248,7 @@ const Update = ({ product }) => {
                   </label>
 
                   <Textarea
-                    value={productdata.description}
+                    value={productdata?.description}
                     placeholder="Product Description"
                     name="description"
                     onChange={onInputChange}
@@ -236,7 +269,7 @@ const Update = ({ product }) => {
                   </label>
 
                   <Select
-                    value={productdata.category}
+                    value={productdata?.category}
                     placeholder="Select Category"
                     className={styles.option}
                     name="category"
@@ -254,7 +287,7 @@ const Update = ({ product }) => {
                       mt={4}
                       colorScheme="green"
                       type="submit"
-                      onClick={() => handleUpdate(productdata.id)}
+                      onClick={() => handleUpdate(productdata._id)}
                     >
                       Update
                     </Button>
@@ -262,7 +295,7 @@ const Update = ({ product }) => {
                       mt={4}
                       colorScheme="red"
                       type="submit"
-                      onClick={() => deleteProduct(productdata.id)}
+                      onClick={() => deleteProduct(productdata._id)}
                     >
                       Delete
                     </Button>
@@ -272,34 +305,35 @@ const Update = ({ product }) => {
             </div>
           </Box>
           <Box width={"fit-content"} margin={"auto"}>
-            <UploadImage product={productdata} img={productdata.image} />
+            <UploadImage product={productdata} img={productdata?.image} />
           </Box>
         </Flex>
       </div>
     </div>
+  </>
   );
 };
 
-export async function getStaticPaths() {
-  let r = await fetch(`${api}/product/getall`);
-  let d = await r.json();
-  console.log(d)
-  return {
-    paths: d?.map((product) => ({ params: { id: String(product._id) } })),
-    fallback: false,
-  };
-}
+// export async function getServerSideProps() {
+//   let r = await axios(`/product/singleproduct/${id}`);
+//   let d = await r.data.products;
+//   console.log(d)
+//   return {
+//     paths: d?.map((product) => ({ params: { id: String(product._id) } })),
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps(context) {
-  let id = context.params.id;
-  // console.log(`Building id: ${id}`);
-  let r = await fetch(`${api}/product/update/${id}`);
-  let d = await r.json();
-  return {
-    props: {
-      product: d,
-    },
-  };
-}
+// export async function getStaticProps(context) {
+//   let id = context.params.id;
+//   // console.log(`Building id: ${id}`);
+//   let r = await axios(`/product/update/${id}`);
+//   let d = await r.json();
+//   return {
+//     props: {
+//       product: d,
+//     },
+//   };
+// }
 
 export default Update;
