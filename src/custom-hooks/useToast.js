@@ -1,7 +1,7 @@
 import React from 'react'
 import { useToast } from '@chakra-ui/react'
 
-const UseToastMsg = () => {
+const useToastMsg = () => {
     const toast = useToast();
     const Toast = (msg, status) => {
         toast(
@@ -18,4 +18,4 @@ const UseToastMsg = () => {
     return Toast;
 }
 
-export default UseToastMsg
+export default useToastMsg

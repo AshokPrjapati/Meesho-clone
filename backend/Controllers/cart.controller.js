@@ -49,7 +49,7 @@ async function CartTotal(req, res) {
         cartProducts.forEach((p) => {
             total += p.price * p.quantity;
         });
-        res.status(200).send({ total });
+        res.status(200).send({ message: "total is updated", total });
 
     } catch (error) {
         console.log(error);
@@ -111,7 +111,7 @@ async function placeOrder(req, res) {
 
         // remove cart items
         await CartModel.deleteMany({ user });
-        res.status(200).send({ message: 'Order placed successfully' });
+        res.status(200).send({ message: 'Order placed successfully', orderItems: cartItems });
 
     } catch (error) {
         console.log(error);

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, UPDATE_ORDER_DATA } from "./cart.actionTypes";
+import { ADD_TO_CART, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER } from "./cart.actionTypes";
 
 const initialState = {
     loading: false,
@@ -22,6 +22,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case ADD_TO_CART: {
             return {
                 ...state,
+                loading: false,
                 cartProducts: [...state.cartProducts, payload]
             }
         }
@@ -29,6 +30,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case CART_ERROR: {
             return {
                 ...state,
+                loading: false,
                 error: payload
             }
         }
@@ -36,6 +38,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case GET_CART: {
             return {
                 ...state,
+                loading: false,
                 cartProducts: [...payload]
             }
         }
@@ -43,6 +46,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case DELETE_TO_CART: {
             return {
                 ...state,
+                loading: false,
                 cartProducts: payload
             }
         }
@@ -50,6 +54,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case CART_TOTAL: {
             return {
                 ...state,
+                loading: false,
                 cartTotal: +payload
             }
         }
@@ -64,6 +69,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case PLACE_ORDER: {
             return {
                 ...state,
+                loading: false,
                 orderData: payload
             }
         }
@@ -71,6 +77,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case ORDER_ERROR: {
             return {
                 ...state,
+                loading: false,
                 error: payload
             }
         }
