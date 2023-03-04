@@ -4,7 +4,7 @@
 
 import axios from "axios";
 import { AUTH_ERROR, AUTH_LOADING, AUTH_LOGIN, AUTH_LOGOUT, AUTH_SIGNUP } from "./login.actionTypes";
-import { userLogin, userSignup } from "./login.api";
+import { userSignup } from "./login.api";
 
 
 export const login = (cred, router, Toast) => async (dispatch) => {
@@ -29,28 +29,34 @@ export const login = (cred, router, Toast) => async (dispatch) => {
 
     } catch (error) {
         dispatch({ type: AUTH_ERROR });
-        Toast(error.message, "error");
+        Toast(error.response?.data?.message, "error");
     }
 
 }
 
-export const signup = (data) => async (dispatch) => {
-
+// registering user to database
+export const signup = (cred, router, Toast) => async (dispatch) => {
+    dispatch({ type: AUTH_LOADING });
     try {
-        let s = await userSignup(data);
-        if (s.data.status === 200) {
+        let res = await axios.post(`/user/register`, cred);
+        let data = await res.data;
+        console.log(data);
+        // if registration is succesfull
+        if (data.status === 200) {
             dispatch({ type: AUTH_SIGNUP });
-            alert(`Signup successfull`);
-
-        } else if (d.data.status === undefined) {
-            alert("something went wrong with server try again later")
-        } else {
-            alert(s.data.message)
-            dispatch({ type: AUTH_ERROR });
+            Toast(data.message, "success");
+            router.push("/login");
+            Toast("Redirectring to login page...", "info")
         }
-
-    } catch (e) {
-        alert("something when wrong while fetching")
+        // if user already exists
+        else {
+            dispatch({ type: AUTH_ERROR });
+            Toast(data.message, "info");
+        }
+    } catch (error) {
+        // server or internal error
+        console.log(error)
+        Toast(error.response?.data?.message || "something went wrong", "error");
     }
 }
 
@@ -72,6 +78,6 @@ export const logout = (email, Toast) => async (dispatch) => {
         }
     } catch (error) {
         dispatch({ type: AUTH_ERROR });
-        Toast(error.message, "error");
+        Toast(error.response?.data?.message, "error");
     }
 }
