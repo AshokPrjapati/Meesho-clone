@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 function ConfirmModal({ isOpen, onClose, title, id }) {
   const dispatch = useDispatch();
   const token = useSelector(store => store.login.token);
+  const { loading } = useSelector(store => store.cart)
   const Toast = useToastMsg();
 
   // for removing product from databse
   const removeProduct = () => {
-    dispatch(removeCartProduct(id, token, Toast));
+    dispatch(removeCartProduct(id, token, Toast, onClose));
   }
 
   return (
@@ -24,14 +25,13 @@ function ConfirmModal({ isOpen, onClose, title, id }) {
 
           <ModalFooter>
             <Button
+              isLoading={loading}
+              loadingText={"Removing"}
               color={"#fff"}
               bg={"#f43f97"}
               _hover={{ bg: "#f43f97" }}
               mr={3}
-              onClick={() => {
-                removeProduct();
-                onClose();
-              }}
+              onClick={removeProduct}
             >
               Remove
             </Button>

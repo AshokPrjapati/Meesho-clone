@@ -42,13 +42,15 @@ export const getCartProducts = (token, Toast) => async (dispatch) => {
 
 
 // for removing product from cart
-export const removeCartProduct = (id, token, Toast) => async (dispatch) => {
+export const removeCartProduct = (id, token, Toast, onClose) => async (dispatch) => {
     dispatch({ type: CART_LOADING });
     try {
         let res = await axios.delete(`/cart/remove/${id}`, { headers: { 'Authorization': token } });
         // destructuring to get cart products and total price of cart
         const { cartProducts, total } = await res.data;
         dispatch({ type: DELETE_TO_CART, payload: { cartProducts, total } });
+        // closing the modal after succesfully removing the product
+        onClose();
         Toast(`product is removed from cart`, "success");
     } catch (error) {
         console.log(error);
