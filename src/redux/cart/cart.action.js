@@ -128,7 +128,7 @@ export const order = (token, Toast, router, setLoad) => async (dispatch) => {
     setLoad(true);
     try {
         let res = await axios.get(`cart/order`, { headers: { 'Authorization': token } });
-        let { orderItems } = await res.data;
+        let { orderItems, total } = await res.data;
         dispatch({ type: PLACE_ORDER, payload: orderItems });
         router.push("/cart/success");
         Toast("Order Placed Succesfully", "success");

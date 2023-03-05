@@ -5,7 +5,8 @@ const initialState = {
     error: "",
     cartProducts: [],
     cartTotal: 0,
-    orderData: []
+    orderData: [],
+    orderTotal: 0
 }
 
 export const cartReducer = (state = initialState, { type, payload }) => {
@@ -78,10 +79,13 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         }
 
         case PLACE_ORDER: {
+            let total = 0;
+            payload.forEach(p => total += (+p.price) * (+p.quantity));
             return {
                 ...state,
                 loading: false,
-                orderData: payload
+                orderData: payload,
+                orderTotal: total,
             }
         }
 

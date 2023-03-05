@@ -13,9 +13,10 @@ const cartTotal = (products) => {
 
 // adding to cart
 async function AddToCart(req, res) {
-    let id = req.body.productID;
+    let { productID, user } = req.body;
+
     try {
-        let isExists = await CartModel.findOne({ productID: id });
+        let isExists = await CartModel.findOne({ productID, user });
         if (isExists) return res.status(201).send({ status: 201, "message": "Product already exists in cart" });
         let cartProduct = new CartModel(req.body);
         await cartProduct.save();
@@ -116,14 +117,13 @@ async function placeOrder(req, res) {
 
         // create array of items to insert into success order
         const items = cartItems.map(cartItem => ({ ...cartItem }));
-
         // insert items into success order
         await OrderModel.insertMany({ user, items });
 
         // remove cart items
         await CartModel.deleteMany({ user });
 
-        res.status(200).send({ message: 'Order placed successfully', orderItems: cartItems, cartProducts: {}, total: 0 });
+        res.status(200).send({ message: 'Order placed successfully', orderItems: cartItems });
 
     } catch (error) {
         console.log(error);

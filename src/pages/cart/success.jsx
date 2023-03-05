@@ -3,11 +3,14 @@ import PriceDetails from "@/components/cart/PriceDetails";
 import Navbar from "@/components/Navbar/Navbar";
 import useToastMsg from "@/custom-hooks/useToast";
 import { getAddress } from "@/redux/address/address.action";
+import { StarIcon } from "@chakra-ui/icons";
 import {
   Alert,
   AlertIcon,
   Box,
+  Button,
   Container,
+  Divider,
   Flex,
   HStack,
   Image,
@@ -15,13 +18,15 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Success = () => {
-  const { orderData } = useSelector((store) => store.cart);
+  const { orderData, orderTotal } = useSelector((store) => store.cart);
   const token = useSelector(store => store.login.token);
   const Toast = useToastMsg();
+  const router = useRouter()
   const sa = useSelector((store) => store.address.addressData);
 
   const dispatch = useDispatch();
@@ -65,9 +70,9 @@ const Success = () => {
               >
                 <Text>Order Details</Text>
               </Flex>
-              {orderData?.products?.map((props) => (
+              {orderData.length ? orderData.map((props) => (
                 <Stack
-                  key={props.id}
+                  key={props._id}
                   padding={"10px"}
                   marginBottom={"15px"}
                   border={"1px solid #e1e1e1"}
@@ -104,7 +109,7 @@ const Success = () => {
                     </Text>
                   </Flex>
                 </Stack>
-              ))}
+              )) : null}
               <Flex
                 fontSize={"18px"}
                 fontWeight="500"
@@ -152,11 +157,58 @@ const Success = () => {
               <PaymentCard />
             </Box>
             <Box w="38%">
-              <PriceDetails
-                display={"flex"}
-                dest="/"
-                text="Continue Shopping"
-              />
+              <Stack p={"10px 20px"} lineHeight={8}>
+                <Text fontSize={"17px"} fontWeight={"500"}>
+                  Price Details
+                </Text>
+                <Flex justify={"space-between"}>
+                  <Text>Total Product Price</Text>
+                  <Text>₹{orderTotal}</Text>
+                </Flex>
+                <Flex justify={"space-between"}>
+                  <Text>Total Discount</Text>
+                  <Text>₹0</Text>
+                </Flex>
+                <Divider colorScheme={"whatsapp"} p={"5px"} />
+                <Flex justify={"space-between"}>
+                  <Text fontSize={"17px"} fontWeight={"500"}>
+                    Order Total
+                  </Text>
+                  <Text fontSize={"17px"} fontWeight={"500"}>
+                    {orderTotal}
+                  </Text>
+                </Flex>
+                <Button
+                  w="100%"
+                  sixe="xl"
+                  bg={"#d3f4ea"}
+                  color={"#038d63"}
+                  _hover={{ bg: "none" }}
+                  pointerEvents="none"
+                  borderRadius={0}
+                >
+                  <StarIcon mr="5px" /> Yay! Your Total Discount is ₹0
+                </Button>
+                <Text fontSize={"12px"} textAlign="center">
+                  Clicking on `Continue`` will not deduct any money
+                </Text>
+
+                <Button
+                  size="lg"
+                  color={"#fff"}
+                  bg={"#f43f97"}
+                  _hover={{ bg: "#f43f97" }}
+                  onClick={() => {
+                    router.push("/");
+                  }}
+                >
+                  Continue Shopping
+                </Button>
+
+                <Box pt={"20px"}>
+                  <Image src="https://images.meesho.com/images/marketing/1588578650850.webp" />
+                </Box>
+              </Stack>
             </Box>
           </Flex>
         </Container>
