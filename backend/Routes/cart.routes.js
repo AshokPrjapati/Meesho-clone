@@ -17,6 +17,6 @@ CartRouter.post("/addaddress", cart_controller.AddAddress);
 
 CartRouter.get("/getaddress", cart_controller.GetAddress);
 
-CartRouter.post("/order", cart_controller.placeOrder);
+CartRouter.get("/order", cart_controller.placeOrder);
 
 module.exports = CartRouter;

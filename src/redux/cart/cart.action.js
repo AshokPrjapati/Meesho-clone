@@ -124,16 +124,21 @@ export const getCartTotal = (token, Toast) => async (dispatch) => {
 }
 
 // for placing order
-export const placeOrder = () => async (dispatch) => {
-    dispatch({ type: ORDER_LOADING });
+export const order = (token, Toast, router, setLoad) => async (dispatch) => {
+    setLoad(true);
     try {
-        let res = await axios.post(`cart/order`);
-        let payload = await res.data.orderItems;
-        dispatch({ type: PLACE_ORDER, payload });
+        let res = await axios.get(`cart/order`, { headers: { 'Authorization': token } });
+        let { orderItems } = await res.data;
+        dispatch({ type: PLACE_ORDER, payload: orderItems });
+        router.push("/cart/success");
+        Toast("Order Placed Succesfully", "success");
+        Toast("Redirectring to summary page...", "info");
+        setLoad(false);
+
     } catch (error) {
         console.log(error);
-        dispatch({ type: ORDER_ERROR, payload: error.message || "Something went wrong" });
-        Toast(error.message || "Something went wrong while placing order", "error");
+        setLoad(false);
+        Toast(error.response?.data?.message || "Something went wrong while placing order", "error");
     }
 }
 

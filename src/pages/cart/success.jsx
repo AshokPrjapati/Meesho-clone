@@ -1,6 +1,7 @@
 import PaymentCard from "@/components/cart/PaymentCard";
 import PriceDetails from "@/components/cart/PriceDetails";
 import Navbar from "@/components/Navbar/Navbar";
+import useToastMsg from "@/custom-hooks/useToast";
 import { getAddress } from "@/redux/address/address.action";
 import {
   Alert,
@@ -19,15 +20,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Success = () => {
   const { orderData } = useSelector((store) => store.cart);
-  const { addressData } = useSelector((store) => store.address);
-  const sa = addressData.map((a) => {
-    if (a.selected === true) return a;
-  });
+  const token = useSelector(store => store.login.token);
+  const Toast = useToastMsg();
+  const sa = useSelector((store) => store.address.addressData);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAddress());
+    dispatch(getAddress(token, Toast));
   }, []);
+
+  console.log(orderData);
 
   return (
     <>
@@ -44,7 +46,7 @@ const Success = () => {
             <AlertIcon />
             <HStack justify={"space-around"}>
               <Text>Thanks for shopping with us !</Text>
-              <Text>Order Id : {`#${orderData.orderId}`}</Text>
+              {orderData.length ? <Text>Order Id : {`#${Date.now()}`}</Text> : null}
             </HStack>
           </Alert>
           <Flex>

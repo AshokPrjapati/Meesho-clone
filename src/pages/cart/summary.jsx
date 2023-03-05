@@ -15,34 +15,22 @@ import AddressCard from "@/components/cart/AddressCard";
 import { getAddress } from "@/redux/address/address.action";
 import PaymentCard from "@/components/cart/PaymentCard";
 import PaymentDetails from "@/components/cart/PaymentDetails";
+import useToastMsg from "@/custom-hooks/useToast";
 
 function Summary() {
-  const { cartProducts, cartTotal } = useSelector((store) => store.cart);
-  const { addressData } = useSelector((store) => store.address);
-  const selectedAddress = addressData.map((a) => {
-    if (a.selected === true) return a;
-  });
+  const { cartProducts } = useSelector((store) => store.cart);
+  const token = useSelector(store => store.login.token);
+  const Toast = useToastMsg();
+  const selectedAddress = useSelector((store) => store.address.addressData);
+
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCartProducts());
-    dispatch(getAddress());
+    dispatch(getCartProducts(token, Toast));
+    dispatch(getAddress(token, Toast));
   }, []);
 
-  useEffect(() => {
-    let tp = 0;
-    for (let p of cartProducts) {
-      tp += p.price;
-    }
-    dispatch(cartTotalPrice(tp));
-  }, [cartProducts]);
 
-  const handleTp = (p) => {
-    dispatch(cartTotalPrice(cartTotal + p));
-  };
-  const removeProduct = (id) => {
-    dispatch(removeCartProduct(id));
-  };
   return (
     <>
       <Head>
@@ -67,10 +55,8 @@ function Summary() {
               </Flex>
               {cartProducts.map((products) => (
                 <CartItem
-                  key={products.id}
+                  key={products._id}
                   {...products}
-                  handleTp={handleTp}
-                  removeProduct={removeProduct}
                 />
               ))}
               <Flex

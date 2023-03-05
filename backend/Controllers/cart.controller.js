@@ -1,4 +1,5 @@
 require("dotenv").config();
+const OrderModel = require("../Models/order.model");
 const { CartModel, AddressModel } = require("../Models/user.model")
 
 // calculating total cart price
@@ -117,11 +118,12 @@ async function placeOrder(req, res) {
         const items = cartItems.map(cartItem => ({ ...cartItem }));
 
         // insert items into success order
-        await orderModel.insertMany({ user, items });
+        await OrderModel.insertMany({ user, items });
 
         // remove cart items
         await CartModel.deleteMany({ user });
-        res.status(200).send({ message: 'Order placed successfully', orderItems: cartItems });
+
+        res.status(200).send({ message: 'Order placed successfully', orderItems: cartItems, cartProducts: {}, total: 0 });
 
     } catch (error) {
         console.log(error);
