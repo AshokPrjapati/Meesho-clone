@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { editAddress } from "@/redux/address/address.action";
 
 const AddressCard = ({
-  id,
+  _id,
   name,
   house,
   road,
@@ -75,9 +75,6 @@ const AddressCard = ({
           _hover={{ bg: "#f43f97" }}
           textAlign="left"
           display={display}
-          onClick={() => {
-            dispatch(editAddress(id, { selected: true }));
-          }}
         >
           <Link href={"/cart/payment"}> Deliver to this Address</Link>
         </Button>

@@ -3,7 +3,6 @@ import {
   Box,
   FormControl,
   FormLabel,
-
   Stack,
   Heading,
   useColorModeValue,
@@ -18,8 +17,10 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { signup } from "@/redux/login/login.action";
+import useToastMsg from "@/custom-hooks/useToast";
 
 export default function Login() {
+  const Toast = useToastMsg();
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -28,7 +29,9 @@ export default function Login() {
   const router = useRouter();
 
   const Signup = () => {
-    dispatch(signup({ username:name, email, password }));
+    if (!email || !password || !name) return Toast("Please fill all the fields", "error");
+    if (password.length < 6) return Toast("Password length must be greater than or equal to 6", "error");
+    dispatch(signup({ username: name, email, password }, router, Toast));
   };
 
   function handlechange(e) {
@@ -55,14 +58,14 @@ export default function Login() {
       </Flex>
 
       <Flex justify={"center"} >
-        <Stack spacing={8} mx={"auto"} py={12} px={6}width={["80%","50%","30%"]}>
+        <Stack spacing={8} mx={"auto"} py={12} px={6} width={["80%", "50%", "30%"]}>
           <Stack align={"center"}>
             <Heading fontSize={"4xl"} color="#f43397">
               Sign up{" "}
             </Heading>
           </Stack>
           <Box
-         
+
             rounded={"lg"}
             bg={useColorModeValue("white", "gray.700")}
             boxShadow={"lg"}
@@ -90,7 +93,6 @@ export default function Login() {
                   align={"start"}
                   justify={"space-between"}
                 ></Stack>
-            <Link href={"/login"}>
                 <Button
                   onClick={Signup}
                   bg={"#f43397"}
@@ -100,7 +102,7 @@ export default function Login() {
                   }}
                 >
                   Signup
-                </Button></Link>
+                </Button>
               </Stack>
             </Stack>
           </Box>

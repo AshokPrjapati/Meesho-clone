@@ -1,32 +1,23 @@
-import React, { useState } from "react";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  Flex,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  Text,
-  Button,
-  Heading,
-  Divider,
-  Image,
-  Stack,
-} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Drawer, DrawerBody, DrawerFooter, Flex, DrawerOverlay, DrawerContent, DrawerCloseButton, Text, Button, Heading, Divider, Image, Stack, } from "@chakra-ui/react";
 import Link from "next/link";
+import { updateCartProductQuantity } from "@/redux/cart/cart.action";
+import { useDispatch, useSelector } from "react-redux";
+import useToastMsg from "@/custom-hooks/useToast";
 
-const SideBar = ({
-  isOpen,
-  placement,
-  onClose,
-  btnRef,
-  data,
-  qty,
-  setQty,
-  handleTp,
-}) => {
-  const [price, setPrice] = React.useState(data.price);
+const SideBar = ({ isOpen, placement, onClose, btnRef, data }) => {
+
+  const loading = useSelector(store => store.cart.loading);
+  const Toast = useToastMsg();
+  const token = useSelector(store => store.login.token);
+  const dispatch = useDispatch();
+
+  const handleQuantity = (q) => {
+    token ? dispatch(updateCartProductQuantity(data._id, q, token, Toast))
+      : Toast("You are not authorized to do this operation", "info");
+  };
+
+
   return (
     <>
       <Drawer
@@ -65,28 +56,24 @@ const SideBar = ({
                     Qty
                   </Text>
                   <Button
-                    disabled={qty === 1}
                     m={"0 10px"}
                     fontSize="20px"
                     align="center"
                     onClick={() => {
-                      setPrice(price - data.price);
-                      setQty(qty - 1);
-                      handleTp(-data.price);
+                      data.quantity === 1 ? Toast("Quantity can't be zero") : handleQuantity(data.quantity - 1);
                     }}
                   >
                     -
                   </Button>
                   <Text fontSize={"18px"} fontWeight="400">
-                    {qty}
+                    {data.quantity}
                   </Text>
                   <Button
+                    isLoading={loading}
                     m={"0 10px"}
                     fontSize="20px"
                     onClick={() => {
-                      setPrice(price + data.price);
-                      setQty(qty + 1);
-                      handleTp(data.price);
+                      handleQuantity(data.quantity + 1);
                     }}
                   >
                     +
@@ -100,7 +87,7 @@ const SideBar = ({
                 Total Price
               </Text>
               <Text fontSize={"18px"} fontWeight="400">
-                ₹{price}
+                ₹{data.price * data.quantity}
               </Text>
             </Flex>
           </DrawerBody>
@@ -119,7 +106,7 @@ const SideBar = ({
             </Button>
           </DrawerFooter>
         </DrawerContent>
-      </Drawer>
+      </Drawer >
     </>
   );
 };

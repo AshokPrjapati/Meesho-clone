@@ -9,7 +9,7 @@ const Header = () => {
     <div className={styles.headcontainer}>
       <div className={styles.wrapper}>
         <div className={styles.title}>
-          <h2>Hello,<span>Shivam</span></h2>
+          <h2>Hello,<span>Admin</span></h2>
           {/* currently hardcord */}
           <p>Welcome to the board</p>
         </div>

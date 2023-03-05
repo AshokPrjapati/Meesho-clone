@@ -13,23 +13,23 @@ import {
   Image,
 } from "@chakra-ui/react";
 
-
-
-import { useState} from "react";
-
+import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { login } from "@/redux/login/login.action";
+import useToastMsg from "@/custom-hooks/useToast";
 export default function Login() {
+
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const Toast = useToastMsg();
   const dispatch = useDispatch();
 
   const router = useRouter();
 
   const signin = () => {
-    dispatch(login({ email, password }));
+    dispatch(login({ email, password }, router, Toast));
   };
 
   function handlechange(e) {
@@ -100,7 +100,7 @@ export default function Login() {
                     bg: "green.500",
                   }}
                 >
-                 
+
                   SignIn
                 </Button>
                 <Text>If you are not a registered user?</Text>
@@ -116,7 +116,7 @@ export default function Login() {
             }}
           >
             <Link href="/Signup">
-            Create your Account here</Link>
+              Create your Account here</Link>
           </Button>
         </Stack>
       </Flex>
