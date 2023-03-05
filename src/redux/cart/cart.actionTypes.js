@@ -21,6 +21,5 @@ export const ORDER_ERROR = "order/error"
 // types for placing porder
 export const PLACE_ORDER = "order/sucess";
 
-// types for update quantity for cart products
-export const INC_CART_COUNT = "inc/cart";
-export const DEC_CART_COUNT = "dec/cart";
+// type for update quantity for cart products
+export const QTY_UPDATE_SUCCESS = "qty/update/suceess";

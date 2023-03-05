@@ -70,10 +70,12 @@ async function CartTotal(req, res) {
 // update cart
 async function UpdateCart(req, res) {
     const { user } = req.body;
-    const id = req.parmas.id;
+    let id = req.params.id;
     try {
         await CartModel.findByIdAndUpdate({ _id: id }, req.body);
-        return res.status(201).json({ message: 'cart quantity has been updated' })
+        let cartProducts = await CartModel.find({ user });
+        let total = cartTotal(cartProducts);
+        return res.status(201).json({ message: 'cart quantity has been updated', cartProducts, total })
     } catch (error) {
         console.log(error);
         return res.status(201).json({ error: error.message })

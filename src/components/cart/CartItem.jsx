@@ -12,14 +12,11 @@ import SideBar from "./CartSideBar";
 import ConfirmModal from "./ConfirmModal";
 
 const CartItem = (props) => {
-  const [qty, setQty] = React.useState(1);
+  // const { cartTotal } = useSelector(store => store.cart);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    isOpen: isModalOpen,
-    onOpen: onModalOpen,
-    onClose: onModalClose,
-  } = useDisclosure();
+  const { isOpen: isModalOpen, onOpen: onModalOpen, onClose: onModalClose } = useDisclosure();
   const btnRef = React.useRef();
+
   return (
     <Stack
       padding={"10px"}
@@ -33,9 +30,6 @@ const CartItem = (props) => {
         onClose={onClose}
         finalFocusRef={btnRef}
         data={props}
-        qty={qty}
-        setQty={setQty}
-        handleTp={props.handleTp}
       />
       <Flex justify={"space-between"}>
         <Flex w="90%">
@@ -50,7 +44,7 @@ const CartItem = (props) => {
             <Text fontSize={"16px"} fontWeight={"500"}>
               {props.title}
             </Text>
-            <Text>Qty : {qty}</Text>
+            <Text>Qty : {props.quantity}</Text>
             <Text>₹{props.price}</Text>
             <Button
               w={"max-content"}

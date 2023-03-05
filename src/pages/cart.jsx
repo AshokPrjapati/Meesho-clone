@@ -14,22 +14,10 @@ const Cart = () => {
   const { cartProducts, loading } = useSelector((store) => store.cart);
   const token = useSelector(store => store.login.token);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getCartProducts(token, Toast));
   }, []);
-
-  // useEffect(() => {
-  //   let tp = 0;
-  //   for (let p of cartProducts) {
-  //     tp += p.price;
-  //   }
-  //   dispatch(cartTotalPrice(tp));
-  // }, [cartProducts]);
-
-  // const handleTp = (p) => {
-  //   dispatch(cartTotalPrice(cartTotal + p));
-  // };
-
 
   return (
     <>
@@ -39,84 +27,84 @@ const Cart = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {loading ? <h1>Loading...</h1> :
-        <div>
-          <CartNav image={"./images/s1.png"} />
-          {cartProducts.length ? (
-            <Container maxW={"4xl"} p={"20px 15px"}>
-              <Flex>
-                <Box
-                  w="62%"
-                  paddingRight="20px"
-                  borderRight={"1px solid #e1e1e1"}
+      {/* {loading ? <h1>Loading...</h1> : */}
+      <div>
+        <CartNav image={"./images/s1.png"} />
+        {cartProducts.length ? (
+          <Container maxW={"4xl"} p={"20px 15px"}>
+            <Flex>
+              <Box
+                w="62%"
+                paddingRight="20px"
+                borderRight={"1px solid #e1e1e1"}
+              >
+                <Heading
+                  fontSize={"18px"}
+                  fontWeight="500"
+                  color={"#000"}
+                  padding={"15px 0"}
                 >
-                  <Heading
-                    fontSize={"18px"}
-                    fontWeight="500"
-                    color={"#000"}
-                    padding={"15px 0"}
+                  Cart
+                  <span
+                    style={{
+                      color: "grey",
+                      borderLeft: "1px solid gray",
+                      marginLeft: "5px",
+                      paddingLeft: "5px",
+                    }}
                   >
-                    Cart
-                    <span
-                      style={{
-                        color: "grey",
-                        borderLeft: "1px solid gray",
-                        marginLeft: "5px",
-                        paddingLeft: "5px",
-                      }}
-                    >
-                      {cartProducts.length} Items
-                    </span>
-                  </Heading>
-                  {cartProducts.map((products) => (
-                    <CartItem
-                      key={products._id}
-                      {...products}
-                    // handleTp={handleTp}
-                    />
-                  ))}
-                </Box>
-                <Box w="38%">
-                  <PriceDetails
-                    display={"flex"}
-                    dest="/cart/address"
-                    text="Continue"
+                    {cartProducts.length} Items
+                  </span>
+                </Heading>
+                {cartProducts.map((products) => (
+                  <CartItem
+                    key={products._id}
+                    {...products}
                   />
-                </Box>
-              </Flex>
-            </Container>
-          ) : (
-            <Flex
-              width={"100%"}
-              h={"85vh"}
-              alignItems="center"
-              justifyContent={"center"}
-              flexDirection="column"
-              gap="20px"
-            >
-              <Image
-                src="https://images.meesho.com/images/pow/empty-cart.png"
-                alt="empty cart"
-              />
-              <Text fontSize={"18px"} fontWeight={"600"}>
-                Your cart is empty
-              </Text>
-              <Link href="/products">
-                <Button
-                  color={"#f43f97"}
-                  size={"lg"}
-                  border={"1px solid #f43f97"}
-                  bg={"none"}
-                  _hover={{
-                    bg: "none",
-                  }}
-                >
-                  View Products
-                </Button>
-              </Link>
+                ))}
+              </Box>
+              <Box w="38%">
+                <PriceDetails
+                  display={"flex"}
+                  dest="/cart/address"
+                  text="Continue"
+                />
+              </Box>
             </Flex>
-          )}
-        </div>}
+          </Container>
+        ) : (
+          <Flex
+            width={"100%"}
+            h={"85vh"}
+            alignItems="center"
+            justifyContent={"center"}
+            flexDirection="column"
+            gap="20px"
+          >
+            <Image
+              src="https://images.meesho.com/images/pow/empty-cart.png"
+              alt="empty cart"
+            />
+            <Text fontSize={"18px"} fontWeight={"600"}>
+              Your cart is empty
+            </Text>
+            <Link href="/products">
+              <Button
+                color={"#f43f97"}
+                size={"lg"}
+                border={"1px solid #f43f97"}
+                bg={"none"}
+                _hover={{
+                  bg: "none",
+                }}
+              >
+                View Products
+              </Button>
+            </Link>
+          </Flex>
+        )}
+      </div>
+      {/* } */}
     </>
   );
 };
