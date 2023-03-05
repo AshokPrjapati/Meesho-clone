@@ -12,6 +12,7 @@ import { addToCart } from "../../redux/cart/cart.action";
 import { useRouter } from "next/router";
 import UseToastMsg from "@/custom-hooks/useToast";
 import axios from "axios";
+import Footer from '@/components/Footer/Footer';
 
 const SingleUserpage = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const SingleUserpage = () => {
         >
           <Image alt="" m={"auto"} w={"70%"} src={image} />
           <br />
-          <Flex m={"auto"} w={"50%"}>
+          <Flex m={"auto"} justify="center" w={"80%"}>
             <Button
               isLoading={loading}
               loadingText="Adding..."
@@ -107,7 +108,7 @@ const SingleUserpage = () => {
             <Text fontSize={"xl"} color={"black"}>
               Product Details
             </Text>
-            <Box fontWeight={"md"} color={"grey"}>
+            <Box fontWeight={"md"} p="5px" color={"grey"}>
               <Text>{description}</Text>
               <Text>Name:{title}</Text>
               <Text>Fabric : Cotton</Text>
@@ -127,8 +128,8 @@ const SingleUserpage = () => {
             </Box>
           </Box>
           <br />
-          <Flex gap={"0.5%"} h={"20vh"}>
-            <Flex p={"2px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
+          <Flex gap={"0.5%"} >
+            <Flex p={"2px"} m={"auto"} w={"32%"} direction={["column", "row"]} bg={"rgb(231, 238, 255)"}>
               <Image
                 alt=""
                 ml={"4px"}
@@ -139,7 +140,7 @@ const SingleUserpage = () => {
                 Lowest Price
               </Text>
             </Flex>
-            <Flex p={"4px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
+            <Flex p={"4px"} m={"auto"} w={"32%"} direction={["column", "row"]} bg={"rgb(231, 238, 255)"}>
               <Image
                 alt=""
                 ml={"4px"}
@@ -150,7 +151,7 @@ const SingleUserpage = () => {
                 Cash on Delivery
               </Text>
             </Flex>
-            <Flex p={"4px"} m={"auto"} w={"32%"} bg={"rgb(231, 238, 255)"}>
+            <Flex p={"4px"} m={"auto"} w={"32%"} direction={["column", "row"]} bg={"rgb(231, 238, 255)"}>
               <Image
                 alt=""
                 ml={"4px"}
@@ -162,13 +163,16 @@ const SingleUserpage = () => {
               </Text>
             </Flex>
           </Flex>
-          <Box padding={"10px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}>
-            <Text color={"grey"}>
-              Best quality products from trusted suppliers
-            </Text>
-          </Box>
+
         </Box>
+
       </SimpleGrid>
+      <Box padding={"10px"}  >
+        <Text color={"grey"}>
+
+        </Text>
+      </Box>
+      <Footer />
     </div>
   );
 };

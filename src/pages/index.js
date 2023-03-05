@@ -135,7 +135,7 @@ export default function Home({ data }) {
               </Box>
 
               <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={{ sm: "90%", lg: "80%" }} >
-                <SimpleGrid columns={{ base: 1, md: 1, sm: 1, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
+                <SimpleGrid columns={{ base: 1, md: 2, sm: 2, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
                   {data.length && data.map((el) => (
                     <Box className={styles.cardsprod} height={"100%"} key={el._id}>
                       <Productcard id={el._id} {...el} />
@@ -146,15 +146,6 @@ export default function Home({ data }) {
             </Flex>
           </Box>
 
-          <Box mt={"1rem"} p={"5px"} w={"90%"} >
-            <h2 style={{ fontWeight: "normal" }}>Size</h2>
-
-            <Select m={"4px"}>
-              {Size.map((el) => (
-                <option key={el}>{el}</option>
-              ))}
-            </Select>
-          </Box>
 
           <Box  >
             <Footer />

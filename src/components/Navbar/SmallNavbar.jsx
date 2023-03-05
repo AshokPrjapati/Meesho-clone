@@ -40,7 +40,7 @@ const SmallNavbar = () => {
               />
               <MenuList fontSize={"14px"}>
                 <MenuItem>
-                  <Link href={"#"}> Women Ethnic</Link>
+                  <Link href="/products"> Women Ethnic</Link>
                 </MenuItem>
                 <MenuItem>
                   <Link href={"#"}> Women Western</Link>
@@ -59,18 +59,14 @@ const SmallNavbar = () => {
                 </MenuItem>
               </MenuList>
             </Menu>
-            ApniDukan
+            <Link href="/">
+            ApniDukan </Link>
           </Heading>
         </Box>
 
         <Box>
           <Flex>
-            <Link href={"#"}>
-              {" "}
-              <Text fontSize={"22px"} color="gray.600" fontWeight="500">
-                wishlist
-              </Text>
-            </Link>
+          
 
 
           <Box>
