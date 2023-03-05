@@ -1,44 +1,34 @@
 import CartItem from "@/components/cart/CartItem";
 import CartNav from "@/components/cart/CartNav";
-import {
-  Text,
-  Button,
-  Flex,
-  Image,
-  Box,
-  Container,
-  Heading,
-} from "@chakra-ui/react";
+import { Text, Button, Flex, Image, Box, Container, Heading } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
-
 import { useDispatch, useSelector } from "react-redux";
-import {
-  cartTotalPrice,
-  getCartProducts,
-  removeCartProduct,
-} from "@/redux/cart/cart.action";
+import { cartTotalPrice, getCartProducts, removeCartProduct } from "@/redux/cart/cart.action";
 import Link from "next/link";
+import useToastMsg from "@/custom-hooks/useToast";
 
 const Cart = () => {
-  const { cartTotal, cartProducts } = useSelector((store) => store.cart);
+  const Toast = useToastMsg();
+  const cartProducts = useSelector((store) => store.cart.cartProducts);
+  const token = useSelector(store => store.login.token);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCartProducts());
+    dispatch(getCartProducts(token, Toast));
   }, []);
 
-  useEffect(() => {
-    let tp = 0;
-    for (let p of cartProducts) {
-      tp += p.price;
-    }
-    dispatch(cartTotalPrice(tp));
-  }, [cartProducts]);
+  // useEffect(() => {
+  //   let tp = 0;
+  //   for (let p of cartProducts) {
+  //     tp += p.price;
+  //   }
+  //   dispatch(cartTotalPrice(tp));
+  // }, [cartProducts]);
 
-  const handleTp = (p) => {
-    dispatch(cartTotalPrice(cartTotal + p));
-  };
+  // const handleTp = (p) => {
+  //   dispatch(cartTotalPrice(cartTotal + p));
+  // };
   const removeProduct = (id) => {
     dispatch(removeCartProduct(id));
   };
@@ -81,9 +71,9 @@ const Cart = () => {
                 </Heading>
                 {cartProducts.map((products) => (
                   <CartItem
-                    key={products.id}
+                    key={products._id}
                     {...products}
-                    handleTp={handleTp}
+                    // handleTp={handleTp}
                     removeProduct={removeProduct}
                   />
                 ))}
@@ -132,5 +122,6 @@ const Cart = () => {
     </>
   );
 };
+
 
 export default Cart;

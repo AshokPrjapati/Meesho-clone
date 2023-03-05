@@ -4,7 +4,6 @@
 
 import axios from "axios";
 import { AUTH_ERROR, AUTH_LOADING, AUTH_LOGIN, AUTH_LOGOUT, AUTH_SIGNUP } from "./login.actionTypes";
-import { userSignup } from "./login.api";
 
 
 export const login = (cred, router, Toast) => async (dispatch) => {

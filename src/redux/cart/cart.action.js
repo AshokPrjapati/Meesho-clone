@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_CART_SUCESS, ADD_TO_CART, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER, UPDATE_ORDER_DATA } from "./cart.actionTypes";
+import { ADD_CART_SUCESS, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER, UPDATE_ORDER_DATA } from "./cart.actionTypes";
 
 
 export const addToCart = (token, product, Toast) => async (dispatch) => {
@@ -27,32 +27,34 @@ export const addToCart = (token, product, Toast) => async (dispatch) => {
 
 
 // for getting all cart products
-export const getCartProducts = (Toast) => async (dispatch) => {
+export const getCartProducts = (token, Toast) => async (dispatch) => {
     dispatch({ type: CART_LOADING });
     try {
-        let res = await axios.get(`/cart/getcart`);
-        let data = await res.data.cartProducts;
-        dispatch({ type: GET_CART, payload: data });
+        let res = await axios.get(`/cart/getcart`, { headers: { 'Authorization': token } });
+        let { cartProducts, total } = await res.data;
+        dispatch({ type: GET_CART, payload: { cartProducts, total } });
     } catch (error) {
         console.log(error);
         dispatch({ type: CART_ERROR, payload: error.message || "Something went wrong" });
-        Toast(error || "Something went wrong while fetching cart data", "error");
+        Toast(error.response?.data?.message || "Something went wrong while fetching cart data", "error");
     }
 };
 
 
 // for removing product from cart
-export const removeCartProduct = (id, Toast) => async (dispatch) => {
+export const removeCartProduct = (id, token, Toast) => async (dispatch) => {
     dispatch({ type: CART_LOADING });
     try {
-        let res = await axios.delete("/cart/remove", { id });
-        const data = await res.data.cartProducts;
-        dispatch({ type: DELETE_TO_CART, payload: data });
+        let res = await axios.delete(`/cart/remove/${id}`, { headers: { 'Authorization': token } });
+        // destructuring to get cart products and total price of cart
+        const { cartProducts, total } = await res.data;
+        console.log(cartProducts, total);
+        dispatch({ type: DELETE_TO_CART, payload: { cartProducts, total } });
         Toast(`product is removed from cart`, "success");
-    } catch (e) {
+    } catch (error) {
         console.log(error);
-        dispatch({ type: CART_ERROR, payload: error.message || "Something went wrong" });
-        Toast(error.message || "Something went wrong while removing product from cart", "error");
+        dispatch({ type: CART_ERROR, payload: error.response?.data?.message || "Something went wrong" });
+        Toast(error.response?.data?.message || "Something went wrong while removing product from cart", "error");
     }
 }
 

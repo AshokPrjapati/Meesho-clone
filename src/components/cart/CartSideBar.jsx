@@ -15,6 +15,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const SideBar = ({
   isOpen,
@@ -27,6 +28,7 @@ const SideBar = ({
   handleTp,
 }) => {
   const [price, setPrice] = React.useState(data.price);
+  const { cartTotal } = useSelector((store) => store.cart);
   return (
     <>
       <Drawer
@@ -100,7 +102,7 @@ const SideBar = ({
                 Total Price
               </Text>
               <Text fontSize={"18px"} fontWeight="400">
-                ₹{price}
+                ₹{cartTotal}
               </Text>
             </Flex>
           </DrawerBody>

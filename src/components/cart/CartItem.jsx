@@ -73,8 +73,7 @@ const CartItem = (props) => {
             isOpen={isModalOpen}
             onClose={onModalClose}
             title={props.title}
-            id={props.id}
-            removeProduct={props.removeProduct}
+            id={props._id}
           />
         </Flex>
         <Button

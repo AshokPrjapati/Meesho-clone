@@ -1,17 +1,18 @@
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  Toast,
-} from "@chakra-ui/react";
-import axios from "axios";
+import useToastMsg from "@/custom-hooks/useToast";
+import { removeCartProduct } from "@/redux/cart/cart.action";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
 
-function ConfirmModal({ isOpen, onClose, title, id, removeProduct }) {
+function ConfirmModal({ isOpen, onClose, title, id }) {
+  const dispatch = useDispatch();
+  const token = useSelector(store => store.login.token);
+  const Toast = useToastMsg();
+
+  // for removing product from databse
+  const removeProduct = () => {
+    dispatch(removeCartProduct(id, token, Toast));
+  }
+
   return (
     <>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
@@ -28,13 +29,7 @@ function ConfirmModal({ isOpen, onClose, title, id, removeProduct }) {
               _hover={{ bg: "#f43f97" }}
               mr={3}
               onClick={() => {
-                removeProduct(id);
-                Toast({
-                  title: "Product Removed",
-                  status: "success",
-                  duration: 5000,
-                  isClosable: true,
-                });
+                removeProduct();
                 onClose();
               }}
             >

@@ -5,11 +5,11 @@ const cart_controller = require("../Controllers/cart.controller");
 
 CartRouter.post("/add", cart_controller.AddToCart);
 
-CartRouter.post("/remove", cart_controller.RemoveFromCart);
+CartRouter.delete("/remove/:id", cart_controller.RemoveFromCart);
 
 CartRouter.get("/getcart", cart_controller.GetCart);
 
-CartRouter.post("/update", cart_controller.UpdateCart);
+CartRouter.post("/update/:id", cart_controller.UpdateCart);
 
 CartRouter.get("/carttotal", cart_controller.CartTotal);
 

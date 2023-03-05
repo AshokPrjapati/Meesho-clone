@@ -1,6 +1,14 @@
 require("dotenv").config();
 const { CartModel, AddressModel } = require("../Models/user.model")
 
+// calculating total cart price
+const cartTotal = (products) => {
+    let total = 0;
+    products.forEach((p) => {
+        total += p.price * p.quantity;
+    });
+    return total;
+}
 
 // adding to cart
 async function AddToCart(req, res) {
@@ -19,11 +27,13 @@ async function AddToCart(req, res) {
 
 // remove to cart
 async function RemoveFromCart(req, res) {
-    const { id, user } = req.body;
+    const { user } = req.body;
+    let id = req.params.id;
     try {
         await CartModel.findByIdAndRemove({ _id: id });
         const cartProducts = await CartModel.find({ user });
-        res.status(200).send({ message: "cart product is removed", cartProducts });
+        let total = cartTotal(cartProducts);
+        res.status(200).send({ message: "cart product is removed", cartProducts, total });
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });
@@ -35,7 +45,8 @@ async function GetCart(req, res) {
     let { user } = req.body;
     try {
         let cartProducts = await CartModel.find({ user });
-        res.status(200).send({ message: "cart products fetched successfully", cartProducts });
+        let total = cartTotal(cartProducts);
+        res.status(200).send({ message: "cart products fetched successfully", cartProducts, total });
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });
@@ -47,12 +58,8 @@ async function CartTotal(req, res) {
     const { user } = req.body;
     try {
         let cartProducts = await CartModel.find({ user });
-        let total = 0;
-        cartProducts.forEach((p) => {
-            total += p.price * p.quantity;
-        });
+        let total = cartTotal(cartProducts);
         res.status(200).send({ message: "total is updated", total });
-
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });
@@ -62,11 +69,10 @@ async function CartTotal(req, res) {
 
 // update cart
 async function UpdateCart(req, res) {
-    const { _id, ...payload } = req.body;
+    const { user } = req.body;
+    const id = req.parmas.id;
     try {
-        let cart = await CartModel.findOne({ _id });
-        Object.assign(cart, payload);
-        await cart.save();
+        await CartModel.findByIdAndUpdate({ _id: id }, req.body);
         return res.status(201).json({ message: 'cart quantity has been updated' })
     } catch (error) {
         console.log(error);
