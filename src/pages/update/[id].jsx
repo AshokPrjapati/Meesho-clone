@@ -35,10 +35,9 @@ const getData=async(id)=>{
   try{
     let r = await axios(`/product/singleproduct/${id}`);
       let d = await r.data;
-      let product=d.products[0]
+      let product=d.product
     setData(product)
    
-    console.log(d)
   }catch(err){
     console.log(err)
   }
@@ -70,7 +69,7 @@ console.log(productdata)
       productdata.title &&
       productdata.image &&
       productdata.category &&
-      // productdata.reviews.rate &&
+      productdata.reviews.rate &&
       productdata.price
     ) {
       try {
