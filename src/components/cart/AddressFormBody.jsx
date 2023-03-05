@@ -1,29 +1,10 @@
 import React, { useEffect } from "react";
-import {
-  Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  HStack,
-  Stack,
-  Heading,
-  Select,
-} from "@chakra-ui/react";
+import { Flex, Box, FormControl, FormLabel, Input, HStack, Stack, Heading, Select } from "@chakra-ui/react";
 import { PhoneIcon } from "@chakra-ui/icons";
 import { GoLocation } from "react-icons/go";
 
-const AddressFormBody = ({
-  name,
-  mobile,
-  house,
-  road,
-  pin,
-  city,
-  state,
-  nearby,
-  handleChange,
-}) => {
+const AddressFormBody = ({ name, mobile, house, road, pin, city, state, nearby, handleChange }) => {
+
   return (
     <Stack spacing={4}>
       <Heading fontSize={"lg"} textAlign={"left"} fontWeight="500">
@@ -101,7 +82,7 @@ const AddressFormBody = ({
           </FormControl>
         </Box>
         <Box>
-          <FormControl id="lastName">
+          <FormControl id="lastName" isRequired>
             <FormLabel fontSize={"14px"}>State</FormLabel>
             <Select
               size={"sm"}
@@ -110,6 +91,7 @@ const AddressFormBody = ({
               value={state}
               onChange={handleChange}
             >
+              <option value="">Select State</option>
               <option value="Rajasthan">Rajasthan</option>
               <option value="Madhya Pradesh">Madhya Pradesh</option>
               <option value="Hariyana">Hariyana</option>

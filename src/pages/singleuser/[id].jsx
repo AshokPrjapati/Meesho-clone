@@ -19,6 +19,7 @@ const SingleUserpage = () => {
   const Toast = UseToastMsg();
   const router = useRouter();
   const token = useSelector(store => store.login.token);
+  const { loading } = useSelector(store => store.cart);
 
   const [product, setProduct] = useState({});
 
@@ -67,9 +68,10 @@ const SingleUserpage = () => {
         >
           <Image alt="" m={"auto"} w={"70%"} src={image} />
           <br />
-          <Flex m={"auto"} justify="center"  w={"80%"}>
+          <Flex m={"auto"} justify="center" w={"80%"}>
             <Button
-            backgroundColor={"pink.500"}
+              isLoading={loading}
+              loadingText="Adding..."
               marginRight={"5px"}
               onClick={addProduct}
             >
@@ -127,7 +129,7 @@ const SingleUserpage = () => {
           </Box>
           <br />
           <Flex gap={"0.5%"} >
-            <Flex p={"2px"} m={"auto"} w={"32%"} direction={["column","row"]} bg={"rgb(231, 238, 255)"}>
+            <Flex p={"2px"} m={"auto"} w={"32%"} direction={["column", "row"]} bg={"rgb(231, 238, 255)"}>
               <Image
                 alt=""
                 ml={"4px"}
@@ -138,7 +140,7 @@ const SingleUserpage = () => {
                 Lowest Price
               </Text>
             </Flex>
-            <Flex p={"4px"} m={"auto"} w={"32%"} direction={["column","row"]} bg={"rgb(231, 238, 255)"}>
+            <Flex p={"4px"} m={"auto"} w={"32%"} direction={["column", "row"]} bg={"rgb(231, 238, 255)"}>
               <Image
                 alt=""
                 ml={"4px"}
@@ -149,7 +151,7 @@ const SingleUserpage = () => {
                 Cash on Delivery
               </Text>
             </Flex>
-            <Flex p={"4px"} m={"auto"} w={"32%"} direction={["column","row"]} bg={"rgb(231, 238, 255)"}>
+            <Flex p={"4px"} m={"auto"} w={"32%"} direction={["column", "row"]} bg={"rgb(231, 238, 255)"}>
               <Image
                 alt=""
                 ml={"4px"}
@@ -161,16 +163,16 @@ const SingleUserpage = () => {
               </Text>
             </Flex>
           </Flex>
-         
+
         </Box>
-       
+
       </SimpleGrid>
       <Box padding={"10px"}  >
-            <Text color={"grey"}>
-             
-            </Text>
-          </Box>
-      <Footer/>
+        <Text color={"grey"}>
+
+        </Text>
+      </Box>
+      <Footer />
     </div>
   );
 };

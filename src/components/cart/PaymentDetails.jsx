@@ -10,26 +10,35 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { orderSuccess } from "@/redux/cart/cart.action";
+import { getCartTotal, order } from "@/redux/cart/cart.action";
+import useToastMsg from "@/custom-hooks/useToast";
+import { useEffect, useState } from "react";
 
 const PaymentDetails = () => {
   const { cartTotal, cartProducts } = useSelector((store) => store.cart);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const cp = cartProducts.map((p) => {
-    p.status = "success";
-    return p;
-  });
-
-  const placeOrder = async (cp) => {
-    setLoading(true);
-    let data = await dispatch(orderSuccess(cp));
-    setLoading(false);
-    router.push("/cart/success");
-  };
-
+  const token = useSelector(store => store.login.token);
+  const Toast = useToastMsg();
   const dispatch = useDispatch();
+  const router = useRouter();
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    cartPrice();
+  }, [])
+
+  const cartPrice = () => {
+    token ? dispatch(getCartTotal(token, Toast)) : Toast("Please login/signup", "error");
+  }
+
+  const placeOrder = () => {
+    if (token) {
+      cartProducts.length ? dispatch(order(token, Toast, router, setLoad)) : Toast("Nothing in cart. Please add something to order", "info");
+    } else {
+      Toast("Please login first", "info");
+      router.push("/login");
+    }
+  }
+
   return (
     <Stack p={"10px 20px"} lineHeight={8}>
       <Text fontSize={"17px"} fontWeight={"500"}>
@@ -68,14 +77,13 @@ const PaymentDetails = () => {
       </Text>
 
       <Button
-        isLoading={loading}
+        isLoading={load}
+        loadingText={"Ordering..."}
         size="lg"
         color={"#fff"}
         bg={"#f43f97"}
         _hover={{ bg: "#f43f97" }}
-        onClick={() => {
-          placeOrder(cp);
-        }}
+        onClick={placeOrder}
       >
         Place Order
       </Button>

@@ -117,7 +117,7 @@ const addressSchema = new mongoose.Schema({
         required: true
     },
     house: {
-        type: Number,
+        type: String,
     },
     road: {
         type: String,
