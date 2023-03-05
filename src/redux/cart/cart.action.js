@@ -12,7 +12,10 @@ export const addToCart = (token, product, Toast) => async (dispatch) => {
         // passing payload as request body to server
         let res = await axios.post('/cart/add', payload, { headers: { 'Authorization': token } });
         // if product already exists in cart
-        if (res.data.status === 201) return Toast(res.data.message, "info");
+        if (res.data.status === 201) {
+            dispatch({ type: CART_ERROR, payload: res.data.message || "Something went wrong" });
+            return Toast(res.data.message, "info");
+        }
         // adding product to cart state
         let data = await res.data.cartProduct;
         dispatch({ type: ADD_CART_SUCESS, payload: data });

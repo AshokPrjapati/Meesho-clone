@@ -18,6 +18,7 @@ const SingleUserpage = () => {
   const Toast = UseToastMsg();
   const router = useRouter();
   const token = useSelector(store => store.login.token);
+  const { loading } = useSelector(store => store.cart);
 
   const [product, setProduct] = useState({});
 
@@ -68,6 +69,8 @@ const SingleUserpage = () => {
           <br />
           <Flex m={"auto"} w={"50%"}>
             <Button
+              isLoading={loading}
+              loadingText="Adding..."
               marginRight={"5px"}
               onClick={addProduct}
             >
