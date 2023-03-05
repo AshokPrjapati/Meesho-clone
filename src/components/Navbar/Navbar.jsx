@@ -60,6 +60,9 @@ const Navbar = ({ display = "flex" }) => {
     setData({})
   };
 
+  const movetoadmin=()=>{
+    router.push("/admin")
+  }
   return (
     <div>
       <nav className={styles.nav_1}>
@@ -104,6 +107,7 @@ const Navbar = ({ display = "flex" }) => {
                 variant={"link"}
                 cursor={"pointer"}
                 minW={0}
+             
               >
                 <Flex>
                   <Center>
@@ -129,7 +133,7 @@ const Navbar = ({ display = "flex" }) => {
                   </Center>
                   <br />
                   <MenuDivider />
-                  {data.role == "ADMIN" ? <MenuItem>Admin panel</MenuItem> : null}
+                  {data.role == "ADMIN" ? <MenuItem onClick={movetoadmin}>Admin panel</MenuItem>  : null}
 
                   <MenuItem>My Orders</MenuItem>
                   <MenuItem onClick={signout}>Logout</MenuItem>
