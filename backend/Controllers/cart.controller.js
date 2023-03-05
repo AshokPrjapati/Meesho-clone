@@ -88,7 +88,7 @@ async function AddAddress(req, res) {
     try {
         let address = new AddressModel(payload);
         await address.save();
-        res.status(200).send({ "message": "address added successfully in cart" });
+        res.status(200).send({ "message": "Address added successfully", address });
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });
@@ -99,8 +99,8 @@ async function AddAddress(req, res) {
 async function GetAddress(req, res) {
     let { user } = req.body;
     try {
-        let address = await AddressModel.find({ user });
-        res.status(200).send({ message: "cart products fetched successfully", address });
+        let addresses = await AddressModel.find({ user });
+        res.status(200).send({ message: "cart products fetched successfully", addresses });
     } catch (error) {
         console.log(error);
         res.status(400).send({ message: error.message });

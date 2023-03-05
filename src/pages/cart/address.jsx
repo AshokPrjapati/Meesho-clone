@@ -12,21 +12,13 @@ import { getAddress } from "@/redux/address/address.action";
 const Address = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  // const [addressData, setAddressData] = useState(address);
+  const token = useSelector((store) => store.login.token);
   const { addressData } = useSelector((store) => store.address);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAddress());
+    dispatch(getAddress(token));
   }, []);
-
-  // const handlePostAddress = async (data) => {
-  //   dispatch(sendAddress(data));
-  // };
-
-  // const handlePatchAddress = (data, id) => {
-  //   dispatch(editAddress(data, id));
-  // };
 
   return (
     <>
@@ -71,7 +63,7 @@ const Address = () => {
               </Flex>
               {addressData.length ? (
                 addressData.map((a) => (
-                  <AddressCard key={a.id} {...a} display="flex" />
+                  <AddressCard key={a._id} {...a} display="flex" />
                 ))
               ) : (
                 <AddressForm />

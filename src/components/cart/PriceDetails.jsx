@@ -9,11 +9,26 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { getCartTotal } from "@/redux/cart/cart.action";
+import { useEffect } from "react";
+import useToastMsg from "@/custom-hooks/useToast";
 
 const PriceDetails = ({ display, dest, text }) => {
   const { cartTotal } = useSelector((store) => store.cart);
+  const token = useSelector(store => store.login.token);
+  const Toast = useToastMsg();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    cartPrice();
+  }, [])
+
+  const cartPrice = () => {
+    token ? dispatch(getCartTotal(token, Toast)) : Toast("Please login/signup", "error");
+  }
+
   const router = useRouter();
   return (
     <Stack p={"10px 20px"} lineHeight={8}>

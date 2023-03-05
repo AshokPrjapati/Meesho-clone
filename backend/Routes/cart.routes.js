@@ -13,7 +13,7 @@ CartRouter.patch("/update/:id", cart_controller.UpdateCart);
 
 CartRouter.get("/carttotal", cart_controller.CartTotal);
 
-CartRouter.get("/addaddress", cart_controller.AddAddress);
+CartRouter.post("/addaddress", cart_controller.AddAddress);
 
 CartRouter.get("/getaddress", cart_controller.GetAddress);
 

@@ -11,7 +11,7 @@ import useToastMsg from "@/custom-hooks/useToast";
 
 const Cart = () => {
   const Toast = useToastMsg();
-  const { cartProducts, loading } = useSelector((store) => store.cart);
+  const { cartProducts } = useSelector((store) => store.cart);
   const token = useSelector(store => store.login.token);
   const dispatch = useDispatch();
 

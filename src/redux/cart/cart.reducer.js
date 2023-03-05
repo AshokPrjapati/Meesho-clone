@@ -66,7 +66,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 loading: false,
-                cartTotal: +payload
+                cartTotal: payload
             }
         }
 

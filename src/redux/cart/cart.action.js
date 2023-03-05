@@ -89,7 +89,7 @@ export const updateCartProductQuantity = (id, quantity, token, Toast) => async (
     dispatch({ type: CART_LOADING });
 
     try {
-        console.log(token);
+
         let res = await axios.patch(`/cart/update/${id}`, { quantity }, { headers: { 'Authorization': token } });
         const { cartProducts, total } = await res.data;
         dispatch({ type: QTY_UPDATE_SUCCESS, payload: { cartProducts, total } });
@@ -103,6 +103,25 @@ export const updateCartProductQuantity = (id, quantity, token, Toast) => async (
     }
 }
 
+// for getting ccart total
+export const getCartTotal = (token, Toast) => async (dispatch) => {
+
+    dispatch({ type: CART_LOADING });
+
+    try {
+
+        let res = await axios.get(`/cart/carttotal`, { headers: { 'Authorization': token } });
+        const total = await res.data.total;
+        dispatch({ type: CART_TOTAL, payload: total });
+
+    } catch (error) {
+
+        console.log(error);
+        dispatch({ type: CART_ERROR, payload: error.message || "Something went wrong" });
+        Toast(error.message || "Something went wrong while fetching cart total", "error");
+
+    }
+}
 
 // for placing order
 export const placeOrder = () => async (dispatch) => {
@@ -117,3 +136,5 @@ export const placeOrder = () => async (dispatch) => {
         Toast(error.message || "Something went wrong while placing order", "error");
     }
 }
+
+
