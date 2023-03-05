@@ -29,9 +29,7 @@ const Cart = () => {
   // const handleTp = (p) => {
   //   dispatch(cartTotalPrice(cartTotal + p));
   // };
-  const removeProduct = (id) => {
-    dispatch(removeCartProduct(id));
-  };
+
 
   return (
     <>
@@ -73,8 +71,7 @@ const Cart = () => {
                   <CartItem
                     key={products._id}
                     {...products}
-                    // handleTp={handleTp}
-                    removeProduct={removeProduct}
+                  // handleTp={handleTp}
                   />
                 ))}
               </Box>
