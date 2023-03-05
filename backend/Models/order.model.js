@@ -1,3 +1,5 @@
+const { default: mongoose } = require("mongoose");
+
 const orderSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -21,7 +23,10 @@ const orderSchema = new mongoose.Schema({
             required: true
         },
         reviews: {
-            type: reviewSchema,
+            type: {
+                rate: Number,
+                count: Number
+            },
             required: true
         },
         category: {
@@ -30,11 +35,11 @@ const orderSchema = new mongoose.Schema({
         },
         quantity: {
             type: Number,
-            default: 1
+            required: true
         },
     }]
 });
 
-const orderModel = mongoose.model('successOrder', successOrderSchema);
+const OrderModel = mongoose.model('order', orderSchema);
 
-module.exports = orderModel;
+module.exports = OrderModel;

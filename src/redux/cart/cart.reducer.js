@@ -1,11 +1,12 @@
-import { ADD_CART_SUCESS, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER } from "./cart.actionTypes";
+import { ADD_CART_SUCESS, CART_ERROR, CART_LOADING, CART_TOTAL, DELETE_TO_CART, GET_CART, ORDER_ERROR, ORDER_LOADING, PLACE_ORDER, QTY_UPDATE_SUCCESS } from "./cart.actionTypes";
 
 const initialState = {
     loading: false,
     error: "",
     cartProducts: [],
     cartTotal: 0,
-    orderData: []
+    orderData: [],
+    orderTotal: 0
 }
 
 export const cartReducer = (state = initialState, { type, payload }) => {
@@ -39,7 +40,8 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 loading: false,
-                cartProducts: [...payload]
+                cartProducts: payload.cartProducts,
+                cartTotal: payload.total
             }
         }
 
@@ -47,7 +49,17 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 loading: false,
-                cartProducts: payload
+                cartProducts: payload.cartProducts,
+                cartTotal: payload.total
+            }
+        }
+
+        case QTY_UPDATE_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                cartProducts: payload.cartProducts,
+                cartTotal: payload.total
             }
         }
 
@@ -55,7 +67,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 loading: false,
-                cartTotal: +payload
+                cartTotal: payload
             }
         }
 
@@ -67,10 +79,13 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         }
 
         case PLACE_ORDER: {
+            let total = 0;
+            payload.forEach(p => total += (+p.price) * (+p.quantity));
             return {
                 ...state,
                 loading: false,
-                orderData: payload
+                orderData: payload,
+                orderTotal: total,
             }
         }
 

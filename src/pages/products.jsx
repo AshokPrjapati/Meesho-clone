@@ -3,6 +3,9 @@ import Productcard from "../components/Products/productcard";
 import { Flex, Box, SimpleGrid, Select } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar/Navbar";
 import axios, { Axios } from "axios";
+import styles from '@/styles/Home.module.css'
+import SmallNavbar from "@/components/Navbar/SmallNavbar";
+import Footer from "@/components/Footer/Footer";
 const Productpage = ({ data }) => {
   let category = ["dresses", "kurti", "jeans"];
   let Gender = ["Mens", "Womens", "Girl", "Boys"];
@@ -29,242 +32,103 @@ const Productpage = ({ data }) => {
 
   return (
     <Box>
-      <Navbar />
-      <Flex
-        w="100%"
+     <div className={styles.big}><Navbar /></div>
+        <div className={styles.small}><SmallNavbar /></div>
+           
+            <Flex
+              w="100%"
+              gap={"1.5%"}
+             
+              p={"2rem"}>
 
-        gap={"1.5%"}
-        height={"120rem"}
-        p={"2rem"}>
-        <Box w={"23%"}>
-          <Select mb={"1rem"}>
+              <Box mb={"10px"} w={["50%", "30%", "40%", "23%"]} display={["none","none","block"]} >
 
-            <option>Sort By: Relevence</option>
-            <option>New Arrival</option>
-            <option>Price(Low to High)</option>
-            <option>Price(High to Low)</option>
-            <option>Rating</option>
-            <option>Discount</option>
-          </Select>
+                <Select mb={"1rem"}>
+                  <option>Sort By: Relevence</option>
+                  <option>New Arrival</option>
+                  <option>Price(Low to High)</option>
+                  <option>Price(High to Low)</option>
+                  <option>Rating</option>
+                  <option>Discount</option>
+                </Select>
 
+                <Flex overflow="hidden" direction={["column", "column", "column", "column"]} borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}>
+                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+                    <h3 style={{ fontWeight: "normal" }}>FILTERS</h3>
+                    <p style={{ color: "grey" }}>1000+ products</p>
+                    <br />
+                    <hr />
+                  </Box>
 
-          <Flex direction={{ sm: "row", lg: "column" }} borderRadius={"5px"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} height={"70rem"} >
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h3 style={{ fontWeight: "normal" }}>FILTERS</h3>
-              <p style={{ color: "grey" }}>1000+ products</p>
-              <br />
-              <hr />
-            </Box>
+                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+                    <h3 style={{ fontWeight: "normal" }}>Category</h3>
+                    <Select m={"4px"} >
+                      {category.map((el) => (
+                        <option  key={el}>{el}</option>
+                      ))}
+                    </Select>
+                  </Box>
+                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+                    <h2 style={{ fontWeight: "normal" }}>Fabric</h2>
 
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h3 style={{ fontWeight: "normal" }}>Category</h3>
-              <Select m={"4px"}>
-                {category.map((el) => (
-                  <option key={el}>{el}</option>
-                )
-                )
-                }
-              </Select>
-            </Box>
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h2 style={{ fontWeight: "normal" }}>Fabric</h2>
+                    <Select m={"4px"}>
+                      {fabric.map((el) => (
+                        <option key={el}>{el}</option>
+                      ))}
+                    </Select>
+                  </Box>
+                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+                    <h2 style={{ fontWeight: "normal" }}>size</h2>
 
-              <Select m={"4px"}>
-                {fabric.map((el) => (
-                  <option key={el}>{el}</option>
-                )
-                )
-                }
-              </Select>
-            </Box>
+                    <Select m={"4px"}>
+                      {Size.map((el) => (
+                        <option key={el}>{el}</option>
+                      ))}
+                    </Select>
+                  </Box>
+                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+                    <h2 style={{ fontWeight: "normal" }}>Rating</h2>
+                    <Select m={"4px"}>
+                      {Rating.map((el) => (
+                        <option key={el}>{el}</option>
+                      ))}
+                    </Select>
+                  </Box>
 
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h2 style={{ fontWeight: "normal" }}>Gender</h2>
-
-              <Select m={"4px"}>
-                {Gender.map((el) => (
-                  <option key={el}>{el}</option>
-                )
-                )
-                }
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h2 style={{ fontWeight: "normal" }}>Size</h2>
-
-              <Select m={"4px"}>
-                {Size.map((el) => (
-                  <option key={el}>{el}</option>
-                )
-                )
-                }
-              </Select>
-            </Box>
-
+                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+                    <h2 style={{ fontWeight: "normal" }}>Gender</h2>
+                    <Select m={"4px"}>
+                      {Gender.map((el) => (
+                        <option key={el}>{el}</option>
+                      ))}
+                    </Select>
+                  </Box>
 
 
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h2 style={{ fontWeight: "normal" }}>Colors</h2>
 
-              <Select m={"4px"}>
-                {colors.map((el) => (
-                  <option key={el}>{el}</option>
-                )
-                )
-                }
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h2 style={{ fontWeight: "normal" }}>Price</h2>
-
-              <Select m={"4px"}>
-                {Price.map((el) => (
-                  <option key={el}>{el}</option>
-                )
-                )
-                }
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h2 style={{ fontWeight: "normal" }}>Rating</h2>
-
-              <Select m={"4px"}>
-                {Rating.map((el) => (
-                  <option key={el}>{el}</option>
-                )
-                )
-                }
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"} >
-              <h2 style={{ fontWeight: "normal" }}>Discount</h2>
-
-              <Select m={"4px"}>
-                {Discount.map((el) => (
-                  <option key={el}>{el}</option>
-                )
-                )
-                }
-              </Select>
-            </Box>
-          </Flex>
-        </Box>
-        {/* <Box w={"76%"} bg={"white"} height={{sm:"50%",lg:"80%"}} border={"2px solid red"}>
-          <SimpleGrid columns={{base:1,md:1,sm:1,xs:1,lg:3,xl:4,'2xl':4}} gap={"1.5rem"}>
-
-
-          <Flex
-            direction={"column"}
-            borderRadius={"5px"}
-            boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
-            height={"70rem"}
-          >
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h3 style={{ fontWeight: "normal" }}>FILTERS</h3>
-              <p style={{ color: "grey" }}>1000+ products</p>
-              <br />
-              <hr />
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h3 style={{ fontWeight: "normal" }}>Category</h3>
-              <Select m={"4px"}>
-                {category.map((el) => (
-                  <option key={el}>{el}</option>
-                ))}
-              </Select>
-            </Box>
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h2 style={{ fontWeight: "normal" }}>Fabric</h2>
-
-              <Select m={"4px"}>
-                {fabric.map((el) => (
-                  <option key={el}>{el}</option>
-                ))}
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h2 style={{ fontWeight: "normal" }}>Gender</h2>
-
-              <Select m={"4px"}>
-                {Gender.map((el) => (
-                  <option key={el}>{el}</option>
-                ))}
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h2 style={{ fontWeight: "normal" }}>Size</h2>
-
-              <Select m={"4px"}>
-                {Size.map((el) => (
-                  <option key={el}>{el}</option>
-                ))}
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h2 style={{ fontWeight: "normal" }}>Colors</h2>
-
-              <Select m={"4px"}>
-                {colors.map((el) => (
-                  <option key={el}>{el}</option>
-                ))}
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h2 style={{ fontWeight: "normal" }}>Price</h2>
-
-              <Select m={"4px"}>
-                {Price.map((el) => (
-                  <option key={el}>{el}</option>
-                ))}
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h2 style={{ fontWeight: "normal" }}>Rating</h2>
-
-              <Select m={"4px"}>
-                {Rating.map((el) => (
-                  <option key={el}>{el}</option>
-                ))}
-              </Select>
-            </Box>
-
-            <Box mt={"1rem"} p={"5px"} w={"90%"}>
-              <h2 style={{ fontWeight: "normal" }}>Discount</h2>
-
-              <Select m={"4px"}>
-                {Discount.map((el) => (
-                  <option key={el}>{el}</option>
-                ))}
-              </Select>
-            </Box>
-          </Flex>
-          </SimpleGrid>
-        </Box> */}
-        <Box w={"76%"} bg={"white"} height={"80%"}>
-          <SimpleGrid
-            columns={{ base: 1, md: 2, sm: 2, lg: 3, xl: 4, "2xl": 4 }}
-            gap={"1.5rem"}
-          >
-
-            {data.length && data.map((el) => (
-
-              <Box key={el._id}>
-                <Productcard key={el._id} id={el._id} {...el} />
+                  <Box mt={"1rem"} p={"5px"} w={"90%"} >
+                    <h2 style={{ fontWeight: "normal" }}>Discount</h2>
+                    <Select m={"4px"}>
+                      {Discount.map((el) => (
+                        <option key={el}>{el}</option>
+                      ))}
+                    </Select>
+                  </Box>
+                </Flex>
               </Box>
-            ))}
-          </SimpleGrid>
-        </Box>
-      </Flex>
+
+
+              <Box w={["90%", "90%", "76%", "76%"]} bg={"white"} m="0px auto" height={{ sm: "90%", lg: "80%" }} >
+                <SimpleGrid columns={{ base: 2, md: 2, sm: 2, lg: 3, xl: 4, '2xl': 4 }} gridTemplateRows={"max-content"} gap={"1.5rem"}>
+                  {data.length && data.map((el) => (
+                    <Box className={styles.cardsprod} height={"100%"} key={el._id}>
+                      <Productcard id={el._id} {...el} />
+                    </Box>
+                  ))}
+                </SimpleGrid>
+              </Box>
+            </Flex>
+         <Footer/>
     </Box>
   );
 };
