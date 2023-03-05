@@ -11,7 +11,7 @@ import useToastMsg from "@/custom-hooks/useToast";
 
 const Cart = () => {
   const Toast = useToastMsg();
-  const cartProducts = useSelector((store) => store.cart.cartProducts);
+  const { cartProducts, loading } = useSelector((store) => store.cart);
   const token = useSelector(store => store.login.token);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -39,83 +39,84 @@ const Cart = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <CartNav image={"./images/s1.png"} />
-        {cartProducts.length ? (
-          <Container maxW={"4xl"} p={"20px 15px"}>
-            <Flex>
-              <Box
-                w="62%"
-                paddingRight="20px"
-                borderRight={"1px solid #e1e1e1"}
-              >
-                <Heading
-                  fontSize={"18px"}
-                  fontWeight="500"
-                  color={"#000"}
-                  padding={"15px 0"}
+      {loading ? <h1>Loading...</h1> :
+        <div>
+          <CartNav image={"./images/s1.png"} />
+          {cartProducts.length ? (
+            <Container maxW={"4xl"} p={"20px 15px"}>
+              <Flex>
+                <Box
+                  w="62%"
+                  paddingRight="20px"
+                  borderRight={"1px solid #e1e1e1"}
                 >
-                  Cart
-                  <span
-                    style={{
-                      color: "grey",
-                      borderLeft: "1px solid gray",
-                      marginLeft: "5px",
-                      paddingLeft: "5px",
-                    }}
+                  <Heading
+                    fontSize={"18px"}
+                    fontWeight="500"
+                    color={"#000"}
+                    padding={"15px 0"}
                   >
-                    {cartProducts.length} Items
-                  </span>
-                </Heading>
-                {cartProducts.map((products) => (
-                  <CartItem
-                    key={products._id}
-                    {...products}
-                  // handleTp={handleTp}
+                    Cart
+                    <span
+                      style={{
+                        color: "grey",
+                        borderLeft: "1px solid gray",
+                        marginLeft: "5px",
+                        paddingLeft: "5px",
+                      }}
+                    >
+                      {cartProducts.length} Items
+                    </span>
+                  </Heading>
+                  {cartProducts.map((products) => (
+                    <CartItem
+                      key={products._id}
+                      {...products}
+                    // handleTp={handleTp}
+                    />
+                  ))}
+                </Box>
+                <Box w="38%">
+                  <PriceDetails
+                    display={"flex"}
+                    dest="/cart/address"
+                    text="Continue"
                   />
-                ))}
-              </Box>
-              <Box w="38%">
-                <PriceDetails
-                  display={"flex"}
-                  dest="/cart/address"
-                  text="Continue"
-                />
-              </Box>
+                </Box>
+              </Flex>
+            </Container>
+          ) : (
+            <Flex
+              width={"100%"}
+              h={"85vh"}
+              alignItems="center"
+              justifyContent={"center"}
+              flexDirection="column"
+              gap="20px"
+            >
+              <Image
+                src="https://images.meesho.com/images/pow/empty-cart.png"
+                alt="empty cart"
+              />
+              <Text fontSize={"18px"} fontWeight={"600"}>
+                Your cart is empty
+              </Text>
+              <Link href="/products">
+                <Button
+                  color={"#f43f97"}
+                  size={"lg"}
+                  border={"1px solid #f43f97"}
+                  bg={"none"}
+                  _hover={{
+                    bg: "none",
+                  }}
+                >
+                  View Products
+                </Button>
+              </Link>
             </Flex>
-          </Container>
-        ) : (
-          <Flex
-            width={"100%"}
-            h={"85vh"}
-            alignItems="center"
-            justifyContent={"center"}
-            flexDirection="column"
-            gap="20px"
-          >
-            <Image
-              src="https://images.meesho.com/images/pow/empty-cart.png"
-              alt="empty cart"
-            />
-            <Text fontSize={"18px"} fontWeight={"600"}>
-              Your cart is empty
-            </Text>
-            <Link href="/products">
-              <Button
-                color={"#f43f97"}
-                size={"lg"}
-                border={"1px solid #f43f97"}
-                bg={"none"}
-                _hover={{
-                  bg: "none",
-                }}
-              >
-                View Products
-              </Button>
-            </Link>
-          </Flex>
-        )}
-      </div>
+          )}
+        </div>}
     </>
   );
 };
