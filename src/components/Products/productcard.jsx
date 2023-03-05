@@ -58,22 +58,23 @@ const Productcard = ({ id, image, price, title, reviews }) => {
           >
             ₹{price}{" "}
           </Text>
-          <Text pl={"0.5rem"} pt={"0.6rem"} color={"grey"}>
+          <Text pl={"0.1rem"} pt={"0.6rem"} color={"grey"}>
             onwards
           </Text>
         </Flex>
 
-        <Button border={"0px"} m={"0.8rem"} p={"0.2rem"}>
+        <Button border={"0px"} mt={"0.5rem"} p={"0.2rem"}>
           Free Delivery
         </Button>
 
-        <Flex pl={"1rem"}>
+        <Flex direction={["column","row"]} >
           <div
             style={{
               backgroundColor: x,
               color: "white",
               fontStyle: "bold",
               padding: "0.5rem",
+              maxWidth:"70px",
               borderRadius: "16px",
               fontWeight: "bold",
             }}
