@@ -12,6 +12,10 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
+import { logout } from "@/redux/login/login.action";
+import useLoadingIndicator from "@/custom-hooks/useLoadingIndicator";
+import Loader from "../Loader/Loader";
+
 
 export const Profile = () => {
   return (
@@ -29,9 +33,8 @@ export const Profile = () => {
   );
 };
 
-
-import { logout } from "@/redux/login/login.action";
 const Navbar = ({ display = "flex" }) => {
+  const loading = useLoadingIndicator();
   const Toast = useToastMsg();
   const router = useRouter();
   const [dropdown, setdropdown] = useState(false);
@@ -61,213 +64,216 @@ const Navbar = ({ display = "flex" }) => {
   };
 
   return (
-    <div>
-      <nav className={styles.nav_1}>
-        <Flex bg={"#ffffff"} alignItems="center" gap="2">
-          <Box p="2" display={"flex"}>
-            <Link href={"/"}>
-              <Heading size="lg" color={"#f43397"}>
+    <>
+      {loading && <Loader />}
+      <div>
+        <nav className={styles.nav_1}>
+          <Flex bg={"#ffffff"} alignItems="center" gap="2">
+            <Box p="2" display={"flex"}>
+              <Link href={"/"}>
+                <Heading size="lg" color={"#f43397"}>
+                  ApniDukan
+                </Heading>
+              </Link>
+              <InputGroup marginLeft={"20px"}>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<CiSearch color="gray.300" />}
+                />
+                <Input
+                  width={"400px"}
+                  type="text"
+                  placeholder="Try Saree, Kurti or Search by Product Code"
+                />
+              </InputGroup>
+            </Box>
 
-                ApniDukan
-              </Heading>
-            </Link>
-            <InputGroup marginLeft={"20px"}>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<CiSearch color="gray.300" />}
-              />
-              <Input
-                width={"400px"}
-                type="text"
-                placeholder="Try Saree, Kurti or Search by Product Code"
-              />
-            </InputGroup>
-          </Box>
+            <Spacer />
 
-          <Spacer />
-
-          <ButtonGroup gap="2" className={styles.rightside}>
-            <Tooltip hasArrow label={<Profile />} bg="red.600">
-              <Flex>
-                <Center>
-                  <AiOutlineMobile />
-                </Center>{" "}
-                <Text>Download App </Text>{" "}
-              </Flex>
-            </Tooltip>{" "}
-            <div className={styles.border}></div>
-            <Text>Become a Supplier</Text> <div className={styles.border}></div>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
+            <ButtonGroup gap="2" className={styles.rightside}>
+              <Tooltip hasArrow label={<Profile />} bg="red.600">
                 <Flex>
                   <Center>
-                    <MdManageAccounts />
-                    Profile
-                  </Center>
+                    <AiOutlineMobile />
+                  </Center>{" "}
+                  <Text>Download App </Text>{" "}
                 </Flex>
-              </MenuButton>
-              {data.token ? (
-                <MenuList alignItems={"center"}>
-                  <br />
-                  <Center>
-                    <Avatar
-                      size={"lg"}
-                      src={
-                        "https://cdn-icons-png.flaticon.com/128/149/149071.png"
-                      }
-                    />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>{data.username}</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  {data.role == "ADMIN" ? <MenuItem>Admin panel</MenuItem> : null}
+              </Tooltip>{" "}
+              <div className={styles.border}></div>
+              <Text>Become a Supplier</Text> <div className={styles.border}></div>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
+                  minW={0}
+                >
+                  <Flex>
+                    <Center>
+                      <MdManageAccounts />
+                      Profile
+                    </Center>
+                  </Flex>
+                </MenuButton>
+                {data.token ? (
+                  <MenuList alignItems={"center"}>
+                    <br />
+                    <Center>
+                      <Avatar
+                        size={"lg"}
+                        src={
+                          "https://cdn-icons-png.flaticon.com/128/149/149071.png"
+                        }
+                      />
+                    </Center>
+                    <br />
+                    <Center>
+                      <p>{data.username}</p>
+                    </Center>
+                    <br />
+                    <MenuDivider />
+                    {data.role == "ADMIN" ? <MenuItem>Admin panel</MenuItem> : null}
 
-                  <MenuItem>My Orders</MenuItem>
-                  <MenuItem onClick={signout}>Logout</MenuItem>
-                </MenuList>
-              ) : (
-                <MenuList alignItems={"center"} >
+                    <MenuItem>My Orders</MenuItem>
+                    <MenuItem onClick={signout}>Logout</MenuItem>
+                  </MenuList>
+                ) : (
+                  <MenuList alignItems={"center"} >
 
-                  <MenuItem width="90%" justifyContent={"center"}
-                    backgroundColor={"rgb(231,48,150)"} margin="10px" color="white">Hello User  </MenuItem>
-                  <a href="/login">
-                    <MenuItem
-                      style={{
-                        background: "rgb(231,48,150)",
-                        color: "white",
-                        fontSize: "20px",
+                    <MenuItem width="90%" justifyContent={"center"}
+                      backgroundColor={"rgb(231,48,150)"} margin="10px" color="white">Hello User  </MenuItem>
+                    <a href="/login">
+                      <MenuItem
+                        style={{
+                          background: "rgb(231,48,150)",
+                          color: "white",
+                          fontSize: "20px",
 
-                        fontWeight: "bolder",
-                        width: "90%",
-                        justifyContent: "center",
-                        marginLeft: "10px",
-                      }}
-                    >
-                      Login
-                    </MenuItem>
-                  </a>
-                  <a href="/Signup">
-                    <MenuItem
-                      style={{
-                        margin: "5px",
-                        background: "rgb(231,48,150)",
-                        color: "white",
-                        fontSize: "20px",
-                        textAlign: "center",
-                        fontWeight: "bolder",
-                        width: "90%",
-                        justifyContent: "center",
-                        marginLeft: "10px",
-                      }}
-                    >
-                      Signup
-                    </MenuItem>
-                  </a>
-                </MenuList>
-              )}
-            </Menu>
-            <Button
-              variant={"ghost"}
-              onClick={() => {
-                if (data.token) router.push("/cart");
-                else Toast("Please Login/Signup to access cart", "error");
-              }}
+                          fontWeight: "bolder",
+                          width: "90%",
+                          justifyContent: "center",
+                          marginLeft: "10px",
+                        }}
+                      >
+                        Login
+                      </MenuItem>
+                    </a>
+                    <a href="/Signup">
+                      <MenuItem
+                        style={{
+                          margin: "5px",
+                          background: "rgb(231,48,150)",
+                          color: "white",
+                          fontSize: "20px",
+                          textAlign: "center",
+                          fontWeight: "bolder",
+                          width: "90%",
+                          justifyContent: "center",
+                          marginLeft: "10px",
+                        }}
+                      >
+                        Signup
+                      </MenuItem>
+                    </a>
+                  </MenuList>
+                )}
+              </Menu>
+              <Button
+                variant={"ghost"}
+                onClick={() => {
+                  if (data.token) router.push("/cart");
+                  else Toast("Please Login/Signup to access cart", "error");
+                }}
+              >
+                <Flex align="center">
+                  <AiOutlineShoppingCart />
+                  <Text>Cart</Text>
+                </Flex>
+              </Button>
+            </ButtonGroup>
+          </Flex>
+        </nav>
+        <nav className={styles.nav_2}>
+          <Flex
+            maxWidth="100%"
+            alignItems="center"
+            gap="10"
+            justify={"center"}
+            fontWeight={"semibold"}
+            display={display}
+          >
+            <Text
+              onMouseEnter={() => setdropdown(true)}
+              onMouseLeave={() => setdropdown(false)}
             >
-              <Flex align="center">
-                <AiOutlineShoppingCart />
-                <Text>Cart</Text>
-              </Flex>
-            </Button>
-          </ButtonGroup>
-        </Flex>
-      </nav>
-      <nav className={styles.nav_2}>
-        <Flex
-          maxWidth="100%"
-          alignItems="center"
-          gap="10"
-          justify={"center"}
-          fontWeight={"semibold"}
-          display={display}
-        >
-          <Text
-            onMouseEnter={() => setdropdown(true)}
-            onMouseLeave={() => setdropdown(false)}
-          >
-            Women Ethnic
-          </Text>
+              Women Ethnic
+            </Text>
 
-          <Text
-            onMouseEnter={() => setdropdown1(true)}
-            onMouseLeave={() => setdropdown1(false)}
-          >
-            Women Western
-          </Text>
-          <Text
-            onMouseEnter={() => setdropdown2(true)}
-            onMouseLeave={() => setdropdown2(false)}
-          >
-            Men
-          </Text>
-          <Text
-            onMouseEnter={() => setdropdown3(true)}
-            onMouseLeave={() => setdropdown3(false)}
-          >
-            Kids
-          </Text>
-          <Text
-            onMouseEnter={() => setdropdown4(true)}
-            onMouseLeave={() => setdropdown4(false)}
-          >
-            Home & Kitchen
-          </Text>
-          <Text
-            onMouseEnter={() => setdropdown5(true)}
-            onMouseLeave={() => setdropdown5(false)}
-          >
-            Beauty & Health
-          </Text>
-          <Text
-            onMouseEnter={() => setdropdown6(true)}
-            onMouseLeave={() => setdropdown6(false)}
-          >
-            {" "}
-            Jewellery & Accessories
-          </Text>
-          <Text
-            onMouseEnter={() => setdropdown7(true)}
-            onMouseLeave={() => setdropdown7(false)}
-          >
-            Bags & Footwear
-          </Text>
+            <Text
+              onMouseEnter={() => setdropdown1(true)}
+              onMouseLeave={() => setdropdown1(false)}
+            >
+              Women Western
+            </Text>
+            <Text
+              onMouseEnter={() => setdropdown2(true)}
+              onMouseLeave={() => setdropdown2(false)}
+            >
+              Men
+            </Text>
+            <Text
+              onMouseEnter={() => setdropdown3(true)}
+              onMouseLeave={() => setdropdown3(false)}
+            >
+              Kids
+            </Text>
+            <Text
+              onMouseEnter={() => setdropdown4(true)}
+              onMouseLeave={() => setdropdown4(false)}
+            >
+              Home & Kitchen
+            </Text>
+            <Text
+              onMouseEnter={() => setdropdown5(true)}
+              onMouseLeave={() => setdropdown5(false)}
+            >
+              Beauty & Health
+            </Text>
+            <Text
+              onMouseEnter={() => setdropdown6(true)}
+              onMouseLeave={() => setdropdown6(false)}
+            >
+              {" "}
+              Jewellery & Accessories
+            </Text>
+            <Text
+              onMouseEnter={() => setdropdown7(true)}
+              onMouseLeave={() => setdropdown7(false)}
+            >
+              Bags & Footwear
+            </Text>
 
-          <Text
-            onMouseEnter={() => setdropdown8(true)}
-            onMouseLeave={() => setdropdown8(false)}
-          >
-            Electronics
-          </Text>
-        </Flex>
-      </nav>
-      {dropdown ? <Dropdown setdropdown={setdropdown} /> : null}
-      {dropdown1 ? <Dropdown1 setdropdown1={setdropdown1} /> : null}
-      {dropdown2 ? <Dropdown2 setdropdown2={setdropdown2} /> : null}
-      {dropdown3 ? <Dropdown3 setdropdown3={setdropdown3} /> : null}
-      {dropdown4 ? <Dropdown4 setdropdown4={setdropdown4} /> : null}
-      {dropdown5 ? <Dropdown5 setdropdown5={setdropdown5} /> : null}
-      {dropdown6 ? <Dropdown6 setdropdown6={setdropdown6} /> : null}
-      {dropdown7 ? <Dropdown7 setdropdown7={setdropdown7} /> : null}
-      {dropdown8 ? <Dropdown8 setdropdown8={setdropdown8} /> : null}
-    </div>
+            <Text
+              onMouseEnter={() => setdropdown8(true)}
+              onMouseLeave={() => setdropdown8(false)}
+            >
+              Electronics
+            </Text>
+          </Flex>
+        </nav>
+        {dropdown ? <Dropdown setdropdown={setdropdown} /> : null}
+        {dropdown1 ? <Dropdown1 setdropdown1={setdropdown1} /> : null}
+        {dropdown2 ? <Dropdown2 setdropdown2={setdropdown2} /> : null}
+        {dropdown3 ? <Dropdown3 setdropdown3={setdropdown3} /> : null}
+        {dropdown4 ? <Dropdown4 setdropdown4={setdropdown4} /> : null}
+        {dropdown5 ? <Dropdown5 setdropdown5={setdropdown5} /> : null}
+        {dropdown6 ? <Dropdown6 setdropdown6={setdropdown6} /> : null}
+        {dropdown7 ? <Dropdown7 setdropdown7={setdropdown7} /> : null}
+        {dropdown8 ? <Dropdown8 setdropdown8={setdropdown8} /> : null}
+      </div>
+    </>
+
   );
 };
 
