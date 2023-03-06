@@ -15,13 +15,14 @@ import { useState } from "react";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signup } from "@/redux/login/login.action";
 import useToastMsg from "@/custom-hooks/useToast";
 import Loader from "@/components/Loader/Loader";
 import useLoadingIndicator from "@/custom-hooks/useLoadingIndicator";
 
 export default function Login() {
+  const isLoading = useSelector(store => store.login.loading)
   const loading = useLoadingIndicator();
   const Toast = useToastMsg();
   const [name, setname] = useState("");
@@ -99,6 +100,8 @@ export default function Login() {
                     justify={"space-between"}
                   ></Stack>
                   <Button
+                    isLoading={isLoading}
+                    loadingText={"Registering"}
                     onClick={Signup}
                     bg={"#f43397"}
                     color={"white"}

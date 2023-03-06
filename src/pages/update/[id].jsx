@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./update.module.css";
 import axios from "axios";
 import {
@@ -21,38 +21,37 @@ import { useSelector } from "react-redux";
 
 
 
-const Update = ( ) => {
-  const token=useSelector(store=>store.login.token)
+const Update = () => {
+  const token = useSelector(store => store.login.token)
   const router = useRouter();
-  let id=router.query.id
-   
+  let id = router.query.id
+
   // const [product,setProduct]=useState({})
   const [productdata, setData] = React.useState({});
 
 
-  
-const getData=async(id)=>{
-  try{
-    let r = await axios(`/product/singleproduct/${id}`);
+
+  const getData = async (id) => {
+    try {
+      let r = await axios(`/product/singleproduct/${id}`);
       let d = await r.data;
-      let product=d.products[0]
-    setData(product)
-   
-    console.log(d)
-  }catch(err){
-    console.log(err)
-  }
-}
+      let product = d.product
+      setData(product)
 
-  useEffect(()=>{
-  if(id){
-
-   getData(id)
-   
+    } catch (err) {
+      console.log(err)
+    }
   }
-},[id])
-console.log(productdata)
-  
+
+  useEffect(() => {
+    if (id) {
+
+      getData(id)
+
+    }
+  }, [id])
+  console.log(productdata)
+
 
   const onInputChange = (e) => {
     let a = e.target.value;
@@ -61,7 +60,7 @@ console.log(productdata)
       a = +a;
     }
 
-  
+
     setData({ ...productdata, [b]: a });
   };
 
@@ -70,11 +69,11 @@ console.log(productdata)
       productdata.title &&
       productdata.image &&
       productdata.category &&
-      // productdata.reviews.rate &&
+      productdata.reviews.rate &&
       productdata.price
     ) {
       try {
-        axios.patch(`/product/update/${id}`,productdata,{ headers: { 'Authorization': token } })
+        axios.patch(`/product/update/${id}`, productdata, { headers: { 'Authorization': token } })
       } catch (err) {
         console.log(err);
         alert("Facing some issues please try again");
@@ -96,7 +95,7 @@ console.log(productdata)
       productdata.price
     ) {
       try {
-        axios.delete(`/product/remove/${id}`,{ headers: { 'Authorization': token } })
+        axios.delete(`/product/remove/${id}`, { headers: { 'Authorization': token } })
       } catch (err) {
         console.log(err);
         alert("Facing some issues please try again");
@@ -107,110 +106,110 @@ console.log(productdata)
     }
   };
 
- 
+
 
   return (
-  <>
- 
-   <div className={styles.container}>
-      <div className={styles.blurr}>
-        <Center>
-          <Heading
-            size={{
-              base: "md",
-              sm: "lg",
-              md: "lg",
-              lg: "lg",
-              xl: "lg",
-              "2xl": "xl",
-            }}
-            style={{ marginTop: "25px", marginBottom: "20px" }}
+    <>
+
+      <div className={styles.container}>
+        <div className={styles.blurr}>
+          <Center>
+            <Heading
+              size={{
+                base: "md",
+                sm: "lg",
+                md: "lg",
+                lg: "lg",
+                xl: "lg",
+                "2xl": "xl",
+              }}
+              style={{ marginTop: "25px", marginBottom: "20px" }}
+            >
+              ADD NEW PRODUCT
+            </Heading>
+          </Center>
+          <div className={styles.updateButton}>
+            <Link href="/updateProduct">
+              <Button>Update Products</Button>
+            </Link>
+          </div>
+          <Flex
+            width={"fit-content"}
+            style={{ margin: "auto auto 50px auto" }}
+            flexDirection={{ base: "column-reverse", md: "row" }}
+            gap={{ md: "40px", lg: "150px", xl: "200px", "2xl": "200px" }}
+            className={styles.table}
           >
-            ADD NEW PRODUCT
-          </Heading>
-        </Center>
-        <div className={styles.updateButton}>
-          <Link href="/updateProduct">
-            <Button>Update Products</Button>
-          </Link>
-        </div>
-        <Flex
-          width={"fit-content"}
-          style={{ margin: "auto auto 50px auto" }}
-          flexDirection={{ base: "column-reverse", md: "row" }}
-          gap={{ md: "40px", lg: "150px", xl: "200px", "2xl": "200px" }}
-          className={styles.table}
-        >
-          <Box width={"fit-content"}>
-            <div>
-              <div className={styles.form}>
-                <FormControl isRequired>
-                  <label
-                    style={{
-                      width: "fit-content",
-                      fontFamily:
-                        "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      margin: 0,
-                      padding: 0,
-                    }}
-                  >
-                    Title:
-                  </label>
+            <Box width={"fit-content"}>
+              <div>
+                <div className={styles.form}>
+                  <FormControl isRequired>
+                    <label
+                      style={{
+                        width: "fit-content",
+                        fontFamily:
+                          "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        margin: 0,
+                        padding: 0,
+                      }}
+                    >
+                      Title:
+                    </label>
 
-                  <Input
-                    value={productdata?.title}
-                    placeholder="Title"
-                    name="title"
-                    onChange={onInputChange}
-                  />
+                    <Input
+                      value={productdata?.title}
+                      placeholder="Title"
+                      name="title"
+                      onChange={onInputChange}
+                    />
 
-                  <label
-                    style={{
-                      width: "fit-content",
-                      fontFamily:
-                        "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      margin: 0,
-                      padding: 0,
-                    }}
-                  >
-                    Price:
-                  </label>
+                    <label
+                      style={{
+                        width: "fit-content",
+                        fontFamily:
+                          "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        margin: 0,
+                        padding: 0,
+                      }}
+                    >
+                      Price:
+                    </label>
 
-                  <Input
-                    value={productdata?.price}
-                    type="number"
-                    placeholder="Price"
-                    name="price"
-                    onChange={onInputChange}
-                  />
+                    <Input
+                      value={productdata?.price}
+                      type="number"
+                      placeholder="Price"
+                      name="price"
+                      onChange={onInputChange}
+                    />
 
-                  <label
-                    style={{
-                      width: "fit-content",
-                      fontFamily:
-                        "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      margin: 0,
-                      padding: 0,
-                    }}
-                  >
-                    Discount:
-                  </label>
+                    <label
+                      style={{
+                        width: "fit-content",
+                        fontFamily:
+                          "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        margin: 0,
+                        padding: 0,
+                      }}
+                    >
+                      Discount:
+                    </label>
 
-                  <Input
-                    value={productdata?.discount}
-                    type="number"
-                    placeholder="Discount"
-                    name="discount"
-                    onChange={onInputChange}
-                  />
+                    <Input
+                      value={productdata?.discount}
+                      type="number"
+                      placeholder="Discount"
+                      name="discount"
+                      onChange={onInputChange}
+                    />
 
-                  {/* <label
+                    {/* <label
                     style={{
                       width: "fit-content",
                       fontFamily:
@@ -233,107 +232,86 @@ console.log(productdata)
                     disabled
                   /> */}
 
-                  <label
-                    style={{
-                      width: "fit-content",
-                      fontFamily:
-                        "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      margin: 0,
-                      padding: 0,
-                    }}
-                  >
-                    Description:
-                  </label>
-
-                  <Textarea
-                    value={productdata?.description}
-                    placeholder="Product Description"
-                    name="description"
-                    onChange={onInputChange}
-                  />
-
-                  <label
-                    style={{
-                      width: "fit-content",
-                      fontFamily:
-                        "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      margin: 0,
-                      padding: 0,
-                    }}
-                  >
-                    Category:
-                  </label>
-
-                  <Select
-                    value={productdata?.category}
-                    placeholder="Select Category"
-                    className={styles.option}
-                    name="category"
-                    onChange={onInputChange}
-                  >
-                    <option value="women-ethnic">Women Ethnic</option>
-                    <option value="women-western">Women Western</option>
-                    <option value="men">Men</option>
-                    <option value="kids">Kids</option>
-                    <option value="home-kitchen">Home & Kitchen</option>
-                    <option value="beauty-health">Beauty & Health</option>
-                  </Select>
-                  <div className={styles.button}>
-                    <Button
-                      mt={4}
-                      colorScheme="green"
-                      type="submit"
-                      onClick={() => handleUpdate(productdata._id)}
+                    <label
+                      style={{
+                        width: "fit-content",
+                        fontFamily:
+                          "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        margin: 0,
+                        padding: 0,
+                      }}
                     >
-                      Update
-                    </Button>
-                    <Button
-                      mt={4}
-                      colorScheme="red"
-                      type="submit"
-                      onClick={() => deleteProduct(productdata._id)}
+                      Description:
+                    </label>
+
+                    <Textarea
+                      value={productdata?.description}
+                      placeholder="Product Description"
+                      name="description"
+                      onChange={onInputChange}
+                    />
+
+                    <label
+                      style={{
+                        width: "fit-content",
+                        fontFamily:
+                          "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        margin: 0,
+                        padding: 0,
+                      }}
                     >
-                      Delete
-                    </Button>
-                  </div>
-                </FormControl>
+                      Category:
+                    </label>
+
+                    <Select
+                      value={productdata?.category}
+                      placeholder="Select Category"
+                      className={styles.option}
+                      name="category"
+                      onChange={onInputChange}
+                    >
+                      <option value="women-ethnic">Women Ethnic</option>
+                      <option value="women-western">Women Western</option>
+                      <option value="men">Men</option>
+                      <option value="kids">Kids</option>
+                      <option value="home-kitchen">Home & Kitchen</option>
+                      <option value="beauty-health">Beauty & Health</option>
+                    </Select>
+                    <div className={styles.button}>
+                      <Button
+                        mt={4}
+                        colorScheme="green"
+                        type="submit"
+                        onClick={() => handleUpdate(productdata._id)}
+                      >
+                        Update
+                      </Button>
+                      <Button
+                        mt={4}
+                        colorScheme="red"
+                        type="submit"
+                        onClick={() => deleteProduct(productdata._id)}
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </FormControl>
+                </div>
               </div>
-            </div>
-          </Box>
-          <Box width={"fit-content"} margin={"auto"}>
-            <UploadImage product={productdata} img={productdata?.image} />
-          </Box>
-        </Flex>
+            </Box>
+            <Box width={"fit-content"} margin={"auto"}>
+              <UploadImage product={productdata} img={productdata?.image} />
+            </Box>
+          </Flex>
+        </div>
       </div>
-    </div>
-  </>
+    </>
   );
 };
 
-// export async function getServerSideProps() {
-//   let r = await axios(`/product/singleproduct/${id}`);
-//   let d = await r.data.products;
-//   console.log(d)
-//   return {
-//     paths: d?.map((product) => ({ params: { id: String(product._id) } })),
-//     fallback: false,
-//   };
-// }
-
-// export async function getStaticProps(context) {
-//   let id = context.params.id;
-//   // console.log(`Building id: ${id}`);
-//   let r = await axios(`/product/update/${id}`);
-//   let d = await r.json();
-//   return {
-//     props: {
-//       product: d,
-//     },
-//   };
-// }
 
 export default Update;

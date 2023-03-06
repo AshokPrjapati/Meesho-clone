@@ -16,13 +16,13 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/redux/login/login.action";
 import useToastMsg from "@/custom-hooks/useToast";
 import useLoadingIndicator from "@/custom-hooks/useLoadingIndicator";
 import Loader from "@/components/Loader/Loader";
 export default function Login() {
-
+  const isLoading = useSelector(store => store.login.loading)
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const loading = useLoadingIndicator();
@@ -98,6 +98,7 @@ export default function Login() {
                   </Stack>
 
                   <Button
+                    isLoading={isLoading}
                     onClick={signin}
                     bg={"#f43397"}
                     color={"white"}
@@ -105,7 +106,6 @@ export default function Login() {
                       bg: "green.500",
                     }}
                   >
-
                     SignIn
                   </Button>
                   <Text>If you are not a registered user?</Text>

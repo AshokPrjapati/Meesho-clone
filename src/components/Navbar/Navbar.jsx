@@ -63,6 +63,9 @@ const Navbar = ({ display = "flex" }) => {
     setData({})
   };
 
+  const movetoadmin = () => {
+    router.push("/admin")
+  }
   return (
     <>
       {loading && <Loader />}
@@ -87,6 +90,8 @@ const Navbar = ({ display = "flex" }) => {
                 />
               </InputGroup>
             </Box>
+
+            <Spacer />
 
             <Spacer />
 
@@ -133,7 +138,7 @@ const Navbar = ({ display = "flex" }) => {
                     </Center>
                     <br />
                     <MenuDivider />
-                    {data.role == "ADMIN" ? <MenuItem>Admin panel</MenuItem> : null}
+                    {data.role == "ADMIN" ? <MenuItem onClick={movetoadmin}>Admin panel</MenuItem> : null}
 
                     <MenuItem>My Orders</MenuItem>
                     <MenuItem onClick={signout}>Logout</MenuItem>
