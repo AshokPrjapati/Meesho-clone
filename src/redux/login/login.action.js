@@ -55,6 +55,7 @@ export const signup = (cred, router, Toast) => async (dispatch) => {
     } catch (error) {
         // server or internal error
         console.log(error)
+        dispatch({ type: AUTH_ERROR });
         Toast(error.response?.data?.message || "something went wrong", "error");
     }
 }
