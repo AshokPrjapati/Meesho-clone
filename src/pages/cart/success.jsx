@@ -1,6 +1,8 @@
 import PaymentCard from "@/components/cart/PaymentCard";
 import PriceDetails from "@/components/cart/PriceDetails";
+import Loader from "@/components/Loader/Loader";
 import Navbar from "@/components/Navbar/Navbar";
+import useLoadingIndicator from "@/custom-hooks/useLoadingIndicator";
 import useToastMsg from "@/custom-hooks/useToast";
 import { getAddress } from "@/redux/address/address.action";
 import { StarIcon } from "@chakra-ui/icons";
@@ -23,6 +25,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Success = () => {
+  const loading = useLoadingIndicator();
   const { orderData, orderTotal } = useSelector((store) => store.cart);
   const token = useSelector(store => store.login.token);
   const Toast = useToastMsg();
@@ -38,6 +41,7 @@ const Success = () => {
 
   return (
     <>
+      {loading && <Loader />}
       <Head>
         <title>ApniDukan-Succes page</title>
         <meta name="description" content="Apni dukan success page" />

@@ -2,9 +2,12 @@ import React from "react";
 import { Box, Image, Text, Flex, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
+import useLoadingIndicator from "@/custom-hooks/useLoadingIndicator";
+import Loader from "../Loader/Loader";
 
 const Productcard = ({ id, image, price, title, reviews }) => {
   const router = useRouter();
+  const loading = useLoadingIndicator();
 
   const handleClick = (id) => {
     if (id) {
@@ -23,68 +26,72 @@ const Productcard = ({ id, image, price, title, reviews }) => {
     x = "rgb(244, 182, 25)";
   }
   return (
-    <div>
-      <Box
-        bg={"whitesmoke"}
-        borderRadius={"10px"}
-        boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
-        padding={{ sm: "0.5rem", lg: "1rem" }}
-        onClick={() => handleClick(id)}
-        cursor={"pointer"}
-        width={{ sm: "100%", md: "100%", lg: "100%" }}
+    <>
+      {loading && <Loader />}
+      <div>
+        <Box
+          bg={"whitesmoke"}
+          borderRadius={"10px"}
+          boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"}
+          padding={{ sm: "0.5rem", lg: "1rem" }}
+          onClick={() => handleClick(id)}
+          cursor={"pointer"}
+          width={{ sm: "100%", md: "100%", lg: "100%" }}
 
-        maxHeight={{ sm: "600px", lg: "500px" }}
+          maxHeight={{ sm: "600px", lg: "500px" }}
 
-      >
-        <Image h={{ sm: "200px", lg: "35vh" }} maxHeight={{ sm: "100px", lg: "35vh" }} objectFit={"cover"} w={"100%"} src={image} alt={title} />
-        <Text
-          pt={"1rem"}
-          pl={"1.1rem"}
-          fontWeight={"bold"}
-          fontSize={{ sm: "0.7rem", lg: "1rem" }}
-          color={"grey"}
-          className={styles.lineClamp}
         >
-          {title}
-        </Text>
-        <Flex>
+          <Image h={{ sm: "200px", lg: "35vh" }} maxHeight={{ sm: "100px", lg: "35vh" }} objectFit={"cover"} w={"100%"} src={image} alt={title} />
           <Text
-            color={"black"}
-            pt={"0.6rem"}
-            pl={{ sm: "2rem", lg: "1.3rem" }}
-            fontSize={"1.3rem"}
-            fontWeight={"bolder"}
-            c={"black"}
+            pt={"1rem"}
+            pl={"1.1rem"}
+            fontWeight={"bold"}
+            fontSize={{ sm: "0.7rem", lg: "1rem" }}
+            color={"grey"}
+            className={styles.lineClamp}
           >
-            ₹{price}{" "}
+            {title}
           </Text>
-          <Text pl={"0.1rem"} pt={"0.6rem"} color={"grey"}>
-            onwards
-          </Text>
-        </Flex>
+          <Flex>
+            <Text
+              color={"black"}
+              pt={"0.6rem"}
+              pl={{ sm: "2rem", lg: "1.3rem" }}
+              fontSize={"1.3rem"}
+              fontWeight={"bolder"}
+              c={"black"}
+            >
+              ₹{price}{" "}
+            </Text>
+            <Text pl={"0.1rem"} pt={"0.6rem"} color={"grey"}>
+              onwards
+            </Text>
+          </Flex>
 
-        <Button border={"0px"} mt={"0.5rem"} p={"0.2rem"}>
-          Free Delivery
-        </Button>
+          <Button border={"0px"} mt={"0.5rem"} p={"0.2rem"}>
+            Free Delivery
+          </Button>
 
-        <Flex direction={["column","row"]} >
-          <div
-            style={{
-              backgroundColor: x,
-              color: "white",
-              fontStyle: "bold",
-              padding: "0.5rem",
-              maxWidth:"70px",
-              borderRadius: "16px",
-              fontWeight: "bold",
-            }}
-          >
-            {reviews.rate} ★{" "}
-          </div>
-          <div style={{ padding: "0.5rem", color: "grey" }}>4 Reviews</div>
-        </Flex>
-      </Box>
-    </div>
+          <Flex direction={["column", "row"]} >
+            <div
+              style={{
+                backgroundColor: x,
+                color: "white",
+                fontStyle: "bold",
+                padding: "0.5rem",
+                maxWidth: "70px",
+                borderRadius: "16px",
+                fontWeight: "bold",
+              }}
+            >
+              {reviews.rate} ★{" "}
+            </div>
+            <div style={{ padding: "0.5rem", color: "grey" }}>4 Reviews</div>
+          </Flex>
+        </Box>
+      </div>
+    </>
+
   );
 };
 

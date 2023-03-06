@@ -56,7 +56,8 @@ export const loginReducer = (state = initialState, { type, payload }) => {
         case AUTH_ERROR: {
             return {
                 ...state,
-                error: true
+                error: true,
+                loading: false
             }
 
         }
