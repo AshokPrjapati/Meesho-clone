@@ -55,6 +55,7 @@ async function GetCart(req, res) {
     }
 }
 
+
 // get cart total
 async function CartTotal(req, res) {
     const { user } = req.body;

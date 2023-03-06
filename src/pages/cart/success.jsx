@@ -45,21 +45,19 @@ const Success = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Navbar display="none" />
-        <Container maxW={"4xl"} p={"20px 15px"}>
-          <Alert status="success">
+        {/* <Navbar display="none" /> */}
+        <Alert status="success">
             <AlertIcon />
             <HStack justify={"space-around"}>
               <Text>Thanks for shopping with us !</Text>
               {orderData.length ? <Text>Order Id : {`#${Date.now()}`}</Text> : null}
             </HStack>
           </Alert>
-          <Flex>
+        <Container maxW={"4xl"} display={{sm:"grid",lg:"flex"}} p={"20px 15px"}>
+        
+          <Flex maxW={"4xl"} display={{sm:"grid",lg:"flex"}} p={"20px 15px"}>
             <Box
-              w="62%"
-              paddingRight="20px"
-              borderRight={"1px solid #e1e1e1"}
-              mt="10px"
+             w={{sm:"100%",lg:"70%"}} paddingRight="20px" borderRight={"1px solid #e1e1e1"}
             >
               <Flex
                 fontSize={"18px"}
@@ -156,7 +154,7 @@ const Success = () => {
               </Flex>
               <PaymentCard />
             </Box>
-            <Box w="38%">
+            <Box  w={{sm:"100%",lg:"38%"}}>
               <Stack p={"10px 20px"} lineHeight={8}>
                 <Text fontSize={"17px"} fontWeight={"500"}>
                   Price Details
