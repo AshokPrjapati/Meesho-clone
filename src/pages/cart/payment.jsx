@@ -19,8 +19,8 @@ const Payment = () => {
       <div>
         <CartNav image={"../../../images/s3.png"} />
         <Container  maxW={"4xl"} display={{sm:"grid",lg:"flex"}} p={"20px 15px"}>
-          <Flex>
-            <Box w={{sm:"100%",lg:"70%"}} paddingRight="20px" borderRight={"1px solid #e1e1e1"}>
+          <Flex  w={{base:"100%",md:"70%"}}>
+            <Box w={"100%"} paddingRight="20px" borderRight={"1px solid #e1e1e1"}>
               <Flex
                 fontSize={"18px"}
                 fontWeight="500"

@@ -14,6 +14,8 @@ import { useRouter } from "next/router";
 import { getCartTotal } from "@/redux/cart/cart.action";
 import { useEffect } from "react";
 import useToastMsg from "@/custom-hooks/useToast";
+import useLoadingIndicator from "@/custom-hooks/useLoadingIndicator";
+import Loader from "../Loader/Loader";
 
 const PriceDetails = ({ display, dest, text }) => {
   const loading = useLoadingIndicator();

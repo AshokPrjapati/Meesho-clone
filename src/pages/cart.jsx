@@ -33,9 +33,9 @@ const Cart = () => {
         <CartNav image={"./images/s1.png"} />
         {cartProducts.length ? (
           <Container maxW={{sm:"100%",lg:"80%"}} p={"10px 15px"} display={{sm:"grid",base:"grid",lg:"flex"}}>
-            <Flex >
+            <Flex w={{base:"100%",md:"70%"}} >
               <Box
-                w={{sm:"100%",lg:"62%"}}
+                w={"100%"}
                 paddingRight="10px"
                 borderRight={"1px solid #e1e1e1"}
               >
