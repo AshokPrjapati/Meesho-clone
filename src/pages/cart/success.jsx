@@ -37,7 +37,7 @@ const Success = () => {
     dispatch(getAddress(token, Toast));
   }, []);
 
-  console.log(orderData);
+
 
   return (
     <>
