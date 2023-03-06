@@ -12,6 +12,7 @@ import useToastMsg from "@/custom-hooks/useToast";
 const Cart = () => {
   const Toast = useToastMsg();
   const { cartProducts } = useSelector((store) => store.cart);
+  
   const token = useSelector(store => store.login.token);
   const dispatch = useDispatch();
 
@@ -31,11 +32,11 @@ const Cart = () => {
       <div>
         <CartNav image={"./images/s1.png"} />
         {cartProducts.length ? (
-          <Container maxW={"4xl"} p={"20px 15px"}>
-            <Flex>
+          <Container maxW={{sm:"100%",lg:"80%"}} p={"10px 15px"} display={{sm:"grid",base:"grid",lg:"flex"}}>
+            <Flex w={{base:"100%",md:"70%"}} >
               <Box
-                w="62%"
-                paddingRight="20px"
+                w={"100%"}
+                paddingRight="10px"
                 borderRight={"1px solid #e1e1e1"}
               >
                 <Heading
@@ -63,14 +64,15 @@ const Cart = () => {
                   />
                 ))}
               </Box>
-              <Box w="38%">
+              </Flex>
+              <Box w={{sm:"100%",lg:"38%"}} >
                 <PriceDetails
                   display={"flex"}
                   dest="/cart/address"
                   text="Continue"
                 />
               </Box>
-            </Flex>
+            
           </Container>
         ) : (
           <Flex
@@ -80,6 +82,7 @@ const Cart = () => {
             justifyContent={"center"}
             flexDirection="column"
             gap="20px"
+            
           >
             <Image
               src="https://images.meesho.com/images/pow/empty-cart.png"

@@ -37,9 +37,9 @@ const Address = () => {
           finalFocusRef={btnRef}
         />
 
-        <Container maxW={"4xl"} p={"20px 15px"}>
-          <Flex>
-            <Box w="62%" paddingRight="20px" borderRight={"1px solid #e1e1e1"}>
+        <Container maxW={"5xl"} display={{sm:"grid",lg:"flex"}} p={"20px 15px"} >
+          <Flex  w={{base:"100%",md:"70%"}}>
+            <Box w={"100%"} paddingRight="20px" borderRight={"1px solid #e1e1e1"}>
               <Flex
                 fontSize={"18px"}
                 fontWeight="500"
@@ -69,14 +69,15 @@ const Address = () => {
                 <AddressForm />
               )}
             </Box>
-            <Box w="38%">
+          
+          </Flex>
+          <Box w={{base:"100%",md:"38%"}}>
               <PriceDetails
                 display={"none"}
                 dest="/cart/payment"
                 text="Continue"
               />
             </Box>
-          </Flex>
         </Container>
       </div>
     </>

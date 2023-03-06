@@ -10,26 +10,29 @@ import {
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { api } from "@/api";
 
-const getApi = async () => {
 
-  let res = await axios.get(`${api}/order`);
-
-  let data = await res.data;
-  return data;
-};
 
 const Order = () => {
   const [total, setTotal] = useState(0);
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    getApi()
-      .then((res) => setData(res))
-      .catch((err) => console.log(err));
+  const [data, setData] = React.useState([]);
+
+
+  React.useEffect(() => {
+    getCartData();
   }, []);
-  console.log(data);
+
+  const getCartData = async (params) => {
+  
+    let res = await axios("/cart/getcart");
+    
+    const d = await res.data;
+    
+     
+  
+   
+  };
 
   return (
     <div>
