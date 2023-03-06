@@ -28,7 +28,7 @@ const Order = () => {
     let res = await axios("/cart/getcart");
     
     const d = await res.data;
-    console.log(d)
+    
      
   
    
