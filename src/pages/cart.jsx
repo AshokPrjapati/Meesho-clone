@@ -5,14 +5,18 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import PriceDetails from "@/components/cart/PriceDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { cartTotalPrice, getCartProducts, removeCartProduct } from "@/redux/cart/cart.action";
-import Link from "next/link";
+import { getCartProducts, } from "@/redux/cart/cart.action";
 import useToastMsg from "@/custom-hooks/useToast";
+import { useRouter } from "next/router";
+import useLoadingIndicator from "@/custom-hooks/useLoadingIndicator";
+import Loader from "@/components/Loader/Loader";
 
 const Cart = () => {
   const Toast = useToastMsg();
   const { cartProducts } = useSelector((store) => store.cart);
-  
+  const router = useRouter();
+  const loading = useLoadingIndicator();
+
   const token = useSelector(store => store.login.token);
   const dispatch = useDispatch();
 
@@ -22,6 +26,7 @@ const Cart = () => {
 
   return (
     <>
+      {loading && <Loader />}
       <Head>
         <title>ApniDukan-Cart</title>
         <meta name="description" content="Apni dukan cart page" />
@@ -32,8 +37,8 @@ const Cart = () => {
       <div>
         <CartNav image={"./images/s1.png"} />
         {cartProducts.length ? (
-          <Container maxW={{sm:"100%",lg:"80%"}} p={"10px 15px"} display={{sm:"grid",base:"grid",lg:"flex"}}>
-            <Flex w={{base:"100%",md:"70%"}} >
+          <Container maxW={{ sm: "100%", lg: "80%" }} p={"10px 15px"} display={{ sm: "grid", base: "grid", lg: "flex" }}>
+            <Flex w={{ base: "100%", md: "70%" }} >
               <Box
                 w={"100%"}
                 paddingRight="10px"
@@ -64,15 +69,15 @@ const Cart = () => {
                   />
                 ))}
               </Box>
-              </Flex>
-              <Box w={{sm:"100%",lg:"38%"}} >
-                <PriceDetails
-                  display={"flex"}
-                  dest="/cart/address"
-                  text="Continue"
-                />
-              </Box>
-            
+            </Flex>
+            <Box w={{ sm: "100%", lg: "38%" }} >
+              <PriceDetails
+                display={"flex"}
+                dest="/cart/address"
+                text="Continue"
+              />
+            </Box>
+
           </Container>
         ) : (
           <Flex
@@ -82,7 +87,7 @@ const Cart = () => {
             justifyContent={"center"}
             flexDirection="column"
             gap="20px"
-            
+
           >
             <Image
               src="https://images.meesho.com/images/pow/empty-cart.png"
@@ -91,19 +96,18 @@ const Cart = () => {
             <Text fontSize={"18px"} fontWeight={"600"}>
               Your cart is empty
             </Text>
-            <Link href="/products">
-              <Button
-                color={"#f43f97"}
-                size={"lg"}
-                border={"1px solid #f43f97"}
-                bg={"none"}
-                _hover={{
-                  bg: "none",
-                }}
-              >
-                View Products
-              </Button>
-            </Link>
+            <Button
+              color={"#f43f97"}
+              size={"lg"}
+              border={"1px solid #f43f97"}
+              bg={"none"}
+              _hover={{
+                bg: "none",
+              }}
+              onClick={() => router.push("/products")}
+            >
+              View Products
+            </Button>
           </Flex>
         )}
       </div>
