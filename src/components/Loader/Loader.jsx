@@ -9,10 +9,11 @@ const Loader = () => {
             left="0"
             width="100%"
             height="100%"
-            zIndex="9999"
+            zIndex="9"
             display="flex"
             justifyContent="center"
             alignItems="center"
+            backgroundColor="rgba(0,0,0,.5)"
         >
             <Box>
                 <Spinner

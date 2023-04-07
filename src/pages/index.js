@@ -11,11 +11,14 @@ import SmallNavbar from '@/components/Navbar/SmallNavbar'
 
 import Link from 'next/link';
 import axios from 'axios';
+import Loader from '@/components/Loader/Loader';
+import useLoadingIndicator from '@/custom-hooks/useLoadingIndicator';
 
 export default function Home({ data }) {
 
 
   const [des, setdes] = useState(true);
+  const loading = useLoadingIndicator();
 
 
   let category = ['dresses', 'kurti', 'jeans']
@@ -38,6 +41,7 @@ export default function Home({ data }) {
 
   return (
     <>
+      {loading && <Loader />}
       <div>
         <div className={styles.big}><Navbar /></div>
         <div className={styles.small}><SmallNavbar /></div>

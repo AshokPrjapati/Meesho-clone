@@ -73,11 +73,10 @@ const SingleUserpage = () => {
           >
             <Image alt="" m={"auto"} w={"70%"} src={image} />
             <br />
-            <Flex m={"auto"} justify="center" w={"80%"}>
+            <Flex m={"1rem auto"} justify="center" w={"100%"}>
               <Button
                 isLoading={loading}
                 loadingText="Adding..."
-                marginRight={"5px"}
                 onClick={addProduct}
               >
                 Add to Cart

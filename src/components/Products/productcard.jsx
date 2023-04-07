@@ -2,12 +2,9 @@ import React from "react";
 import { Box, Image, Text, Flex, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
-import useLoadingIndicator from "@/custom-hooks/useLoadingIndicator";
-import Loader from "../Loader/Loader";
 
 const Productcard = ({ id, image, price, title, reviews }) => {
   const router = useRouter();
-  const loading = useLoadingIndicator();
 
   const handleClick = (id) => {
     if (id) {
@@ -25,9 +22,9 @@ const Productcard = ({ id, image, price, title, reviews }) => {
   } else {
     x = "rgb(244, 182, 25)";
   }
+
   return (
     <>
-      {loading && <Loader />}
       <div>
         <Box
           bg={"whitesmoke"}

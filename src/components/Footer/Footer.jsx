@@ -60,10 +60,10 @@ export default function Footer() {
           <Stack align={'flex-start'}>
             <ListHeader>Contact us</ListHeader>
             <Text>Fashnear Technologies Private Limited,
-CIN: U74900KA2015PTC082263
-06-105-B, 06-102, (138 Wu) Vaishnavi Signature, No. 78/9, Outer Ring Road, Bellandur, Varthur Hobli, Bengaluru-560103, Karnataka, India
-E-mail address: query@meesho.com
-© 2015-2022 Meesho.com</Text>
+              CIN: U74900KA2015PTC082263
+              06-105-B, 06-102, (138 Wu) Vaishnavi Signature, No. 78/9, Outer Ring Road, Bellandur, Varthur Hobli, Bengaluru-560103, Karnataka, India
+              E-mail address: query@meesho.com
+              © 2015-2022 Meesho.com</Text>
             {/* <Link href={'#'}>Blog</Link>
             <Link href={'#'}>Careers</Link>
             <Link href={'#'}>Contact Us</Link> */}
@@ -86,8 +86,8 @@ E-mail address: query@meesho.com
 
           <Stack align={'flex-start'}>
             <Text>Shop Non-Stop on Meesho
-Trusted by more than 1 Crore Indians
-Cash on Delivery | Free Delivery</Text>
+              Trusted by more than 1 Crore Indians
+              Cash on Delivery | Free Delivery</Text>
             {/* <AppStoreBadge />
             <PlayStoreBadge /> */}
           </Stack>
